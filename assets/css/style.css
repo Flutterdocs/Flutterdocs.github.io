@@ -52,6 +52,33 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 100%;
+}
+
+/* 下载按钮样式 */
+.download-btn {
+    margin-left: auto;
+    padding-left: 20px;
+}
+
+.btn-download {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    background-color: #0277bd;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn-download:hover {
+    background-color: #01579b;
+}
+
+.btn-download i {
+    margin-right: 6px;
 }
 
 .logo {
@@ -267,6 +294,30 @@ section p {
     background-color: #4caf50;
     color: white;
     border-color: #4caf50;
+}
+
+.download-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #4caf50;
+    border: 1px solid #45a049;
+    border-radius: 4px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    color: white;
+    z-index: 10;
+    transition: all 0.3s ease;
+    min-width: 90px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.download-button:hover {
+    background-color: #45a049;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 pre {
