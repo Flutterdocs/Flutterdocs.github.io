@@ -60,19 +60,71 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // 代码高亮（简单实现）
-    const codeBlocks = document.querySelectorAll('pre code');
-    codeBlocks.forEach(function(block) {
-        // 添加语法高亮效果（这里使用简单的CSS类）
-        block.innerHTML = block.innerHTML
-            .replace(/\/\/.*$/gm, '<span class="comment">$&</span>') // 单行注释
-            .replace(/\/\*[\s\S]*?\*\//g, '<span class="comment">$&</span>') // 多行注释
-            .replace(/\b(class|extends|import|return|void|final|const|var|dynamic|static|override|Widget|BuildContext|StatelessWidget|StatefulWidget)\b/g, '<span class="keyword">$&</span>') // 关键字
-            .replace(/\b(Color|Text|Container|Row|Column|Scaffold|AppBar|Icon|IconButton|ElevatedButton|TextButton|OutlinedButton)\b/g, '<span class="widget">$&</span>') // 组件名
-            .replace(/\b(Colors\.\w+)\b/g, '<span class="color">$&</span>') // 颜色
-            .replace(/'(.*?)'/g, '<span class="string">$&</span>') // 字符串
-            .replace(/\b(\d+(\.\d+)?)\b/g, '<span class="number">$&</span>'); // 数字
-    });
+    // 复制代码功能
+    window.copyCode = function(button) {
+        const codeBlock = button.nextElementSibling;
+        const code = codeBlock.querySelector('code').innerText;
+        
+        navigator.clipboard.writeText(code).then(function() {
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-check"></i>';
+            button.classList.add('copied');
+            
+            setTimeout(function() {
+                button.innerHTML = originalText;
+                button.classList.remove('copied');
+            }, 2000);
+        }).catch(function(err) {
+            console.error('复制失败:', err);
+        });
+    };
+    
+    // 代码高亮（增强版）
+    function highlightCode() {
+        document.querySelectorAll('pre code').forEach(function(block) {
+            let code = block.textContent;
+            
+            // 关键字高亮
+            code = code.replace(/\b(class|void|var|const|final|if|else|for|while|return|import|from|extends|implements|with|as|dynamic|static|override|async|await|try|catch|finally|throw|rethrow)\b/g, '<span class="keyword">$1</span>');
+            
+            // 布尔值和null
+            code = code.replace(/\b(true|false|null|undefined)\b/g, '<span class="boolean">$1</span>');
+            
+            // 函数调用
+            code = code.replace(/\b([A-Za-z_][a-zA-Z0-9_]*(?=\())\b/g, '<span class="function">$1</span>');
+            
+            // 类名
+            code = code.replace(/\b([A-Z][a-zA-Z0-9_]*)\b/g, function(match) {
+                // 避免匹配已经是函数的名称
+                if (match.endsWith('(')) return match;
+                return '<span class="class-name">' + match + '</span>';
+            });
+            
+            // 字符串
+            code = code.replace(/'(.*?)'/g, "'<span class=\"string\">$1</span>'");
+            code = code.replace(/"(.*?)"/g, '"<span class="string">$1</span>"');
+            
+            // 注释
+            code = code.replace(/\/\/.*$/gm, '<span class="comment">$&</span>');
+            code = code.replace(/\/\*[\s\S]*?\*\//g, '<span class="comment">$&</span>');
+            
+            // 数字
+            code = code.replace(/\b(\d+(?:\.\d+)?)\b/g, '<span class="number">$1</span>');
+            
+            // 操作符
+            code = code.replace(/(\+|-|\*|\/|=|==|!=|<=|>=|<|>|&&|\|\||!)/g, '<span class="operator">$1</span>');
+            
+            // 组件名
+            code = code.replace(/\b(Color|Text|Container|Row|Column|Scaffold|AppBar|Icon|IconButton|ElevatedButton|TextButton|OutlinedButton)\b/g, '<span class="widget">$1</span>');
+            
+            // 颜色
+            code = code.replace(/\b(Colors\.\w+)\b/g, '<span class="color">$1</span>');
+            
+            block.innerHTML = code;
+        });
+    }
+    
+    highlightCode();
     
     // 响应式菜单切换
     const menuToggle = document.createElement('button');

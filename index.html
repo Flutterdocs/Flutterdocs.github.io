@@ -217,6 +217,447 @@ class _MyHomePageState extends State&lt;MyHomePage&gt; {
                     </div>
                 </section>
 
+                <section id="bottomsheet" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-window-minimize"></i>
+                        <h2>Bottom sheet</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>Bottom sheet 是将补充内容固定在屏幕底部的容器。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <div class="code-block">
+                          <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                          <pre><code class="dart">showModalBottomSheet(
+  context: context,
+  builder: (BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(16.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text('底部菜单'),
+          ListTile(
+            title: Text('选项一'),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            title: Text('选项二'),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+        ],
+      ),
+    );
+  },
+)</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="card" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-clone"></i>
+                        <h2>Card</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>Card 是一个容器，用于显示圆角和阴影的盒子中包含的简短、相关内容。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <div class="code-block">
+                          <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                          <pre><code class="dart">Card(
+  elevation: 2.0,
+  shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(12.0),
+  ),
+  child: Padding(
+    padding: EdgeInsets.all(16.0),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('卡片标题', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
+        SizedBox(height: 8.0),
+        Text('这是卡片的内容描述，展示了卡片的基本用法。'),
+      ],
+    ),
+  ),
+)</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="divider" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-minus"></i>
+                        <h2>Divider</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>Divider 是一条细线，用于在列表和容器中对内容进行分组。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <div class="code-block">
+                          <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                          <pre><code class="dart">Column(
+  children: [
+    Text('内容区域一'),
+    Divider(
+      thickness: 1.0,
+      color: Colors.grey.shade300,
+      height: 20.0,
+    ),
+    Text('内容区域二'),
+  ],
+)</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="listtile" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-list"></i>
+                        <h2>ListTile</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>ListTile 是一个固定高度的单行，通常包含一些文本以及前导或尾随图标。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <div class="code-block">
+                          <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                          <pre><code class="dart">ListTile(
+  leading: Icon(Icons.person),
+  title: Text('张三'),
+  subtitle: Text('用户ID: 12345'),
+  trailing: Icon(Icons.chevron_right),
+  onTap: () {
+    // 点击事件处理
+  },
+)</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="bottomappbar" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-window-maximize"></i>
+                        <h2>Bottom app bar</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>Bottom app bar 是一个容器，用于在屏幕底部显示导航和关键操作。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <div class="code-block">
+                          <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                          <pre><code class="dart">Scaffold(
+  bottomNavigationBar: BottomAppBar(
+    shape: CircularNotchedRectangle(),
+    notchMargin: 8.0,
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        IconButton(
+          icon: Icon(Icons.home),
+          onPressed: () {},
+        ),
+        IconButton(
+          icon: Icon(Icons.search),
+          onPressed: () {},
+        ),
+        SizedBox(width: 40.0), // 为FAB留出空间
+        IconButton(
+          icon: Icon(Icons.favorite),
+          onPressed: () {},
+        ),
+        IconButton(
+          icon: Icon(Icons.person),
+          onPressed: () {},
+        ),
+      ],
+    ),
+  ),
+  floatingActionButton: FloatingActionButton(
+    onPressed: () {},
+    child: Icon(Icons.add),
+  ),
+  floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+)</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="floatingactionbutton" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-plus-circle"></i>
+                        <h2>FloatingActionButton</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>FloatingActionButton 是一个可点击的块，包含一个图标，使关键操作始终触手可及。它通常用于触发主要操作。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <div class="code-block">
+                          <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                          <pre><code class="dart">FloatingActionButton(
+  onPressed: () {
+    // 处理点击事件
+  },
+  backgroundColor: Colors.blue,
+  child: Icon(Icons.add),
+)</code></pre>
+                        </div>
+                    </div>
+                    <div class="component-properties">
+                        <h3>常用属性</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>属性</th>
+                                    <th>类型</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>onPressed</td>
+                                    <td>Function</td>
+                                    <td>点击按钮时触发的回调</td>
+                                </tr>
+                                <tr>
+                                    <td>child</td>
+                                    <td>Widget</td>
+                                    <td>按钮内的图标或其他组件</td>
+                                </tr>
+                                <tr>
+                                    <td>backgroundColor</td>
+                                    <td>Color</td>
+                                    <td>按钮的背景色</td>
+                                </tr>
+                                <tr>
+                                    <td>foregroundColor</td>
+                                    <td>Color</td>
+                                    <td>按钮内容的颜色</td>
+                                </tr>
+                                <tr>
+                                    <td>shape</td>
+                                    <td>ShapeBorder</td>
+                                    <td>按钮的形状</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="component-example">
+                        <h3>示例</h3>
+                        <div class="code-block">
+                          <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                          <pre><code class="dart">Scaffold(
+  floatingActionButton: FloatingActionButton.extended(
+    onPressed: () {
+      // 添加新项
+    },
+    icon: Icon(Icons.add),
+    label: Text('添加'),
+    backgroundColor: Colors.deepPurple,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(12),
+    ),
+  ),
+  floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+)</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="extendedfloatingactionbutton" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                        <h2>Extended FloatingActionButton</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>Extended FloatingActionButton 是一种更宽的按钮块，可以容纳文本标签并提供更大的点击区域。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <div class="code-block">
+                          <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                          <pre><code class="dart">FloatingActionButton.extended(
+  onPressed: () {
+    // 处理点击事件
+  },
+  icon: Icon(Icons.save),
+  label: Text('保存更改'),
+  backgroundColor: Colors.green,
+)</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="iconbutton" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-mouse-pointer"></i>
+                        <h2>IconButton</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>IconButton 是可点击的图标，提示应用用户执行补充操作。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <div class="code-block">
+                          <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                          <pre><code class="dart">IconButton(
+  icon: Icon(Icons.favorite),
+  onPressed: () {
+    // 处理点击事件
+  },
+  iconSize: 24.0,
+  color: Colors.red,
+)</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="segmentedbutton" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-columns"></i>
+                        <h2>SegmentedButton</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>SegmentedButton 是单个或多个选定的可点击块，帮助用户选择选项、切换视图或排序元素。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <div class="code-block">
+                          <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                          <pre><code class="dart">SegmentedButton&lt;String&gt;(
+  segments: [
+    ButtonSegment(value: 'one', label: Text('选项一')),
+    ButtonSegment(value: 'two', label: Text('选项二')),
+    ButtonSegment(value: 'three', label: Text('选项三')),
+  ],
+  selected: {'one'},
+  onSelectionChanged: (Set&lt;String&gt; newSelection) {
+    // 处理选择变化
+  },
+  multiSelectionEnabled: true,
+)</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="badge" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-badge"></i>
+                        <h2>Badge</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>Badge 是传达动态内容（如计数或状态）的类似图标的块。它可以包含标签或数字。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <div class="code-block">
+                          <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                          <pre><code class="dart">Badge(
+  label: Text('5'),
+  child: Icon(Icons.notifications),
+)</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="linearprogressindicator" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-tasks"></i>
+                        <h2>LinearProgressIndicator</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>LinearProgressIndicator 是一条垂直线，随着应用加载或表单提交等持续过程的完成而改变颜色。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <div class="code-block">
+                          <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                          <pre><code class="dart">LinearProgressIndicator(
+  value: 0.7, // 进度值，0.0 到 1.0
+  backgroundColor: Colors.grey.shade300,
+  valueColor: AlwaysStoppedAnimation&lt;Color&gt;(Colors.blue),
+)</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="snackbar" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-comment-dots"></i>
+                        <h2>SnackBar</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>SnackBar 是显示在屏幕底部的有关应用进程的简短消息。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <div class="code-block">
+                          <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                          <pre><code class="dart">ScaffoldMessenger.of(context).showSnackBar(
+  SnackBar(
+    content: Text('操作成功！'),
+    action: SnackBarAction(
+      label: '撤销',
+      onPressed: () {
+        // 撤销操作
+      },
+    ),
+    duration: Duration(seconds: 3),
+  ),
+)</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="alertDialog" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <h2>AlertDialog</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>AlertDialog 是悬浮容器，提示应用用户提供更多数据或做出决定。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <div class="code-block">
+                          <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                          <pre><code class="dart">showDialog(
+  context: context,
+  builder: (BuildContext context) {
+    return AlertDialog(
+      title: Text('确认操作'),
+      content: Text('您确定要删除此项吗？'),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text('取消'),
+        ),
+        TextButton(
+          onPressed: () {
+            // 执行删除操作
+            Navigator.pop(context);
+          },
+          child: Text('删除'),
+        ),
+      ],
+    );
+  },
+)</code></pre>
+                        </div>
+                    </div>
+                </section>
+
                 <section id="appbar" class="component-detail">
                     <div class="component-header">
                         <i class="fas fa-window-maximize"></i>

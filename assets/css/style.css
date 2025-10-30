@@ -209,19 +209,104 @@ section p {
 }
 
 /* 代码块样式 */
-pre {
-    background-color: #F5F5F5;
-    border-radius: 6px;
-    padding: 16px;
-    overflow-x: auto;
+.code-block {
+    position: relative;
     margin: 16px 0;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+}
+
+.copy-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #666;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.copy-button:hover {
+    background-color: #f0f0f0;
+    color: #0277bd;
+}
+
+.copy-button.copied {
+    background-color: #4caf50;
+    color: white;
+    border-color: #4caf50;
+}
+
+pre {
+    background-color: #f8f8f8;
+    border-radius: 0;
+    padding: 16px;
+    padding-top: 40px;
+    overflow-x: auto;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+    white-space: pre-wrap;
     border: 1px solid var(--border);
 }
 
 code {
-    font-family: 'Fira Code', 'Consolas', monospace;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
     font-size: 14px;
     line-height: 1.5;
+}
+
+/* 代码高亮样式 */
+.code-block .keyword {
+    color: #795e26;
+    font-weight: bold;
+}
+
+.code-block .boolean {
+    color: #005cc5;
+    font-weight: bold;
+}
+
+.code-block .function {
+    color: #d73a49;
+}
+
+.code-block .class-name {
+    color: #6f42c1;
+    font-weight: bold;
+}
+
+.code-block .string {
+    color: #032f62;
+}
+
+.code-block .comment {
+    color: #6a737d;
+    font-style: italic;
+}
+
+.code-block .number {
+    color: #005cc5;
+}
+
+.code-block .operator {
+    color: #d73a49;
+}
+
+.code-block .widget {
+    color: #005cc5;
+    font-weight: bold;
+}
+
+.code-block .color {
+    color: #0086b3;
 }
 
 /* 组件网格样式 */
