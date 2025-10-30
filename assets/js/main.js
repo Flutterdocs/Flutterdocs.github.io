@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     searchInput.addEventListener('input', function() {
         const searchTerm = this.value.toLowerCase().trim();
         
-        componentLinks.forEach(link => {
+        componentLinks.forEach(function(link) {
             const text = link.textContent.toLowerCase();
             if (text.includes(searchTerm)) {
                 link.style.display = 'block';
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 代码高亮（增强版）
     function highlightCode() {
         document.querySelectorAll('pre code').forEach(function(block) {
-            let code = block.textContent;
+            var code = block.textContent;
             
             // 关键字高亮
             code = code.replace(/\b(class|void|var|const|final|if|else|for|while|return|import|from|extends|implements|with|as|dynamic|static|override|async|await|try|catch|finally|throw|rethrow)\b/g, '<span class="keyword">$1</span>');
@@ -228,8 +228,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // 组件卡片的悬停动画增强
-    const componentCards = document.querySelectorAll('.component-card');
-    componentCards.forEach(card => {
+    var componentCards = document.querySelectorAll('.component-card');
+    componentCards.forEach(function(card) {
         card.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-8px) scale(1.02)';
         });

@@ -217,6 +217,473 @@ class _MyHomePageState extends State&lt;MyHomePage&gt; {
                     </div>
                 </section>
 
+                <section id="navigationbar" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-compass"></i>
+                        <h2>NavigationBar</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>NavigationBar 是一个持久容器，用于在应用中切换主要目的地。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <div class="code-block">
+                          <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                          <pre><code class="dart">Scaffold(
+  bottomNavigationBar: NavigationBar(
+    destinations: [
+      NavigationDestination(
+        icon: Icon(Icons.home),
+        label: '首页',
+      ),
+      NavigationDestination(
+        icon: Icon(Icons.search),
+        label: '搜索',
+      ),
+      NavigationDestination(
+        icon: Icon(Icons.favorite),
+        label: '收藏',
+      ),
+      NavigationDestination(
+        icon: Icon(Icons.person),
+        label: '我的',
+      ),
+    ],
+    onDestinationSelected: (int index) {
+      // 处理导航选择
+    },
+    selectedIndex: 0,
+  ),
+)</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="navigationdrawer" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-bars"></i>
+                        <h2>NavigationDrawer</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>NavigationDrawer 是从应用的前缘滑入的容器，用于导航到应用的其他部分。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <div class="code-block">
+                          <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                          <pre><code class="dart">Scaffold(
+  drawer: NavigationDrawer(
+    children: [
+      UserAccountsDrawerHeader(
+        accountName: Text('用户名'),
+        accountEmail: Text('user@example.com'),
+        currentAccountPicture: CircleAvatar(
+          backgroundImage: AssetImage('assets/avatar.jpg'),
+        ),
+      ),
+      ListTile(
+        leading: Icon(Icons.home),
+        title: Text('首页'),
+        onTap: () {
+          Navigator.pop(context);
+        },
+      ),
+      ListTile(
+        leading: Icon(Icons.settings),
+        title: Text('设置'),
+        onTap: () {
+          Navigator.pop(context);
+        },
+      ),
+    ],
+  ),
+)</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="navigationrail" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-route"></i>
+                        <h2>Navigation rail</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>Navigation rail 是平板和桌面屏幕前缘的持久容器，用于导航到应用的各个部分。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <div class="code-block">
+                          <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                          <pre><code class="dart">Scaffold(
+  body: Row(
+    children: [
+      NavigationRail(
+        destinations: [
+          NavigationRailDestination(
+            icon: Icon(Icons.home),
+            label: Text('首页'),
+          ),
+          NavigationRailDestination(
+            icon: Icon(Icons.settings),
+            label: Text('设置'),
+          ),
+        ],
+        onDestinationSelected: (int index) {
+          // 处理导航选择
+        },
+        selectedIndex: 0,
+      ),
+      Expanded(
+        child: Container(
+          color: Theme.of(context).colorScheme.primaryContainer,
+          child: Center(
+            child: Text('主内容区域'),
+          ),
+        ),
+      ),
+    ],
+  ),
+)</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="tabbar" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-layer-group"></i>
+                        <h2>TabBar</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>TabBar 是分层容器，用于组织不同屏幕、数据集和其他交互内容。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <div class="code-block">
+                          <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                          <pre><code class="dart">DefaultTabController(
+  length: 3,
+  child: Scaffold(
+    appBar: AppBar(
+      bottom: TabBar(
+        tabs: [
+          Tab(text: '标签一'),
+          Tab(text: '标签二'),
+          Tab(text: '标签三'),
+        ],
+      ),
+    ),
+    body: TabBarView(
+      children: [
+        Center(child: Text('标签一页面')),
+        Center(child: Text('标签二页面')),
+        Center(child: Text('标签三页面')),
+      ],
+    ),
+  ),
+)</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="checkbox" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-check-square"></i>
+                        <h2>Checkbox</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>Checkbox 是应用用户可以设置或清除以从集合中选择一个或多个选项的表单控件。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <div class="code-block">
+                          <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                          <pre><code class="dart">bool? _isChecked = false;
+
+Checkbox(
+  value: _isChecked,
+  onChanged: (bool? value) {
+    setState(() {
+      _isChecked = value;
+    });
+  },
+)</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="chip" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-tag"></i>
+                        <h2>Chip</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>Chip 是简化信息输入、选择、过滤内容或触发操作的小块。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <div class="code-block">
+                          <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                          <pre><code class="dart">Row(
+  children: [
+    Chip(
+      label: Text('标签一'),
+      avatar: CircleAvatar(
+        backgroundColor: Colors.blue,
+        child: Text('1'),
+      ),
+      onDeleted: () {
+        // 删除标签
+      },
+    ),
+    SizedBox(width: 8.0),
+    Chip(
+      label: Text('标签二'),
+      backgroundColor: Colors.green,
+    ),
+  ],
+)</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="datepicker" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h2>DatePicker</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>DatePicker 是用于选择日期或日期范围的日历界面。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <div class="code-block">
+                          <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                          <pre><code class="dart">showDatePicker(
+  context: context,
+  initialDate: DateTime.now(),
+  firstDate: DateTime(2000),
+  lastDate: DateTime(2100),
+  builder: (BuildContext context, Widget? child) {
+    return Theme(
+      data: ThemeData.light(),
+      child: child ?? SizedBox(),
+    );
+  },
+).then((DateTime? selectedDate) {
+  if (selectedDate != null) {
+    // 处理选择的日期
+  }
+})</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="menu" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-ellipsis-v"></i>
+                        <h2>Menu</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>Menu 是在临时表面上显示选择列表的容器。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <div class="code-block">
+                          <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                          <pre><code class="dart">PopupMenuButton&lt;String&gt;(
+  itemBuilder: (BuildContext context) {
+    return [
+      PopupMenuItem&lt;String&gt;(
+        value: 'edit',
+        child: Text('编辑'),
+      ),
+      PopupMenuItem&lt;String&gt;(
+        value: 'delete',
+        child: Text('删除'),
+      ),
+      PopupMenuItem&lt;String&gt;(
+        value: 'share',
+        child: Text('分享'),
+      ),
+    ];
+  },
+  onSelected: (String value) {
+    // 处理菜单项选择
+  },
+  icon: Icon(Icons.more_vert),
+)</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="radio" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-dot-circle"></i>
+                        <h2>Radio</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>Radio 是应用用户可以设置或清除以从集合中选择仅一个选项的表单控件。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <div class="code-block">
+                          <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                          <pre><code class="dart">String? _selectedValue = 'option1';
+
+Column(
+  children: [
+    RadioListTile&lt;String&gt;(
+      title: Text('选项一'),
+      value: 'option1',
+      groupValue: _selectedValue,
+      onChanged: (String? value) {
+        setState(() {
+          _selectedValue = value;
+        });
+      },
+    ),
+    RadioListTile&lt;String&gt;(
+      title: Text('选项二'),
+      value: 'option2',
+      groupValue: _selectedValue,
+      onChanged: (String? value) {
+        setState(() {
+          _selectedValue = value;
+        });
+      },
+    ),
+  ],
+)</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="slider" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-sliders-h"></i>
+                        <h2>Slider</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>Slider 是用于选择一系列值的表单控件。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <div class="code-block">
+                          <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                          <pre><code class="dart">double _sliderValue = 50.0;
+
+Slider(
+  value: _sliderValue,
+  min: 0.0,
+  max: 100.0,
+  divisions: 10,
+  label: '${_sliderValue.round()}',
+  onChanged: (double value) {
+    setState(() {
+      _sliderValue = value;
+    });
+  },
+  activeColor: Colors.blue,
+  inactiveColor: Colors.grey,
+)</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="switch" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-toggle-on"></i>
+                        <h2>Switch</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>Switch 是将单个项目的状态更改为打开或关闭的开关控件。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <div class="code-block">
+                          <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                          <pre><code class="dart">bool _switchValue = false;
+
+SwitchListTile(
+  title: Text('启用通知'),
+  value: _switchValue,
+  onChanged: (bool value) {
+    setState(() {
+      _switchValue = value;
+    });
+  },
+  activeColor: Colors.blue,
+  secondary: Icon(Icons.notifications),
+)</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="timepicker" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-clock"></i>
+                        <h2>TimePicker</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>TimePicker 是用于选择和设置特定时间的时钟界面。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <div class="code-block">
+                          <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                          <pre><code class="dart">showTimePicker(
+  context: context,
+  initialTime: TimeOfDay.now(),
+  builder: (BuildContext context, Widget? child) {
+    return Theme(
+      data: ThemeData.light(),
+      child: child ?? SizedBox(),
+    );
+  },
+).then((TimeOfDay? selectedTime) {
+  if (selectedTime != null) {
+    // 处理选择的时间
+  }
+})</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="textfield" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-font"></i>
+                        <h2>TextField</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>TextField 是应用用户可以在其中输入文本的框。它们出现在表单和对话框中。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <div class="code-block">
+                          <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                          <pre><code class="dart">TextEditingController _controller = TextEditingController();
+
+TextField(
+  controller: _controller,
+  decoration: InputDecoration(
+    labelText: '请输入文本',
+    hintText: '提示信息',
+    border: OutlineInputBorder(),
+    prefixIcon: Icon(Icons.text_fields),
+  ),
+  keyboardType: TextInputType.text,
+  maxLength: 50,
+  onChanged: (String value) {
+    // 文本变化时的回调
+  },
+  onSubmitted: (String value) {
+    // 提交时的回调
+  },
+)</code></pre>
+                        </div>
+                    </div>
+                </section>
+
                 <section id="bottomsheet" class="component-detail">
                     <div class="component-header">
                         <i class="fas fa-window-minimize"></i>
