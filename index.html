@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flutter Material 组件文档</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="assets/js/main.js"></script>
+</head>
+<body>
+    <header class="flutter-header">
+        <div class="container">
+            <div class="logo">
+                <i class="fab fa-flutter"></i>
+                <h1>Flutter Material 组件</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#overview">概述</a></li>
+                    <li><a href="#components">组件列表</a></li>
+                    <li><a href="#getting-started">快速开始</a></li>
+                    <li><a href="#examples">示例</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="layout">
+            <aside class="sidebar">
+                <div class="search-box">
+                    <input type="text" placeholder="搜索组件..." id="component-search">
+                    <i class="fas fa-search"></i>
+                </div>
+                <nav class="component-nav">
+                    <h3>核心组件</h3>
+                    <h3>Actions</h3>
+                    <ul id="component-list">
+                        <li><a href="#floatingactionbutton">FloatingActionButton</a></li>
+                        <li><a href="#extendedfloatingactionbutton">Extended FloatingActionButton</a></li>
+                        <li><a href="#iconbutton">IconButton</a></li>
+                        <li><a href="#segmentedbutton">SegmentedButton</a></li>
+                    </ul>
+                    
+                    <h3>Communication</h3>
+                    <ul>
+                        <li><a href="#badge">Badge</a></li>
+                        <li><a href="#linearprogressindicator">LinearProgressIndicator</a></li>
+                        <li><a href="#snackbar">SnackBar</a></li>
+                    </ul>
+                    
+                    <h3>Containment</h3>
+                    <ul>
+                        <li><a href="#alertDialog">AlertDialog</a></li>
+                        <li><a href="#bottomsheet">Bottom sheet</a></li>
+                        <li><a href="#card">Card</a></li>
+                        <li><a href="#divider">Divider</a></li>
+                        <li><a href="#listtile">ListTile</a></li>
+                    </ul>
+                    
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="#appbar">AppBar</a></li>
+                        <li><a href="#bottomappbar">Bottom app bar</a></li>
+                        <li><a href="#navigationbar">NavigationBar</a></li>
+                        <li><a href="#navigationdrawer">NavigationDrawer</a></li>
+                        <li><a href="#navigationrail">Navigation rail</a></li>
+                        <li><a href="#tabbar">TabBar</a></li>
+                    </ul>
+                    
+                    <h3>Selection</h3>
+                    <ul>
+                        <li><a href="#checkbox">Checkbox</a></li>
+                        <li><a href="#chip">Chip</a></li>
+                        <li><a href="#datepicker">DatePicker</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#radio">Radio</a></li>
+                        <li><a href="#slider">Slider</a></li>
+                        <li><a href="#switch">Switch</a></li>
+                        <li><a href="#timepicker">TimePicker</a></li>
+                    </ul>
+                    
+                    <h3>Text inputs</h3>
+                    <ul>
+                        <li><a href="#textfield">TextField</a></li>
+                    </ul>
+                    
+                    <h3>Other Widgets</h3>
+                    <ul>
+                        <li><a href="#button">Button</a></li>
+                        <li><a href="#list">ListView</a></li>
+                        <li><a href="#bottomnavigationbar">BottomNavigationBar</a></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <section class="content">
+                <section id="overview">
+                    <h2>Material 组件概述</h2>
+                    <p>Flutter 提供了各种视觉、行为和动效丰富的小部件，它们实现了 Material 3 设计规范。Material 3 是 Flutter 的默认设计语言，能帮助你设计和构建美观、实用的应用程序，并可适应任何平台。</p>
+                    <p>Flutter 3.16 已完成将 Material 3 作为默认设计的转换。本文档将详细介绍各种 Material 组件的使用方法、配置选项和最佳实践。</p>
+                </section>
+
+                <section id="getting-started">
+                    <h2>快速开始</h2>
+                    <div class="card">
+                        <h3>基础设置</h3>
+                        <div class="code-block">
+                      <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                      <pre><code class="dart">import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  State&lt;MyHomePage&gt; createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State&lt;MyHomePage&gt; {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text(widget.title),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const &lt;Widget&gt;[
+            Text(
+              'Hello, Flutter!',
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}</code></pre>
+                    </div>
+                </section>
+
+                <section id="components">
+                    <h2>Material 组件</h2>
+                    <div class="component-grid">
+                        <div class="component-card">
+                            <i class="fas fa-window-maximize"></i>
+                            <h3>AppBar</h3>
+                            <p>应用栏，通常显示在屏幕顶部</p>
+                            <a href="#appbar" class="btn">查看详情</a>
+                        </div>
+                        <div class="component-card">
+                            <i class="fas fa-mouse-pointer"></i>
+                            <h3>Button</h3>
+                            <p>各种按钮组件</p>
+                            <a href="#button" class="btn">查看详情</a>
+                        </div>
+                        <div class="component-card">
+                            <i class="fas fa-clone"></i>
+                            <h3>Card</h3>
+                            <p>卡片式容器组件</p>
+                            <a href="#card" class="btn">查看详情</a>
+                        </div>
+                        <div class="component-card">
+                            <i class="fas fa-comment-dots"></i>
+                            <h3>Dialog</h3>
+                            <p>对话框组件</p>
+                            <a href="#dialog" class="btn">查看详情</a>
+                        </div>
+                        <div class="component-card">
+                            <i class="fas fa-plus-circle"></i>
+                            <h3>FloatingActionButton</h3>
+                            <p>悬浮操作按钮</p>
+                            <a href="#fab" class="btn">查看详情</a>
+                        </div>
+                        <div class="component-card">
+                            <i class="fas fa-list"></i>
+                            <h3>ListView</h3>
+                            <p>列表视图组件</p>
+                            <a href="#list" class="btn">查看详情</a>
+                        </div>
+                        <div class="component-card">
+                            <i class="fas fa-font"></i>
+                            <h3>TextField</h3>
+                            <p>文本输入框</p>
+                            <a href="#textfield" class="btn">查看详情</a>
+                        </div>
+                        <div class="component-card">
+                            <i class="fas fa-compass"></i>
+                            <h3>BottomNavigationBar</h3>
+                            <p>底部导航栏</p>
+                            <a href="#bottomnavigationbar" class="btn">查看详情</a>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="appbar" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-window-maximize"></i>
+                        <h2>AppBar</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>AppBar 是一个通常显示在屏幕顶部的应用栏，用于显示应用的标题、操作按钮和导航选项。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <div class="code-block">
+                          <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                          <pre><code class="dart">AppBar(
+  title: Text('应用标题'),
+  actions: [
+    IconButton(
+      icon: Icon(Icons.search),
+      onPressed: () {},
+    ),
+    IconButton(
+      icon: Icon(Icons.more_vert),
+      onPressed: () {},
+    ),
+  ],
+)</code></pre>
+                        </div>
+                    </div>
+                    <div class="component-properties">
+                        <h3>常用属性</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>属性</th>
+                                    <th>类型</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>title</td>
+                                    <td>Widget</td>
+                                    <td>应用栏的标题</td>
+                                </tr>
+                                <tr>
+                                    <td>actions</td>
+                                    <td>List&lt;Widget&gt;</td>
+                                    <td>右侧的操作按钮</td>
+                                </tr>
+                                <tr>
+                                    <td>leading</td>
+                                    <td>Widget</td>
+                                    <td>左侧的控件，通常是返回按钮</td>
+                                </tr>
+                                <tr>
+                                    <td>backgroundColor</td>
+                                    <td>Color</td>
+                                    <td>应用栏的背景色</td>
+                                </tr>
+                                <tr>
+                                    <td>elevation</td>
+                                    <td>double</td>
+                                    <td>应用栏的阴影高度</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="component-example">
+                        <h3>示例</h3>
+                        <div class="code-block">
+                          <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                          <pre><code class="dart">Scaffold(
+  appBar: AppBar(
+    title: Text('复杂的 AppBar'),
+    leading: IconButton(
+      icon: Icon(Icons.menu),
+      onPressed: () {},
+    ),
+    actions: [
+      IconButton(
+        icon: Icon(Icons.search),
+        onPressed: () {},
+      ),
+      IconButton(
+        icon: Icon(Icons.favorite),
+        onPressed: () {},
+      ),
+      PopupMenuButton(
+        itemBuilder: (context) => [
+          PopupMenuItem(child: Text('设置')),
+          PopupMenuItem(child: Text('关于')),
+        ],
+      ),
+    ],
+    backgroundColor: Colors.blue,
+    elevation: 4.0,
+  ),
+  body: Center(
+    child: Text('AppBar 示例'),
+  ),
+)</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="card" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-clone"></i>
+                        <h2>Card</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>Card 是一个带有阴影和圆角的容器，用于显示相关信息的分组。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <pre><code>Card(
+  child: Column(
+    children: [
+      ListTile(
+        leading: Icon(Icons.album),
+        title: Text('卡片标题'),
+        subtitle: Text('卡片副标题'),
+      ),
+      Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Text('卡片内容区域'),
+      ),
+      ButtonBar(
+        children: [
+          TextButton(
+            onPressed: () {},
+            child: Text('操作 1'),
+          ),
+          TextButton(
+            onPressed: () {},
+            child: Text('操作 2'),
+          ),
+        ],
+      ),
+    ],
+  ),
+)</code></pre>
+                    </div>
+                    <div class="component-properties">
+                        <h3>常用属性</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>属性</th>
+                                    <th>类型</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>child</td>
+                                    <td>Widget</td>
+                                    <td>卡片的内容</td>
+                                </tr>
+                                <tr>
+                                    <td>elevation</td>
+                                    <td>double</td>
+                                    <td>卡片的阴影高度</td>
+                                </tr>
+                                <tr>
+                                    <td>shape</td>
+                                    <td>ShapeBorder</td>
+                                    <td>卡片的形状</td>
+                                </tr>
+                                <tr>
+                                    <td>margin</td>
+                                    <td>EdgeInsetsGeometry</td>
+                                    <td>卡片的外边距</td>
+                                </tr>
+                                <tr>
+                                    <td>color</td>
+                                    <td>Color</td>
+                                    <td>卡片的背景色</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="dialog" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-comment-dots"></i>
+                        <h2>Dialog</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>Dialog 是一个模态窗口，用于向用户显示重要信息或请求用户做出决策。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <pre><code>Future<void> _showMyDialog() async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // 用户必须点击按钮才能关闭
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('对话框标题'),
+        content: const SingleChildScrollView(
+          child: ListBody(
+            children: <Widget>[
+              Text('这是对话框内容'),
+              Text('可以显示多行文本或其他组件'),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: const Text('取消'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          TextButton(
+            child: const Text('确定'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}</code></pre>
+                    </div>
+                    <div class="component-example">
+                        <h3>显示对话框</h3>
+                        <pre><code>ElevatedButton(
+  onPressed: _showMyDialog,
+  child: const Text('显示对话框'),
+)</code></pre>
+                    </div>
+                </section>
+
+                <section id="fab" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-plus-circle"></i>
+                        <h2>FloatingActionButton</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>FloatingActionButton (FAB) 是一个悬浮在界面上的圆形按钮，通常用于触发主要操作。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <pre><code>Scaffold(
+  appBar: AppBar(
+    title: Text('FAB 示例'),
+  ),
+  body: Center(
+    child: Text('点击右下角的按钮'),
+  ),
+  floatingActionButton: FloatingActionButton(
+    onPressed: () {
+      // 处理点击事件
+    },
+    tooltip: '添加',
+    child: Icon(Icons.add),
+  ),
+  floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+)</code></pre>
+                    </div>
+                    <div class="component-properties">
+                        <h3>常用属性</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>属性</th>
+                                    <th>类型</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>onPressed</td>
+                                    <td>VoidCallback</td>
+                                    <td>点击事件处理函数</td>
+                                </tr>
+                                <tr>
+                                    <td>child</td>
+                                    <td>Widget</td>
+                                    <td>按钮内的子组件，通常是图标</td>
+                                </tr>
+                                <tr>
+                                    <td>tooltip</td>
+                                    <td>String</td>
+                                    <td>长按显示的提示文本</td>
+                                </tr>
+                                <tr>
+                                    <td>backgroundColor</td>
+                                    <td>Color</td>
+                                    <td>按钮的背景色</td>
+                                </tr>
+                                <tr>
+                                    <td>shape</td>
+                                    <td>ShapeBorder</td>
+                                    <td>按钮的形状</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="list" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-list"></i>
+                        <h2>ListView</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>ListView 是一个可以垂直滚动的列表组件，用于显示大量数据。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <pre><code>// 基本列表
+ListView(
+  children: const <Widget>[
+    ListTile(
+      leading: Icon(Icons.map),
+      title: Text('地图'),
+    ),
+    ListTile(
+      leading: Icon(Icons.phone),
+      title: Text('电话'),
+    ),
+    ListTile(
+      leading: Icon(Icons.photo_album),
+      title: Text('相册'),
+    ),
+  ],
+)
+
+// 构建器模式（适用于大量数据）
+ListView.builder(
+  itemCount: items.length,
+  itemBuilder: (context, index) {
+    return ListTile(
+      title: Text('项目 ${items[index]}'),
+    );
+  },
+)
+
+// 分隔列表
+ListView.separated(
+  itemCount: 100,
+  separatorBuilder: (context, index) => Divider(),
+  itemBuilder: (context, index) {
+    return ListTile(
+      title: Text('项目 $index'),
+    );
+  },
+)</code></pre>
+                    </div>
+                    <div class="component-properties">
+                        <h3>常用属性</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>属性</th>
+                                    <th>类型</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>scrollDirection</td>
+                                    <td>Axis</td>
+                                    <td>滚动方向</td>
+                                </tr>
+                                <tr>
+                                    <td>padding</td>
+                                    <td>EdgeInsetsGeometry</td>
+                                    <td>内边距</td>
+                                </tr>
+                                <tr>
+                                    <td>reverse</td>
+                                    <td>bool</td>
+                                    <td>是否反向滚动</td>
+                                </tr>
+                                <tr>
+                                    <td>shrinkWrap</td>
+                                    <td>bool</td>
+                                    <td>是否根据内容确定高度</td>
+                                </tr>
+                                <tr>
+                                    <td>physics</td>
+                                    <td>ScrollPhysics</td>
+                                    <td>滚动行为</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="textfield" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-font"></i>
+                        <h2>TextField</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>TextField 是一个文本输入框，用于获取用户的文本输入。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <pre><code>TextField(
+  decoration: InputDecoration(
+    border: OutlineInputBorder(),
+    labelText: '请输入文本',
+    hintText: '提示文本',
+    prefixIcon: Icon(Icons.search),
+  ),
+  onChanged: (text) {
+    // 文本变化时的处理
+  },
+  onSubmitted: (text) {
+    // 提交时的处理
+  },
+  obscureText: false, // 是否是密码输入
+  keyboardType: TextInputType.text, // 键盘类型
+)</code></pre>
+                    </div>
+                    <div class="component-properties">
+                        <h3>常用属性</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>属性</th>
+                                    <th>类型</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>controller</td>
+                                    <td>TextEditingController</td>
+                                    <td>文本控制器</td>
+                                </tr>
+                                <tr>
+                                    <td>decoration</td>
+                                    <td>InputDecoration</td>
+                                    <td>输入框装饰</td>
+                                </tr>
+                                <tr>
+                                    <td>keyboardType</td>
+                                    <td>TextInputType</td>
+                                    <td>键盘类型</td>
+                                </tr>
+                                <tr>
+                                    <td>obscureText</td>
+                                    <td>bool</td>
+                                    <td>是否隐藏文本</td>
+                                </tr>
+                                <tr>
+                                    <td>maxLength</td>
+                                    <td>int</td>
+                                    <td>最大字符长度</td>
+                                </tr>
+                                <tr>
+                                    <td>onChanged</td>
+                                    <td>ValueChanged&lt;String&gt;</td>
+                                    <td>文本变化回调</td>
+                                </tr>
+                                <tr>
+                                    <td>validator</td>
+                                    <td>FormFieldValidator&lt;String&gt;</td>
+                                    <td>表单验证器</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="component-example">
+                        <h3>带控制器的TextField</h3>
+                        <pre><code>class _MyHomePageState extends State<MyHomePage> {
+  final TextEditingController _controller = TextEditingController();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: _controller,
+      decoration: InputDecoration(
+        labelText: '请输入您的名字',
+      ),
+    );
+  }
+}</code></pre>
+                    </div>
+                </section>
+
+                <section id="bottomnavigationbar" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-compass"></i>
+                        <h2>BottomNavigationBar</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>BottomNavigationBar 是一个显示在屏幕底部的导航栏，用于在不同的主要视图之间切换。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <pre><code>class _MyHomePageState extends State<MyHomePage> {
+  int _selectedIndex = 0;
+
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text('首页'),
+    Text('搜索'),
+    Text('设置'),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('底部导航栏示例'),
+      ),
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: '首页',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: '搜索',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: '设置',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.blue,
+        onTap: _onItemTapped,
+      ),
+    );
+  }
+}</code></pre>
+                    </div>
+                    <div class="component-properties">
+                        <h3>常用属性</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>属性</th>
+                                    <th>类型</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>items</td>
+                                    <td>List&lt;BottomNavigationBarItem&gt;</td>
+                                    <td>导航项列表</td>
+                                </tr>
+                                <tr>
+                                    <td>currentIndex</td>
+                                    <td>int</td>
+                                    <td>当前选中项的索引</td>
+                                </tr>
+                                <tr>
+                                    <td>onTap</td>
+                                    <td>ValueChanged&lt;int&gt;</td>
+                                    <td>点击事件回调</td>
+                                </tr>
+                                <tr>
+                                    <td>selectedItemColor</td>
+                                    <td>Color</td>
+                                    <td>选中项的颜色</td>
+                                </tr>
+                                <tr>
+                                    <td>unselectedItemColor</td>
+                                    <td>Color</td>
+                                    <td>未选中项的颜色</td>
+                                </tr>
+                                <tr>
+                                    <td>type</td>
+                                    <td>BottomNavigationBarType</td>
+                                    <td>导航栏类型</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="button" class="component-detail">
+                    <div class="component-header">
+                        <i class="fas fa-mouse-pointer"></i>
+                        <h2>Button</h2>
+                    </div>
+                    <div class="component-description">
+                        <p>Flutter 提供了多种按钮组件，用于响应用户的点击操作。</p>
+                    </div>
+                    <div class="component-usage">
+                        <h3>基本用法</h3>
+                        <pre><code>// ElevatedButton - 带有背景色和阴影的按钮
+ElevatedButton(
+  onPressed: () {
+    // 处理点击事件
+  },
+  child: Text('Elevated Button'),
+  style: ElevatedButton.styleFrom(
+    backgroundColor: Colors.blue,
+    padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+    textStyle: TextStyle(fontSize: 16),
+  ),
+)
+
+// TextButton - 文本按钮，没有背景色
+TextButton(
+  onPressed: () {
+    // 处理点击事件
+  },
+  child: Text('Text Button'),
+  style: TextButton.styleFrom(
+    foregroundColor: Colors.blue,
+  ),
+)
+
+// OutlinedButton - 带边框的按钮
+OutlinedButton(
+  onPressed: () {
+    // 处理点击事件
+  },
+  child: Text('Outlined Button'),
+  style: OutlinedButton.styleFrom(
+    foregroundColor: Colors.blue,
+    side: BorderSide(color: Colors.blue),
+  ),
+)
+
+// IconButton - 图标按钮
+IconButton(
+  icon: Icon(Icons.favorite),
+  onPressed: () {
+    // 处理点击事件
+  },
+  tooltip: '收藏',
+)
+
+// 禁用状态
+ElevatedButton(
+  onPressed: null, // 设置为null表示禁用
+  child: Text('禁用按钮'),
+)</code></pre>
+                    </div>
+                    <div class="component-properties">
+                        <h3>按钮样式</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>样式属性</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>backgroundColor</td>
+                                    <td>按钮的背景色</td>
+                                </tr>
+                                <tr>
+                                    <td>foregroundColor</td>
+                                    <td>按钮的前景色（文本和图标）</td>
+                                </tr>
+                                <tr>
+                                    <td>padding</td>
+                                    <td>按钮的内边距</td>
+                                </tr>
+                                <tr>
+                                    <td>textStyle</td>
+                                    <td>文本样式</td>
+                                </tr>
+                                <tr>
+                                    <td>shape</td>
+                                    <td>按钮的形状</td>
+                                </tr>
+                                <tr>
+                                    <td>elevation</td>
+                                    <td>阴影高度（仅 ElevatedButton）</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="component-example">
+                        <h3>自定义按钮形状</h3>
+                        <pre><code>ElevatedButton(
+  onPressed: () {},
+  child: Text('圆角按钮'),
+  style: ElevatedButton.styleFrom(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(20),
+    ),
+  ),
+)
+
+// 圆形按钮
+ElevatedButton(
+  onPressed: () {},
+  child: Icon(Icons.add),
+  style: ElevatedButton.styleFrom(
+    shape: CircleBorder(),
+    padding: EdgeInsets.all(20),
+  ),
+)</code></pre>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </main>
+
+    <footer class="flutter-footer">
+        <div class="container">
+            <p>&copy; 2025 Flutter Material 组件文档. 基于 Flutter 官方文档构建。</p>
+        </div>
+    </footer>
+</body>
+</html>
