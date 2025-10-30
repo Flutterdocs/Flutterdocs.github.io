@@ -296,63 +296,65 @@ code {
     line-height: 1.5;
 }
 
-/* 代码高亮样式 */
-.code-block .widget {
-    color: #00bcd4;
-    font-weight: 600;
+/* 为Highlight.js添加强制颜色规则，确保语法高亮显示为彩色 */
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #f6f8fa;
+  color: #24292e;
 }
 
-.code-block .keyword {
-    color: #ff79c6;
-    font-weight: 500;
+/* 关键字颜色 */
+.hljs-keyword, .hljs-selector-tag, .hljs-subst {
+  color: #0000ff !important;
+  font-weight: bold !important;
 }
 
-.code-block .boolean {
-    color: #50fa7b;
-    font-weight: 500;
+/* 字符串颜色 */
+.hljs-string, .hljs-attribute, .hljs-symbol, .hljs-bullet, .hljs-addition, .hljs-variable, .hljs-template-tag, .hljs-template-variable {
+  color: #e3116c !important;
 }
 
-.code-block .function {
-    color: #ffb86c;
-    font-weight: 500;
+/* 注释颜色 */
+.hljs-comment, .hljs-quote, .hljs-deletion {
+  color: #6a737d !important;
+  font-style: italic !important;
 }
 
-.code-block .class-name {
-    color: #8be9fd;
-    font-weight: 600;
+/* 类名颜色 */
+.hljs-title, .hljs-section, .hljs-selector-class {
+  color: #6f42c1 !important;
+  font-weight: bold !important;
 }
 
-.code-block .string {
-    color: #f1fa8c;
+/* 数字颜色 */
+.hljs-number, .hljs-regexp, .hljs-literal, .hljs-type {
+  color: #032f62 !important;
 }
 
-.code-block .comment {
-    color: #6272a4;
-    font-style: italic;
+/* 函数名颜色 */
+.hljs-function .hljs-title {
+  color: #d73a49 !important;
 }
 
-.code-block .number {
-    color: #bd93f9;
+/* 确保SyntaxHighlighter正常工作的基础样式 */
+pre {
+    background: #f8f9fa;
+    border-radius: 4px;
+    padding: 16px;
+    margin: 16px 0;
+    overflow-x: auto;
 }
 
-.code-block .operator {
-    color: #ff79c6;
-}
-
-.code-block .color {
-    color: #f1fa8c;
-}
-
-.code-block .variable {
-    color: #f8f8f2;
-}
-
-.code-block .property {
-    color: #ff5555;
-}
-
-.code-block .punctuation {
-    color: #f8f8f2;
+pre code {
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+    background: transparent;
+    display: block;
+    text-align: left;
 }
 
 /* 组件类别标题样式 */
@@ -682,6 +684,8 @@ tr:hover {
         font-size: 13px;
     }
 }
+
+
 
 /* 滚动条样式 */
 ::-webkit-scrollbar {

@@ -79,69 +79,37 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     };
     
-    // 代码高亮（增强版）
+    // 使用Highlight.js进行代码高亮
     function highlightCode() {
-        document.querySelectorAll('pre code').forEach(function(block) {
-            var code = block.textContent;
-            
-            // 先保存所有需要保留的内容到临时对象，避免替换冲突
-            var tempItems = [];
-            
-            // 保存字符串内容
-            code = code.replace(/(['"])(.*?)(\1)/g, function(match) {
-                tempItems.push(match);
-                return '__STRING_' + (tempItems.length - 1) + '__';
+        // 检查Highlight.js是否加载成功
+        if (window.hljs) {
+            console.log('Highlight.js已加载');
+            try {
+                // 高亮所有代码块
+                document.querySelectorAll('pre code').forEach(block => {
+                    hljs.highlightElement(block);
+                });
+            } catch (error) {
+                console.error('代码高亮失败:', error);
+                // 降级方案：设置所有代码块的颜色为黑色
+                document.querySelectorAll('pre code').forEach(block => {
+                    block.style.color = '#333';
+                });
+            }
+        } else {
+            console.warn('Highlight.js未加载，使用降级方案');
+            // 降级方案：设置所有代码块的颜色为黑色
+            document.querySelectorAll('pre code').forEach(block => {
+                block.style.color = '#333';
             });
-            
-            // 保存注释内容
-            code = code.replace(/\/\*[\s\S]*?\*\//gm, function(match) {
-                tempItems.push(match);
-                return '__COMMENT_' + (tempItems.length - 1) + '__';
-            });
-            
-            code = code.replace(/\/\/.*$/gm, function(match) {
-                tempItems.push(match);
-                return '__COMMENT_' + (tempItems.length - 1) + '__';
-            });
-            
-            // Flutter 组件高亮（优先级最高）
-            code = code.replace(/\b(Container|Row|Column|Stack|ListView|GridView|Text|Image|Icon|Button|ElevatedButton|TextButton|OutlinedButton|FloatingActionButton|Scaffold|AppBar|Card|TextField|Form|Checkbox|Radio|Switch|Slider|AlertDialog|BottomSheet|Navigator|Theme|MaterialApp|StatelessWidget|StatefulWidget|State|Center|Padding|Align|AnimatedContainer|AspectRatio|ClipRRect|DecoratedBox|Expanded|Flex|FittedBox|GestureDetector|Hero|IndexedStack|IntrinsicHeight|IntrinsicWidth|LimitedBox|Offstage|OverflowBox|SizedBox|SizedOverflowBox|Transform|Wrap|Flow|CustomMultiChildLayout|LayoutBuilder|MediaQuery|MouseRegion|NotificationListener|SafeArea|Semantics|TickerMode|Visibility|AbsorbPointer|IgnorePointer|Focus|FocusScope|FocusTraversalGroup|Directionality|Localizations|LocalizationsDelegate|DefaultTextStyle|AnimatedDefaultTextStyle|RichText|TextSpan|StrutStyle|TextStyle|Placeholder|ImageIcon|CircleAvatar|IconButton|Chip|Divider|LinearProgressIndicator|CircularProgressIndicator|BottomNavigationBar|NavigationBar|NavigationDrawer|TabBar|TabBarView|PageView|CupertinoActivityIndicator|CupertinoAlertDialog|CupertinoActionSheet|CupertinoButton|CupertinoPicker|CupertinoSlider|CupertinoSwitch|CupertinoTextField|DatePicker|TimePicker|CalendarDatePicker|DropdownButton|FormField|InputDecoration|TextFormField|Autocomplete|ValueListenableBuilder|StreamBuilder|FutureBuilder|InheritedWidget|InheritedModel|Scrollbar|SingleChildScrollView|RefreshIndicator|SliverAppBar|SliverList|SliverGrid|SliverFillRemaining|SliverPadding|SliverSafeArea|SliverToBoxAdapter|CustomScrollView|AnimatedBuilder|AnimatedWidget|Hero|Navigator|Route|MaterialPageRoute|CupertinoPageRoute|PageRouteBuilder|Overlay|OverlayEntry|Tooltip|SnackBar|MaterialBanner|Drawer|EndDrawer|FloatingActionButtonLocation|FloatingActionButtonAnimator|ListTile|ListTileTheme|DividerThemeData|ButtonBar|ButtonTheme|IconTheme|ThemeData|ColorScheme|TextTheme|AppBarTheme|CardTheme|ChipTheme|DialogTheme|FloatingActionButtonThemeData|ListTileThemeData|PopupMenuThemeData|SliderThemeData|TabBarTheme|TextButtonThemeData|ElevatedButtonThemeData|OutlinedButtonThemeData|ToggleButtonsThemeData|DataTable|DataColumn|DataRow|DataCell|PaginatedDataTable|CheckboxListTile|RadioListTile|SwitchListTile|ScaffoldMessenger|GestureRecognizer|TapGestureRecognizer|DoubleTapGestureRecognizer|LongPressGestureRecognizer|PanGestureRecognizer|ScaleGestureRecognizer|RotationGestureRecognizer|DragGestureRecognizer|PrimaryScrollController|ScrollConfiguration|ScrollController|ScrollPhysics|AlwaysScrollableScrollPhysics|NeverScrollableScrollPhysics|BouncingScrollPhysics|ClampingScrollPhysics|FixedExtentScrollController|PageController|Animation|AnimationController|CurvedAnimation|Tween|ColorTween|SizeTween|OffsetTween|Matrix4Tween|AlignTween|DecorationTween|EdgeInsetsTween|FractionalOffsetTween|IntTween|RectTween|ScrollPositionTween|StepTween|TweenSequence|TweenSequenceItem|ImplicitlyAnimatedWidget|AnimatedAlign|AnimatedContainer|AnimatedDefaultTextStyle|AnimatedOpacity|AnimatedPadding|AnimatedPhysicalModel|AnimatedPositioned|AnimatedPositionedDirectional|AnimatedSize|AnimatedSwitcher|DecoratedBoxTransition|FadeTransition|PositionedTransition|RotationTransition|ScaleTransition|SizeTransition|SlideTransition|AnimatedBuilder|AnimatedWidget|Hero|ValueNotifier|ChangeNotifier|ValueListenableBuilder|InheritedNotifier|ListenableBuilder|StreamBuilder|FutureBuilder|StreamController|StreamTransformer|Sink|StreamSink|BehaviorSubject|PublishSubject|ReplaySubject|CompositeSubscription|NavigatorObserver|HeroController|NavigatorState|GlobalKey|GlobalObjectKey|Key|LocalKey|UniqueKey|ValueKey|ObjectKey|PageStorageKey|FocusNode|FocusScopeNode|TextEditingController|ScrollController|AnimationController|Ticker|AppLifecycleListener|WidgetsBinding|PlatformDispatcher|SchedulerBinding|GestureBinding|RendererBinding|ServicesBinding|SemanticsBinding|TestWidgetsFlutterBinding|AssetBundle|DefaultAssetBundle|NetworkAssetBundle|MemoryAssetBundle|CachingAssetBundle|ImageConfiguration|ImageProvider|AssetImage|NetworkImage|MemoryImage|FileImage|ExactAssetImage|ExactAssetPlaceholder|FadeInImage|Placeholder|ImageFrameBuilder|ImageLoadingBuilder|ImageErrorWidgetBuilder|IconData|IconThemeData|TextSpan|TextStyle|StrutStyle|TextWidthBasis|TextAlignVertical|TextDirection|TextOverflow|FontWeight|FontStyle|TextDecoration|TextBaseline|FontFamily|ColorFilter|ColorTween|DecorationImage|Decoration|BoxDecoration|ShapeDecoration|UnderlineTabIndicator|InkSplash|InkRipple|InkWell|InkResponse|Material|Card|Chip|IconButton|Tooltip|ButtonBarLayout|ButtonBuilder|DropdownButtonHideUnderline|DropdownMenuItem|MenuItemButton|PopupMenuItem|PopupMenuButton|PopupMenuDivider|ShowMenu|Navigator|RouteSettings|ModalRoute|PageRoute|MaterialPageRoute|CupertinoPageRoute|PageRouteBuilder|PageRouteTransitionBuilder|HeroController|NavigatorState|NavigatorObserver|TransitionBuilder|Builder|StatefulBuilder|ValueListenableBuilder|LayoutBuilder|FutureBuilder|StreamBuilder|AnimatedBuilder|CustomPaint|CustomPainter|CustomClipper|CustomMultiChildLayout|MultiChildLayoutDelegate|SingleChildLayoutDelegate|DelegateBuilder|RenderBox|RenderObject|RenderCustomPaint|RenderCustomMultiChildLayoutBox|RenderBoxContainerDefaultsMixin|ContainerRenderObjectMixin|RenderProxyBox|RenderProxyBoxWithHitTestBehavior|RenderShiftedBox|RenderSliver|RenderSliverBoxChildManager|RenderSliverList|RenderSliverGrid|RenderSliverFillViewport|RenderSliverFillRemaining|RenderSliverPadding|RenderSliverToBoxAdapter|RenderAbstractViewport|SliverConstraints|SliverGeometry|SliverPhysicalParentData|SliverLogicalParentData|SliverMultiBoxAdaptorParentData|ScrollMetrics|ScrollableState|ScrollPosition|ScrollPositionWithSingleContext|ScrollController|PageController|FixedExtentScrollController|PrimaryScrollController|ScrollPhysics|AlwaysScrollableScrollPhysics|NeverScrollableScrollPhysics|BouncingScrollPhysics|ClampingScrollPhysics|RangeMaintainingScrollPhysics|ScrollBehavior|ScrollConfiguration|DragStartBehavior|AxisDirection|GrowthDirection|ScrollDirection|ViewportOffset|ScrollPositionDriver|ScrollPositionWithSingleContext|ScrollPositionWithSingleContextMixin|ScrollNotification|ScrollStartNotification|ScrollUpdateNotification|ScrollEndNotification|OverscrollNotification|UserScrollNotification|ScrollMetricsNotification|LayoutChangedNotification|Animation|AnimationController|TickerProvider|SingleTickerProviderStateMixin|Ticker|ValueNotifier|Listenable|ChangeNotifier|ValueListenableBuilder|ListenableBuilder|InheritedNotifier|Tween|ColorTween|SizeTween|OffsetTween|Matrix4Tween|AlignTween|DecorationTween|EdgeInsetsTween|FractionalOffsetTween|IntTween|RectTween|ScrollPositionTween|StepTween|TweenSequence|TweenSequenceItem|Animatable|CurvedAnimation|Curve|Curves|Interval|SpringSimulation|SpringCurve|AnimationStatus|AnimationDirection|ImplicitlyAnimatedWidget|AnimatedWidgetBaseState|AnimatedAlign|AnimatedContainer|AnimatedDefaultTextStyle|AnimatedOpacity|AnimatedPadding|AnimatedPhysicalModel|AnimatedPositioned|AnimatedPositionedDirectional|AnimatedSize|AnimatedSwitcher|DecoratedBoxTransition|FadeTransition|PositionedTransition|RotationTransition|ScaleTransition|SizeTransition|SlideTransition|AnimatedBuilder|AnimatedWidget|Hero|HeroController|HeroMode|TransitionBuilder|Builder|StatefulBuilder|ValueListenableBuilder|LayoutBuilder|FutureBuilder|StreamBuilder|AnimatedBuilder|CustomPaint|CustomPainter|CustomClipper|CustomMultiChildLayout|MultiChildLayoutDelegate|SingleChildLayoutDelegate|DelegateBuilder|RenderBox|RenderObject|RenderCustomPaint|RenderCustomMultiChildLayoutBox|RenderBoxContainerDefaultsMixin|ContainerRenderObjectMixin|RenderProxyBox|RenderProxyBoxWithHitTestBehavior|RenderShiftedBox|RenderSliver|RenderSliverBoxChildManager|RenderSliverList|RenderSliverGrid|RenderSliverFillViewport|RenderSliverFillRemaining|RenderSliverPadding|RenderSliverToBoxAdapter|RenderAbstractViewport|SliverConstraints|SliverGeometry|SliverPhysicalParentData|SliverLogicalParentData|SliverMultiBoxAdaptorParentData|ScrollMetrics|ScrollableState|ScrollPosition|ScrollPositionWithSingleContext|ScrollController|PageController|FixedExtentScrollController|PrimaryScrollController|ScrollPhysics|AlwaysScrollableScrollPhysics|NeverScrollableScrollPhysics|BouncingScrollPhysics|ClampingScrollPhysics|RangeMaintainingScrollPhysics|ScrollBehavior|ScrollConfiguration|DragStartBehavior|AxisDirection|GrowthDirection|ScrollDirection|ViewportOffset|ScrollPositionDriver|ScrollPositionWithSingleContext|ScrollPositionWithSingleContextMixin|ScrollNotification|ScrollStartNotification|ScrollUpdateNotification|ScrollEndNotification|OverscrollNotification|UserScrollNotification|ScrollMetricsNotification|LayoutChangedNotification|Animation|AnimationController|TickerProvider|SingleTickerProviderStateMixin|Ticker|ValueNotifier|Listenable|ChangeNotifier|ValueListenableBuilder|ListenableBuilder|InheritedNotifier|Tween|ColorTween|SizeTween|OffsetTween|Matrix4Tween|AlignTween|DecorationTween|EdgeInsetsTween|FractionalOffsetTween|IntTween|RectTween|ScrollPositionTween|StepTween|TweenSequence|TweenSequenceItem|Animatable|CurvedAnimation|Curve|Curves|Interval|SpringSimulation|SpringCurve|AnimationStatus|AnimationDirection)\b/g, '<span class="widget">$1</span>');
-            
-            // 类名高亮
-            code = code.replace(/\b([A-Z][a-zA-Z0-9]*)\b/g, '<span class="class-name">$1</span>');
-            
-            // 关键字高亮
-            code = code.replace(/\b(abstract|as|assert|async|await|break|case|catch|class|const|continue|default|deferred|do|dynamic|else|enum|export|extends|extension|external|factory|false|final|finally|for|Function|get|if|implements|import|in|interface|is|late|library|mixin|new|null|on|operator|part|rethrow|return|set|static|super|switch|sync|this|throw|true|try|typedef|var|void|while|with|yield|override|required|covariant)\b/g, '<span class="keyword">$1</span>');
-            
-            // 布尔值高亮
-            code = code.replace(/\b(true|false|null|undefined)\b/g, '<span class="boolean">$1</span>');
-            
-            // 数字高亮
-            code = code.replace(/\b(\d+(?:\.\d+)?)\b/g, '<span class="number">$1</span>');
-            
-            // 操作符高亮
-            code = code.replace(/([+\-*/%=<>!&|^~?:.,;{}[\]()])/g, '<span class="operator">$1</span>');
-            
-            // 颜色值高亮
-            code = code.replace(/\b(Colors\.[a-zA-Z0-9_]+)\b/g, '<span class="color">$1</span>');
-            
-            // 函数调用高亮（排除已经高亮的部分）
-            code = code.replace(/\b([a-z][a-zA-Z0-9_]*)(?=\s*\()/g, '<span class="function">$1</span>');
-            
-            // 恢复保存的内容
-            code = code.replace(/__STRING_(\d+)__/g, function(match, index) {
-                return '<span class="string">' + tempItems[index] + '</span>';
-            });
-            
-            code = code.replace(/__COMMENT_(\d+)__/g, function(match, index) {
-                return '<span class="comment">' + tempItems[index] + '</span>';
-            });
-            
-            block.innerHTML = code;
-        });
+        }
     }
     
-    highlightCode();
+    // 等待DOM内容加载完成后执行代码高亮
+    window.addEventListener('load', function() {
+        // 给Highlight.js一点时间初始化
+        setTimeout(highlightCode, 100);
+    });
     
     // 创建移动端菜单切换按钮
     var menuToggle = document.createElement('button');
