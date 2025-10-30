@@ -101,11 +101,31 @@ body {
 .sidebar {
     position: sticky;
     top: 90px;
-    height: fit-content;
+    height: calc(100vh - 120px);
+    overflow-y: auto;
+    overflow-x: hidden;
     background-color: var(--surface);
     border-radius: 8px;
     padding: 20px;
     box-shadow: var(--shadow);
+    scrollbar-width: thin;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 2px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
 }
 
 .search-box {
@@ -211,30 +231,36 @@ section p {
 /* 代码块样式 */
 .code-block {
     position: relative;
-    margin: 16px 0;
-    border-radius: 6px;
+    margin: 24px 0;
+    border-radius: 8px;
     overflow: hidden;
     border: 1px solid #e0e0e0;
+    background-color: #282c34;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .copy-button {
     position: absolute;
-    top: 8px;
-    right: 8px;
+    top: 10px;
+    right: 10px;
     background-color: rgba(255, 255, 255, 0.9);
     border: 1px solid #e0e0e0;
     border-radius: 4px;
-    padding: 6px 10px;
+    padding: 6px 12px;
     cursor: pointer;
     font-size: 14px;
     color: #666;
     z-index: 10;
     transition: all 0.3s ease;
+    min-width: 80px;
+    text-align: center;
 }
 
 .copy-button:hover {
     background-color: #f0f0f0;
     color: #0277bd;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .copy-button.copied {
@@ -244,17 +270,24 @@ section p {
 }
 
 pre {
-    background-color: #f8f8f8;
+    background-color: #282c34;
     border-radius: 0;
-    padding: 16px;
-    padding-top: 40px;
+    padding: 20px;
+    padding-top: 50px;
     overflow-x: auto;
     font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 1.6;
     margin: 0;
     white-space: pre-wrap;
-    border: 1px solid var(--border);
+    border: none;
+}
+
+code {
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #abb2bf;
 }
 
 code {
@@ -264,82 +297,145 @@ code {
 }
 
 /* 代码高亮样式 */
+.code-block .widget {
+    color: #00bcd4;
+    font-weight: 600;
+}
+
 .code-block .keyword {
-    color: #795e26;
-    font-weight: bold;
+    color: #ff79c6;
+    font-weight: 500;
 }
 
 .code-block .boolean {
-    color: #005cc5;
-    font-weight: bold;
+    color: #50fa7b;
+    font-weight: 500;
 }
 
 .code-block .function {
-    color: #d73a49;
+    color: #ffb86c;
+    font-weight: 500;
 }
 
 .code-block .class-name {
-    color: #6f42c1;
-    font-weight: bold;
+    color: #8be9fd;
+    font-weight: 600;
 }
 
 .code-block .string {
-    color: #032f62;
+    color: #f1fa8c;
 }
 
 .code-block .comment {
-    color: #6a737d;
+    color: #6272a4;
     font-style: italic;
 }
 
 .code-block .number {
-    color: #005cc5;
+    color: #bd93f9;
 }
 
 .code-block .operator {
-    color: #d73a49;
-}
-
-.code-block .widget {
-    color: #005cc5;
-    font-weight: bold;
+    color: #ff79c6;
 }
 
 .code-block .color {
-    color: #0086b3;
+    color: #f1fa8c;
+}
+
+.code-block .variable {
+    color: #f8f8f2;
+}
+
+.code-block .property {
+    color: #ff5555;
+}
+
+.code-block .punctuation {
+    color: #f8f8f2;
+}
+
+/* 组件类别标题样式 */
+.component-category {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #6200ee;
+  position: relative;
+}
+
+.component-category::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background-color: #03dac6;
 }
 
 /* 组件网格样式 */
 .component-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  margin: 20px 0;
 }
 
 .component-card {
     background-color: var(--surface);
-    border-radius: 8px;
+    border-radius: 12px;
     padding: 24px;
     text-align: center;
-    border: 1px solid var(--border);
-    transition: var(--transition);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.component-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--secondary), var(--primary-light));
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .component-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-hover);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.component-card:hover::before {
+    opacity: 1;
 }
 
 .component-card i {
     font-size: 40px;
-    color: var(--primary-light);
+    color: var(--secondary);
     margin-bottom: 16px;
+    transition: transform 0.3s ease;
+}
+
+.component-card:hover i {
+    transform: scale(1.1);
 }
 
 .component-card h3 {
     font-size: 18px;
     margin-bottom: 8px;
+    transition: color 0.3s ease;
+}
+
+.component-card:hover h3 {
+    color: var(--secondary);
 }
 
 .component-card p {
@@ -451,9 +547,28 @@ tr:hover {
 }
 
 /* 响应式设计 */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 100%;
+    }
+    
+    .component-grid {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 20px;
+    }
+}
+
 @media (max-width: 992px) {
     .layout {
         grid-template-columns: 240px 1fr;
+    }
+    
+    .sidebar {
+        height: calc(100vh - 120px);
+    }
+    
+    .component-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     }
 }
 
@@ -463,8 +578,18 @@ tr:hover {
     }
     
     .sidebar {
-        position: static;
-        margin-bottom: 20px;
+        position: fixed;
+        left: -300px;
+        top: 75px;
+        width: 280px;
+        height: calc(100vh - 75px);
+        z-index: 999;
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 2px 0 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .sidebar.active {
+        left: 0;
     }
     
     .main-nav {
@@ -472,15 +597,58 @@ tr:hover {
     }
     
     .logo h1 {
-        font-size: 20px;
+        font-size: 18px;
     }
     
     section {
-        padding: 20px;
+        padding: 16px;
     }
     
     section h2 {
+        font-size: 22px;
+    }
+    
+    .menu-toggle {
+        display: block !important;
+        background: none;
+        border: none;
+        color: white;
         font-size: 24px;
+        cursor: pointer;
+        padding: 8px;
+    }
+    
+    /* 移动端覆盖层 */
+    .overlay {
+        position: fixed;
+        top: 75px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 998;
+        display: none;
+        transition: opacity 0.3s ease;
+        opacity: 0;
+    }
+    
+    .overlay.active {
+        display: block;
+        opacity: 1;
+    }
+    
+    .component-category {
+        font-size: 1.3rem;
+        margin-top: 30px;
+    }
+    
+    .component-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .component-card {
+        padding: 20px;
     }
 }
 
@@ -495,7 +663,23 @@ tr:hover {
     }
     
     .component-header i {
-        font-size: 48px;
+        font-size: 40px;
+    }
+    
+    .code-block {
+        margin: 16px 0;
+    }
+    
+    .copy-button {
+        min-width: 60px;
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+    
+    pre {
+        padding: 16px;
+        padding-top: 45px;
+        font-size: 13px;
     }
 }
 
