@@ -378,6 +378,7 @@ class _MyHomePageState extends State&lt;MyHomePage&gt; {
                             <a href="#textfield" class="btn">查看详情</a>
                         </div>
                     </div>
+
                 </section>
 
                 <section id="navigationbar" class="component-detail">
@@ -419,6 +420,45 @@ class _MyHomePageState extends State&lt;MyHomePage&gt; {
   ),
 )</code></pre>
                         </div>
+                    </div>
+                    <div class="component-properties">
+                        <h3>常用属性</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>属性</th>
+                                    <th>类型</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>initialDate</td>
+                                    <td>DateTime</td>
+                                    <td>初始选择的日期</td>
+                                </tr>
+                                <tr>
+                                    <td>firstDate</td>
+                                    <td>DateTime</td>
+                                    <td>可选择的最早日期</td>
+                                </tr>
+                                <tr>
+                                    <td>lastDate</td>
+                                    <td>DateTime</td>
+                                    <td>可选择的最晚日期</td>
+                                </tr>
+                                <tr>
+                                    <td>onDateChanged</td>
+                                    <td>Function(DateTime)</td>
+                                    <td>日期改变时的回调</td>
+                                </tr>
+                                <tr>
+                                    <td>selectableDayPredicate</td>
+                                    <td>bool Function(DateTime)?</td>
+                                    <td>自定义可选日期的函数</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </section>
 
@@ -462,6 +502,45 @@ class _MyHomePageState extends State&lt;MyHomePage&gt; {
   ),
 )</code></pre>
                         </div>
+                    </div>
+                    <div class="component-properties">
+                        <h3>常用属性</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>属性</th>
+                                    <th>类型</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>children</td>
+                                    <td>List&lt;Widget&gt;</td>
+                                    <td>抽屉中的子组件列表</td>
+                                </tr>
+                                <tr>
+                                    <td>selectedIndex</td>
+                                    <td>int?</td>
+                                    <td>当前选中的索引</td>
+                                </tr>
+                                <tr>
+                                    <td>onDestinationSelected</td>
+                                    <td>Function(int)?</td>
+                                    <td>选择目的地时的回调</td>
+                                </tr>
+                                <tr>
+                                    <td>elevation</td>
+                                    <td>double?</td>
+                                    <td>抽屉的阴影高度</td>
+                                </tr>
+                                <tr>
+                                    <td>backgroundColor</td>
+                                    <td>Color?</td>
+                                    <td>抽屉的背景颜色</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </section>
 
@@ -509,6 +588,45 @@ class _MyHomePageState extends State&lt;MyHomePage&gt; {
 )</code></pre>
                         </div>
                     </div>
+                    <div class="component-properties">
+                        <h3>常用属性</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>属性</th>
+                                    <th>类型</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>destinations</td>
+                                    <td>List&lt;NavigationRailDestination&gt;</td>
+                                    <td>导航轨道的目的地列表</td>
+                                </tr>
+                                <tr>
+                                    <td>selectedIndex</td>
+                                    <td>int</td>
+                                    <td>当前选中的索引</td>
+                                </tr>
+                                <tr>
+                                    <td>onDestinationSelected</td>
+                                    <td>Function(int)</td>
+                                    <td>选择目的地时的回调</td>
+                                </tr>
+                                <tr>
+                                    <td>extended</td>
+                                    <td>bool</td>
+                                    <td>是否以扩展模式显示</td>
+                                </tr>
+                                <tr>
+                                    <td>backgroundColor</td>
+                                    <td>Color?</td>
+                                    <td>导航轨道的背景颜色</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </section>
 
                 <section id="tabbar" class="component-detail">
@@ -545,6 +663,45 @@ class _MyHomePageState extends State&lt;MyHomePage&gt; {
   ),
 )</code></pre>
                         </div>
+                    </div>
+                    <div class="component-properties">
+                        <h3>常用属性</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>属性</th>
+                                    <th>类型</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>tabs</td>
+                                    <td>List&lt;Widget&gt;</td>
+                                    <td>标签列表</td>
+                                </tr>
+                                <tr>
+                                    <td>controller</td>
+                                    <td>TabController?</td>
+                                    <td>标签控制器</td>
+                                </tr>
+                                <tr>
+                                    <td>onTap</td>
+                                    <td>Function(int)?</td>
+                                    <td>点击标签时的回调</td>
+                                </tr>
+                                <tr>
+                                    <td>indicatorColor</td>
+                                    <td>Color?</td>
+                                    <td>指示器颜色</td>
+                                </tr>
+                                <tr>
+                                    <td>labelColor</td>
+                                    <td>Color?</td>
+                                    <td>标签颜色</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </section>
 
@@ -607,6 +764,45 @@ Checkbox(
 )</code></pre>
                         </div>
                     </div>
+                    <div class="component-properties">
+                        <h3>常用属性</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>属性</th>
+                                    <th>类型</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>label</td>
+                                    <td>Widget</td>
+                                    <td>标签文本</td>
+                                </tr>
+                                <tr>
+                                    <td>avatar</td>
+                                    <td>Widget?</td>
+                                    <td>标签左侧的头像</td>
+                                </tr>
+                                <tr>
+                                    <td>onDeleted</td>
+                                    <td>Function?</td>
+                                    <td>删除按钮的回调</td>
+                                </tr>
+                                <tr>
+                                    <td>backgroundColor</td>
+                                    <td>Color?</td>
+                                    <td>标签的背景颜色</td>
+                                </tr>
+                                <tr>
+                                    <td>labelStyle</td>
+                                    <td>TextStyle?</td>
+                                    <td>标签文本的样式</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </section>
 
                 <section id="datepicker" class="component-detail">
@@ -638,6 +834,45 @@ Checkbox(
   }
 })</code></pre>
                         </div>
+                    </div>
+                    <div class="component-properties">
+                        <h3>常用属性</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>属性</th>
+                                    <th>类型</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>initialDate</td>
+                                    <td>DateTime</td>
+                                    <td>初始选择的日期</td>
+                                </tr>
+                                <tr>
+                                    <td>firstDate</td>
+                                    <td>DateTime</td>
+                                    <td>可选择的最早日期</td>
+                                </tr>
+                                <tr>
+                                    <td>lastDate</td>
+                                    <td>DateTime</td>
+                                    <td>可选择的最晚日期</td>
+                                </tr>
+                                <tr>
+                                    <td>onDateChanged</td>
+                                    <td>Function(DateTime)</td>
+                                    <td>日期改变时的回调</td>
+                                </tr>
+                                <tr>
+                                    <td>selectableDayPredicate</td>
+                                    <td>bool Function(DateTime)?</td>
+                                    <td>自定义可选日期的函数</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </section>
 
@@ -676,6 +911,45 @@ Checkbox(
   icon: Icon(Icons.more_vert),
 )</code></pre>
                         </div>
+                    </div>
+                    <div class="component-properties">
+                        <h3>常用属性</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>属性</th>
+                                    <th>类型</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>itemBuilder</td>
+                                    <td>PopupMenuItemBuilder&lt;T&gt;</td>
+                                    <td>构建菜单项的回调</td>
+                                </tr>
+                                <tr>
+                                    <td>onSelected</td>
+                                    <td>ValueChanged&lt;T&gt;?</td>
+                                    <td>选择菜单项时的回调</td>
+                                </tr>
+                                <tr>
+                                    <td>icon</td>
+                                    <td>Widget?</td>
+                                    <td>菜单按钮的图标</td>
+                                </tr>
+                                <tr>
+                                    <td>initialValue</td>
+                                    <td>T?</td>
+                                    <td>初始选中的值</td>
+                                </tr>
+                                <tr>
+                                    <td>color</td>
+                                    <td>Color?</td>
+                                    <td>菜单按钮的颜色</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </section>
 
@@ -719,6 +993,45 @@ Column(
 )</code></pre>
                         </div>
                     </div>
+                    <div class="component-properties">
+                        <h3>常用属性</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>属性</th>
+                                    <th>类型</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>value</td>
+                                    <td>T</td>
+                                    <td>单选按钮的值</td>
+                                </tr>
+                                <tr>
+                                    <td>groupValue</td>
+                                    <td>T?</td>
+                                    <td>当前选中的值</td>
+                                </tr>
+                                <tr>
+                                    <td>onChanged</td>
+                                    <td>Function(T?)?</td>
+                                    <td>值变化时的回调</td>
+                                </tr>
+                                <tr>
+                                    <td>activeColor</td>
+                                    <td>Color?</td>
+                                    <td>选中状态的颜色</td>
+                                </tr>
+                                <tr>
+                                    <td>fillColor</td>
+                                    <td>MaterialStateProperty&lt;Color?&gt;?</td>
+                                    <td>填充颜色</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </section>
 
                 <section id="slider" class="component-detail">
@@ -751,6 +1064,45 @@ Slider(
 )</code></pre>
                         </div>
                     </div>
+                    <div class="component-properties">
+                        <h3>常用属性</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>属性</th>
+                                    <th>类型</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>value</td>
+                                    <td>double</td>
+                                    <td>滑块的当前值</td>
+                                </tr>
+                                <tr>
+                                    <td>min</td>
+                                    <td>double</td>
+                                    <td>最小值</td>
+                                </tr>
+                                <tr>
+                                    <td>max</td>
+                                    <td>double</td>
+                                    <td>最大值</td>
+                                </tr>
+                                <tr>
+                                    <td>onChanged</td>
+                                    <td>Function(double)?</td>
+                                    <td>值变化时的回调</td>
+                                </tr>
+                                <tr>
+                                    <td>activeColor</td>
+                                    <td>Color?</td>
+                                    <td>激活部分的颜色</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </section>
 
                 <section id="switch" class="component-detail">
@@ -779,6 +1131,45 @@ SwitchListTile(
   secondary: Icon(Icons.notifications),
 )</code></pre>
                         </div>
+                    </div>
+                    <div class="component-properties">
+                        <h3>常用属性</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>属性</th>
+                                    <th>类型</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>value</td>
+                                    <td>bool</td>
+                                    <td>开关的当前状态</td>
+                                </tr>
+                                <tr>
+                                    <td>onChanged</td>
+                                    <td>Function(bool)?</td>
+                                    <td>状态变化时的回调</td>
+                                </tr>
+                                <tr>
+                                    <td>activeColor</td>
+                                    <td>Color?</td>
+                                    <td>激活状态的颜色</td>
+                                </tr>
+                                <tr>
+                                    <td>inactiveColor</td>
+                                    <td>Color?</td>
+                                    <td>非激活状态的颜色</td>
+                                </tr>
+                                <tr>
+                                    <td>trackColor</td>
+                                    <td>MaterialStateProperty&lt;Color?&gt;?</td>
+                                    <td>轨道颜色</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </section>
 
@@ -809,6 +1200,45 @@ SwitchListTile(
   }
 })</code></pre>
                         </div>
+                    </div>
+                    <div class="component-properties">
+                        <h3>常用属性</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>属性</th>
+                                    <th>类型</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>initialTime</td>
+                                    <td>TimeOfDay</td>
+                                    <td>初始选择的时间</td>
+                                </tr>
+                                <tr>
+                                    <td>context</td>
+                                    <td>BuildContext</td>
+                                    <td>上下文对象</td>
+                                </tr>
+                                <tr>
+                                    <td>builder</td>
+                                    <td>Widget Function(BuildContext, Widget?)</td>
+                                    <td>自定义主题的构建器</td>
+                                </tr>
+                                <tr>
+                                    <td>initialEntryMode</td>
+                                    <td>TimePickerEntryMode</td>
+                                    <td>初始输入模式（表盘/键盘）</td>
+                                </tr>
+                                <tr>
+                                    <td>onTimeChanged</td>
+                                    <td>void Function(TimeOfDay)</td>
+                                    <td>时间改变时的回调</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </section>
 
@@ -844,6 +1274,45 @@ TextField(
   },
 )</code></pre>
                         </div>
+                    </div>
+                    <div class="component-properties">
+                        <h3>常用属性</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>属性</th>
+                                    <th>类型</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>controller</td>
+                                    <td>TextEditingController</td>
+                                    <td>控制文本框内容</td>
+                                </tr>
+                                <tr>
+                                    <td>decoration</td>
+                                    <td>InputDecoration</td>
+                                    <td>设置边框、标签、提示等</td>
+                                </tr>
+                                <tr>
+                                    <td>keyboardType</td>
+                                    <td>TextInputType</td>
+                                    <td>设置键盘类型</td>
+                                </tr>
+                                <tr>
+                                    <td>obscureText</td>
+                                    <td>bool</td>
+                                    <td>是否隐藏输入文本</td>
+                                </tr>
+                                <tr>
+                                    <td>onChanged</td>
+                                    <td>Function(String)?</td>
+                                    <td>文本改变时的回调</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </section>
 
@@ -887,6 +1356,45 @@ TextField(
 )</code></pre>
                         </div>
                     </div>
+                    <div class="component-properties">
+                        <h3>常用属性</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>属性</th>
+                                    <th>类型</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>builder</td>
+                                    <td>WidgetBuilder</td>
+                                    <td>构建底部表单内容的回调</td>
+                                </tr>
+                                <tr>
+                                    <td>context</td>
+                                    <td>BuildContext</td>
+                                    <td>上下文</td>
+                                </tr>
+                                <tr>
+                                    <td>isScrollControlled</td>
+                                    <td>bool</td>
+                                    <td>是否使用可滚动的控制器</td>
+                                </tr>
+                                <tr>
+                                    <td>backgroundColor</td>
+                                    <td>Color?</td>
+                                    <td>底部表单的背景颜色</td>
+                                </tr>
+                                <tr>
+                                    <td>elevation</td>
+                                    <td>double?</td>
+                                    <td>底部表单的阴影高度</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </section>
 
                 <section id="card" class="component-detail">
@@ -919,6 +1427,45 @@ TextField(
   ),
 )</code></pre>
                         </div>
+                    </div>
+                    <div class="component-properties">
+                        <h3>常用属性</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>属性</th>
+                                    <th>类型</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>child</td>
+                                    <td>Widget?</td>
+                                    <td>卡片内容</td>
+                                </tr>
+                                <tr>
+                                    <td>elevation</td>
+                                    <td>double?</td>
+                                    <td>卡片的阴影高度</td>
+                                </tr>
+                                <tr>
+                                    <td>shape</td>
+                                    <td>ShapeBorder?</td>
+                                    <td>卡片的形状</td>
+                                </tr>
+                                <tr>
+                                    <td>color</td>
+                                    <td>Color?</td>
+                                    <td>卡片的背景颜色</td>
+                                </tr>
+                                <tr>
+                                    <td>margin</td>
+                                    <td>EdgeInsetsGeometry?</td>
+                                    <td>卡片的外边距</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </section>
 
@@ -972,6 +1519,45 @@ TextField(
 )</code></pre>
                         </div>
                     </div>
+                    <div class="component-properties">
+                        <h3>常用属性</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>属性</th>
+                                    <th>类型</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>title</td>
+                                    <td>Widget?</td>
+                                    <td>标题文本</td>
+                                </tr>
+                                <tr>
+                                    <td>subtitle</td>
+                                    <td>Widget?</td>
+                                    <td>副标题文本</td>
+                                </tr>
+                                <tr>
+                                    <td>leading</td>
+                                    <td>Widget?</td>
+                                    <td>左侧的图标或控件</td>
+                                </tr>
+                                <tr>
+                                    <td>trailing</td>
+                                    <td>Widget?</td>
+                                    <td>右侧的图标或控件</td>
+                                </tr>
+                                <tr>
+                                    <td>onTap</td>
+                                    <td>GestureTapCallback?</td>
+                                    <td>点击事件回调</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </section>
 
                 <section id="bottomappbar" class="component-detail">
@@ -1020,6 +1606,45 @@ TextField(
   floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
 )</code></pre>
                         </div>
+                    </div>
+                    <div class="component-properties">
+                        <h3>常用属性</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>属性</th>
+                                    <th>类型</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>child</td>
+                                    <td>Widget?</td>
+                                    <td>底部应用栏的子组件</td>
+                                </tr>
+                                <tr>
+                                    <td>shape</td>
+                                    <td>NotchedShape?</td>
+                                    <td>应用栏的形状</td>
+                                </tr>
+                                <tr>
+                                    <td>notchMargin</td>
+                                    <td>double</td>
+                                    <td>缺口边缘的外边距</td>
+                                </tr>
+                                <tr>
+                                    <td>color</td>
+                                    <td>Color?</td>
+                                    <td>应用栏的背景颜色</td>
+                                </tr>
+                                <tr>
+                                    <td>elevation</td>
+                                    <td>double?</td>
+                                    <td>应用栏的阴影高度</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </section>
 
@@ -1151,6 +1776,45 @@ TextField(
 )</code></pre>
                         </div>
                     </div>
+                    <div class="component-properties">
+                        <h3>常用属性</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>属性</th>
+                                    <th>类型</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>icon</td>
+                                    <td>Widget</td>
+                                    <td>按钮显示的图标</td>
+                                </tr>
+                                <tr>
+                                    <td>onPressed</td>
+                                    <td>Function?</td>
+                                    <td>点击按钮时触发的回调</td>
+                                </tr>
+                                <tr>
+                                    <td>iconSize</td>
+                                    <td>double</td>
+                                    <td>图标的大小</td>
+                                </tr>
+                                <tr>
+                                    <td>color</td>
+                                    <td>Color?</td>
+                                    <td>图标的颜色</td>
+                                </tr>
+                                <tr>
+                                    <td>tooltip</td>
+                                    <td>String?</td>
+                                    <td>按钮的提示文本</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </section>
 
                 <section id="segmentedbutton" class="component-detail">
@@ -1220,6 +1884,45 @@ TextField(
 )</code></pre>
                         </div>
                     </div>
+                    <div class="component-properties">
+                        <h3>常用属性</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>属性</th>
+                                    <th>类型</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>value</td>
+                                    <td>double?</td>
+                                    <td>进度值，0.0到1.0</td>
+                                </tr>
+                                <tr>
+                                    <td>backgroundColor</td>
+                                    <td>Color?</td>
+                                    <td>进度条的背景颜色</td>
+                                </tr>
+                                <tr>
+                                    <td>valueColor</td>
+                                    <td>Animation&lt;Color&gt;?</td>
+                                    <td>进度条的颜色</td>
+                                </tr>
+                                <tr>
+                                    <td>minHeight</td>
+                                    <td>double?</td>
+                                    <td>进度条的最小高度</td>
+                                </tr>
+                                <tr>
+                                    <td>semanticsLabel</td>
+                                    <td>String?</td>
+                                    <td>进度条的语义标签</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </section>
 
                 <section id="snackbar" class="component-detail">
@@ -1285,6 +1988,45 @@ TextField(
   },
 )</code></pre>
                         </div>
+                    </div>
+                    <div class="component-properties">
+                        <h3>常用属性</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>属性</th>
+                                    <th>类型</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>title</td>
+                                    <td>Widget?</td>
+                                    <td>对话框的标题</td>
+                                </tr>
+                                <tr>
+                                    <td>content</td>
+                                    <td>Widget?</td>
+                                    <td>对话框的内容</td>
+                                </tr>
+                                <tr>
+                                    <td>actions</td>
+                                    <td>List&lt;Widget&gt;?</td>
+                                    <td>操作按钮列表</td>
+                                </tr>
+                                <tr>
+                                    <td>backgroundColor</td>
+                                    <td>Color?</td>
+                                    <td>对话框的背景颜色</td>
+                                </tr>
+                                <tr>
+                                    <td>shape</td>
+                                    <td>ShapeBorder?</td>
+                                    <td>对话框的形状</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </section>
 
@@ -1521,6 +2263,45 @@ TextField(
   onPressed: _showMyDialog,
   child: const Text('显示对话框'),
 )</code></pre>
+                    </div>
+                    <div class="component-properties">
+                        <h3>常用属性</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>属性</th>
+                                    <th>类型</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>title</td>
+                                    <td>Widget?</td>
+                                    <td>对话框的标题</td>
+                                </tr>
+                                <tr>
+                                    <td>content</td>
+                                    <td>Widget?</td>
+                                    <td>对话框的内容</td>
+                                </tr>
+                                <tr>
+                                    <td>actions</td>
+                                    <td>List&lt;Widget&gt;?</td>
+                                    <td>对话框底部的操作按钮</td>
+                                </tr>
+                                <tr>
+                                    <td>backgroundColor</td>
+                                    <td>Color?</td>
+                                    <td>对话框的背景颜色</td>
+                                </tr>
+                                <tr>
+                                    <td>shape</td>
+                                    <td>ShapeBorder?</td>
+                                    <td>对话框的形状</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </section>
 
