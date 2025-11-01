@@ -1,0 +1,5983 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dart语言教程 - Flutter Material docs</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Highlight.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <!-- Highlight.js JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <style>
+        .dart-tutorial-content {
+            line-height: 1.6;
+        }
+        .dart-tutorial-content h3 {
+            color: #333;
+            margin-top: 1.5em;
+            margin-bottom: 0.8em;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5em;
+        }
+        .dart-tutorial-content h4 {
+            color: #444;
+            margin-top: 1.2em;
+            margin-bottom: 0.6em;
+        }
+        .dart-tutorial-content p {
+            margin-bottom: 1em;
+        }
+        .dart-tutorial-content ul, .dart-tutorial-content ol {
+            margin-bottom: 1em;
+            padding-left: 2em;
+        }
+        .dart-tutorial-content li {
+            margin-bottom: 0.5em;
+        }
+        .code-block {
+            margin: 1.5em 0;
+            position: relative;
+        }
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #f1f1f1;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .copy-button:hover {
+            background: #e1e1e1;
+        }
+        .code-block pre {
+            background: #f6f8fa;
+            border-radius: 6px;
+            padding: 16px;
+            overflow: auto;
+            font-size: 14px;
+            line-height: 1.45;
+        }
+        .code-block code {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        }
+        .tutorial-section {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        .nav-btn {
+            padding: 8px 16px;
+            background: #0366d6;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .nav-btn:hover {
+            background: #0256b6;
+        }
+        
+        /* 导航组样式 */
+        .nav-group {
+            margin-bottom: 15px;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+        }
+        .nav-group-title {
+            background: #f6f8fa;
+            padding: 12px 16px;
+            margin: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 16px;
+            color: #24292e;
+            border-radius: 6px 6px 0 0;
+            user-select: none;
+        }
+        .nav-group-title:hover {
+            background: #ebedf0;
+        }
+        .toggle-icon {
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+        .nav-group.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+        .nav-group-items {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            max-height: 500px;
+            transition: max-height 0.3s ease;
+            background: white;
+        }
+        .nav-group.collapsed .nav-group-items {
+            max-height: 0;
+        }
+        .nav-group-items li {
+            border-top: 1px solid #e1e4e8;
+        }
+        .nav-link {
+            display: block;
+            padding: 10px 16px;
+            color: #0366d6;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+        }
+        .nav-link:hover {
+            background: #f6f8fa;
+        }
+        .nav-link.active {
+            background: #e1ebff;
+            color: #0366d6;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <header class="flutter-header">
+        <div class="container">
+            <div class="logo">
+                <i class="fab fa-flutter"></i>
+                <h1>Flutter Material docs</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#components">组件列表</a></li>
+                    <li><a href="index.html#getting-started">快速开始</a></li>
+                    <li><a href="dart-tutorial.html">Dart教程</a></li>
+                    <li><a href="index.html#examples">示例</a></li>
+                </ul>
+            </nav>
+            <div class="download-btn">
+                <a href="https://github.com/Flutterdocs/Flutterdocs.github.io/releases/download/laster/Flutterdocs.zip" target="_blank" class="btn-download">
+                    <i class="fas fa-download"></i> 下载源码
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="layout">
+            <aside class="sidebar">
+                <div class="search-box">
+                    <input type="text" placeholder="搜索教程..." id="tutorial-search">
+                    <i class="fas fa-search"></i>
+                </div>
+                <nav class="component-nav">
+                    <!-- Dart基础教程部分 -->
+                    <div class="nav-group">
+                        <h3 class="nav-group-title">
+                            <span class="toggle-icon">▼</span>
+                            Dart基础教程
+                        </h3>
+                        <ul class="nav-group-items">
+                            <li><a href="#introduction" class="nav-link">Dart简介</a></li>
+                            <li><a href="#basic-syntax" class="nav-link">基本语法</a></li>
+                            <li><a href="#data-types" class="nav-link">数据类型</a></li>
+                            <li><a href="#operators" class="nav-link">运算符</a></li>
+                            <li><a href="#control-flow" class="nav-link">控制流</a></li>
+                            <li><a href="#functions" class="nav-link">函数</a></li>
+                            <li><a href="#classes" class="nav-link">类和对象</a></li>
+                            <li><a href="#async" class="nav-link">异步编程</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Flutter应用开发部分 -->
+                    <div class="nav-group">
+                        <h3 class="nav-group-title">
+                            <span class="toggle-icon">▼</span>
+                            Flutter应用开发
+                        </h3>
+                        <ul class="nav-group-items">
+                            <li><a href="#flutter-components" class="nav-link">Flutter组件用法</a></li>
+                            <li><a href="#complete-app" class="nav-link">完整Flutter应用结构示例</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 网络与数据存储部分 -->
+                    <div class="nav-group">
+                        <h3 class="nav-group-title">
+                            <span class="toggle-icon">▼</span>
+                            网络与数据存储
+                        </h3>
+                        <ul class="nav-group-items">
+                            <li><a href="#networking" class="nav-link">网络请求</a></li>
+                            <li><a href="#dio-networking" class="nav-link">使用dio包（推荐）</a></li>
+                            <li><a href="#local-storage" class="nav-link">本地存储</a></li>
+                            <li><a href="#sqlite-db" class="nav-link">SQLite数据库</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 高级功能部分 -->
+                    <div class="nav-group">
+                        <h3 class="nav-group-title">
+                            <span class="toggle-icon">▼</span>
+                            高级功能
+                        </h3>
+                        <ul class="nav-group-items">
+                            <li><a href="#animations" class="nav-link">动画效果</a></li>
+                            <li><a href="#theming" class="nav-link">主题样式</a></li>
+                            <li><a href="#internationalization" class="nav-link">国际化</a></li>
+                            <li><a href="#form-validation" class="nav-link">表单验证</a></li>
+                            <li><a href="#charts-visualization" class="nav-link">图表和数据可视化</a></li>
+                            <li><a href="#file-upload-download" class="nav-link">文件上传和下载</a></li>
+                            <li><a href="#notifications" class="nav-link">通知系统</a></li>
+                            <li><a href="#websocket" class="nav-link">WebSocket实时通信</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 性能与测试部分 -->
+                    <div class="nav-group">
+                        <h3 class="nav-group-title">
+                            <span class="toggle-icon">▼</span>
+                            性能与测试
+                        </h3>
+                        <ul class="nav-group-items">
+                            <li><a href="#performance-optimization" class="nav-link">性能优化</a></li>
+                            <li><a href="#testing" class="nav-link">Flutter测试</a></li>
+                            <li><a href="#code-style" class="nav-link">代码规范</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 代码大全部分 -->
+                    <div class="nav-group">
+                        <h3 class="nav-group-title">
+                            <span class="toggle-icon">▼</span>
+                            代码大全
+                        </h3>
+                        <ul class="nav-group-items">
+                            <li><a href="#code-reference" class="nav-link">Dart常用代码参考</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </aside>
+
+            <section class="content">
+                <div class="tutorial-section">
+                    <h2>Dart语言教程</h2>
+                    <p>本教程将帮助您学习Dart语言的基础知识，这是Flutter应用开发的核心编程语言。通过本教程，您将了解Dart的语法、特性以及如何在Flutter中有效使用它。</p>
+                </div>
+
+                <div id="introduction" class="tutorial-section">
+                    <h3>1. Dart简介</h3>
+                    <div class="dart-tutorial-content">
+                        <p>Dart是由Google开发的面向对象、类定义的、单继承的语言，主要用于Web、移动应用和服务器端开发。它是Flutter框架的官方开发语言。</p>
+                        <h4>Dart的主要特性：</h4>
+                        <ul>
+                            <li><strong>面向对象</strong>：支持类、接口和继承</li>
+                            <li><strong>强类型</strong>：有静态类型检查，但也支持类型推断</li>
+                            <li><strong>垃圾回收</strong>：自动管理内存</li>
+                            <li><strong>异步支持</strong>：内置async/await语法</li>
+                            <li><strong>多平台</strong>：可编译为JavaScript或直接在VM上运行</li>
+                            <li><strong>Flutter集成</strong>：完美支持Flutter UI开发</li>
+                        </ul>
+                        <h4>第一个Dart程序：</h4>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">void main() {
+  print('Hello, Dart!');
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="basic-syntax" class="tutorial-section">
+                    <h3>2. 基本语法</h3>
+                    <div class="dart-tutorial-content">
+                        <h4>变量声明</h4>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 使用var声明变量（类型推断）
+var name = 'Flutter';
+
+// 明确指定类型
+String language = 'Dart';
+int version = 2;
+
+// 声明常量
+final pi = 3.14;
+const maxAge = 120;
+
+// 可为空的类型
+String? nullableString = null;</code></pre>
+                        </div>
+                        
+                        <h4>注意事项：</h4>
+                        <ul>
+                            <li><code>var</code>声明的变量可以改变值，但不能改变类型</li>
+                            <li><code>final</code>声明的变量只能赋值一次，但可以在运行时确定</li>
+                            <li><code>const</code>声明的变量是编译时常量</li>
+                            <li>Dart 2.0+是类型安全的，默认情况下变量不能为null</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="data-types" class="tutorial-section">
+                    <h3>3. 数据类型</h3>
+                    <div class="dart-tutorial-content">
+                        <h4>常用数据类型</h4>
+                        <table border="1" cellpadding="5" cellspacing="0" style="width:100%; border-collapse:collapse; margin-bottom:15px;">
+                            <tr style="background:#f5f5f5;">
+                                <th>类型</th>
+                                <th>说明</th>
+                                <th>示例</th>
+                            </tr>
+                            <tr>
+                                <td><code>String</code></td>
+                                <td>字符串</td>
+                                <td><code>'Hello' 或 "Flutter"</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>num</code></td>
+                                <td>数字（抽象类）</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td><code>int</code></td>
+                                <td>整数</td>
+                                <td><code>42</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>double</code></td>
+                                <td>浮点数</td>
+                                <td><code>3.14</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>bool</code></td>
+                                <td>布尔值</td>
+                                <td><code>true 或 false</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>List</code></td>
+                                <td>列表（数组）</td>
+                                <td><code>[1, 2, 3]</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>Map</code></td>
+                                <td>键值对映射</td>
+                                <td><code>{'name': 'Dart', 'version': 2}</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>Set</code></td>
+                                <td>无序集合</td>
+                                <td><code>{1, 2, 3}</code></td>
+                            </tr>
+                        </table>
+
+                        <h4>集合类型示例</h4>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 列表（List）
+var numbers = [1, 2, 3, 4, 5];
+List&lt;String&gt; fruits = ['Apple', 'Banana', 'Orange'];
+
+// 映射（Map）
+var person = {
+  'name': '张三',
+  'age': 30,
+  'isStudent': false
+};
+
+// 集合（Set）
+var uniqueNumbers = {1, 2, 3, 3, 4}; // {1, 2, 3, 4}
+
+// 集合操作
+print(fruits[0]); // 'Apple'
+print(person['age']); // 30
+print(numbers.length); // 5
+fruits.add('Pear'); // 添加元素
+person.containsKey('name'); // true</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="operators" class="tutorial-section">
+                    <h3>4. 运算符</h3>
+                    <div class="dart-tutorial-content">
+                        <h4>算术运算符</h4>
+                        <ul>
+                            <li><code>+</code> 加法</li>
+                            <li><code>-</code> 减法</li>
+                            <li><code>*</code> 乘法</li>
+                            <li><code>/</code> 除法（返回double）</li>
+                            <li><code>~/</code> 整除（返回int）</li>
+                            <li><code>%</code> 取余</li>
+                        </ul>
+
+                        <h4>关系运算符</h4>
+                        <ul>
+                            <li><code>==</code> 等于</li>
+                            <li><code>!=</code> 不等于</li>
+                            <li><code>&gt;</code> 大于</li>
+                            <li><code>&lt;</code> 小于</li>
+                            <li><code>&gt;=</code> 大于等于</li>
+                            <li><code>&lt;=</code> 小于等于</li>
+                        </ul>
+
+                        <h4>逻辑运算符</h4>
+                        <ul>
+                            <li><code>&&</code> 逻辑与</li>
+                            <li><code>||</code> 逻辑或</li>
+                            <li><code>!</code> 逻辑非</li>
+                        </ul>
+
+                        <h4>赋值运算符</h4>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">var a = 10;
+var b = 5;
+
+a += b; // 等价于 a = a + b
+print(a); // 15
+
+a ??= b; // 仅当a为null时才赋值
+
+// 级联运算符..
+var list = [];
+list..add(1)..add(2)..add(3); // [1, 2, 3]</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="control-flow" class="tutorial-section">
+                    <h3>5. 控制流</h3>
+                    <div class="dart-tutorial-content">
+                        <h4>条件语句</h4>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// if-else语句
+var score = 85;
+if (score >= 90) {
+  print('优秀');
+} else if (score >= 80) {
+  print('良好');
+} else if (score >= 60) {
+  print('及格');
+} else {
+  print('不及格');
+}
+
+// switch语句
+var grade = 'A';
+switch (grade) {
+  case 'A':
+    print('优秀');
+    break;
+  case 'B':
+    print('良好');
+    break;
+  default:
+    print('其他');
+}</code></pre>
+                        </div>
+
+                        <h4>循环语句</h4>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// for循环
+for (var i = 0; i < 5; i++) {
+  print(i);
+}
+
+// for-in循环
+var fruits = ['Apple', 'Banana', 'Orange'];
+for (var fruit in fruits) {
+  print(fruit);
+}
+
+// while循环
+var count = 0;
+while (count < 3) {
+  print(count);
+  count++;
+}
+
+// do-while循环
+do {
+  print(count);
+  count++;
+} while (count < 5);</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="functions" class="tutorial-section">
+                    <h3>6. 函数</h3>
+                    <div class="dart-tutorial-content">
+                        <h4>函数定义与调用</h4>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 基本函数定义
+int add(int a, int b) {
+  return a + b;
+}
+
+// 箭头函数（单行函数）
+int multiply(int a, int b) => a * b;
+
+// 可选参数
+String greet(String name, [String? title]) {
+  if (title != null) {
+    return 'Hello, $title $name!';
+  }
+  return 'Hello, $name!';
+}
+
+// 命名参数
+void configure({String? host, int port = 8080}) {
+  print('Host: $host, Port: $port');
+}
+
+// 函数调用
+var sum = add(5, 3);
+var product = multiply(4, 6);
+var greeting = greet('张三', 'Mr.');
+configure(host: 'localhost', port: 9090);</code></pre>
+                        </div>
+
+                        <h4>高阶函数</h4>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 函数作为参数
+void processList(List<int> numbers, int Function(int) processor) {
+  for (var i = 0; i < numbers.length; i++) {
+    numbers[i] = processor(numbers[i]);
+  }
+}
+
+// 匿名函数
+var numbers = [1, 2, 3];
+processList(numbers, (int x) => x * 2); // [2, 4, 6]
+
+// 返回函数
+Function makeAdder(int addBy) {
+  return (int i) => addBy + i;
+}
+
+var addFive = makeAdder(5);
+print(addFive(3)); // 8</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="classes" class="tutorial-section">
+                    <h3>7. 类和对象</h3>
+                    <div class="dart-tutorial-content">
+                        <h4>类的定义与使用</h4>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 定义类
+class Person {
+  String name;
+  int age;
+  
+  // 构造函数
+  Person(this.name, this.age);
+  
+  // 命名构造函数
+  Person.fromBirthYear(String name, int birthYear) {
+    this.name = name;
+    this.age = DateTime.now().year - birthYear;
+  }
+  
+  // 方法
+  void introduce() {
+    print('My name is $name, I am $age years old.');
+  }
+  
+  // getter和setter
+  String get greeting => 'Hello, I\'m $name';
+  
+  set setAge(int newAge) {
+    if (newAge > 0) {
+      age = newAge;
+    }
+  }
+}
+
+// 使用类
+var person1 = Person('张三', 25);
+var person2 = Person.fromBirthYear('李四', 1990);
+
+person1.introduce(); // 输出: My name is 张三, I am 25 years old.
+print(person1.greeting); // Hello, I'm 张三
+person1.setAge = 30;</code></pre>
+                        </div>
+
+                        <h4>继承与多态</h4>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 继承
+class Student extends Person {
+  String school;
+  
+  Student(String name, int age, this.school) : super(name, age);
+  
+  @override
+  void introduce() {
+    super.introduce();
+    print('I study at $school.');
+  }
+}
+
+// 抽象类
+abstract class Animal {
+  void makeSound(); // 抽象方法
+  
+  void sleep() {
+    print('Zzz...');
+  }
+}
+
+class Dog extends Animal {
+  @override
+  void makeSound() {
+    print('Woof!');
+  }
+}
+
+// 接口实现
+class Rectangle implements Shape {
+  @override
+  void draw() {
+    print('Drawing rectangle...');
+  }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="async" class="tutorial-section">
+                    <h3>8. 异步编程</h3>
+                    <div class="dart-tutorial-content">
+                        <h4>Future和async/await</h4>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 使用Future
+Future<String> fetchData() {
+  return Future.delayed(Duration(seconds: 2), () {
+    return 'Data fetched successfully';
+  });
+}
+
+// 使用then处理Future
+void processData() {
+  fetchData()
+    .then((data) {
+      print(data);
+    })
+    .catchError((error) {
+      print('Error: $error');
+    })
+    .whenComplete(() {
+      print('Operation completed');
+    });
+}
+
+// 使用async/await（推荐）
+Future<void> getData() async {
+  try {
+    var data = await fetchData();
+    print(data);
+  } catch (error) {
+    print('Error: $error');
+  } finally {
+    print('Operation completed');
+  }
+}</code></pre>
+                        </div>
+
+                        <h4>Stream</h4>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 创建Stream
+Stream<int> countStream(int max) async* {
+  for (var i = 1; i <= max; i++) {
+    await Future.delayed(Duration(seconds: 1));
+    yield i; // 产生事件
+  }
+}
+
+// 使用Stream
+void listenToStream() {
+  countStream(5).listen(
+    (data) {
+      print('Received: $data');
+    },
+    onDone: () {
+      print('Stream completed');
+    },
+    onError: (error) {
+      print('Error: $error');
+    },
+  );
+}
+
+// 使用async/await和Stream
+async function processStream() async {
+  await for (var value in countStream(3)) {
+    print('Processed: $value');
+  }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="flutter-components" class="tutorial-section">
+                    <h3>9. Flutter组件用法</h3>
+                    <div class="dart-tutorial-content">
+                        <h4>Widget基础</h4>
+                        <p>在Flutter中，一切都是Widget。Widget是构建UI的基本单位。Flutter的Widget分为两大类：</p>
+                        <ul>
+                            <li><strong>StatelessWidget</strong>：无状态组件，一旦创建就不能改变其状态</li>
+                            <li><strong>StatefulWidget</strong>：有状态组件，可以在运行时动态改变其状态</li>
+                        </ul>
+                        
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// StatelessWidget示例
+class MyButton extends StatelessWidget {
+  final String text;
+  final VoidCallback onPressed;
+  
+  const MyButton({required this.text, required this.onPressed, Key? key}) : super(key: key);
+  
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      child: Text(text),
+    );
+  }
+}
+
+// StatefulWidget示例
+class Counter extends StatefulWidget {
+  const Counter({Key? key}) : super(key: key);
+  
+  @override
+  State&lt;Counter&gt; createState() => _CounterState();
+}
+
+class _CounterState extends State&lt;Counter&gt; {
+  int _count = 0;
+  
+  void _increment() {
+    setState(() {
+      _count++;
+    });
+  }
+  
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text('Count: $_count'),
+        ElevatedButton(
+          onPressed: _increment,
+          child: Text('Increment'),
+        ),
+      ],
+    );
+  }
+}</code></pre>
+                        </div>
+
+                        <h4>常用布局Widget</h4>
+                        <p>布局Widget是Flutter中用于构建UI结构的基础组件。以下是一些常用的布局Widget：</p>
+                        
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// Container - 基本容器（可以设置宽高、边距、填充、颜色等）
+Container(
+  width: 200,
+  height: 200,
+  color: Colors.blue,
+  padding: EdgeInsets.all(20),
+  margin: EdgeInsets.all(10),
+  decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(8),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.black26,
+        blurRadius: 4,
+        offset: Offset(0, 2),
+      ),
+    ],
+  ),
+  child: Text('Hello Flutter', style: TextStyle(color: Colors.white)),
+)
+
+// Row - 水平布局
+Row(
+  mainAxisAlignment: MainAxisAlignment.spaceEvenly, // 主轴对齐方式
+  crossAxisAlignment: CrossAxisAlignment.center,    // 交叉轴对齐方式
+  children: [
+    Text('Item 1'),
+    Text('Item 2'),
+    Text('Item 3'),
+  ],
+)
+
+// Column - 垂直布局
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  mainAxisSize: MainAxisSize.min, // 主轴大小
+  children: [
+    Text('Title', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+    SizedBox(height: 10), // 用于间距
+    Text('Description'),
+  ],
+)
+
+// Stack - 层叠布局
+Stack(
+  alignment: Alignment.center, // 对齐方式
+  children: [
+    Container(width: 100, height: 100, color: Colors.red),
+    Positioned(
+      bottom: 10,
+      right: 10,
+      child: Container(width: 50, height: 50, color: Colors.blue),
+    ),
+    Positioned(
+      top: 20,
+      left: 20,
+      child: Text('Overlay', style: TextStyle(color: Colors.white)),
+    ),
+  ],
+)
+
+// Expanded - 扩展子组件以填充可用空间
+Row(
+  children: [
+    Expanded(
+      flex: 1, // 弹性系数
+      child: Container(color: Colors.red),
+    ),
+    Expanded(
+      flex: 2, // 弹性系数
+      child: Container(color: Colors.blue),
+    ),
+  ],
+)
+
+// ListView - 列表视图
+ListView.builder(
+  itemCount: 10,
+  itemBuilder: (context, index) {
+    return ListTile(
+      leading: Icon(Icons.list),
+      title: Text('Item $index'),
+      subtitle: Text('Description for item $index'),
+      trailing: Icon(Icons.arrow_forward),
+    );
+  },
+)</code></pre>
+                        </div>
+
+                        <h4>常用交互Widget</h4>
+                        <p>交互Widget允许用户与应用程序进行交互。以下是一些常用的交互组件：</p>
+                        
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 文本输入
+TextField(
+  controller: TextEditingController(), // 用于获取和设置文本
+  decoration: InputDecoration(
+    labelText: 'Enter your name',
+    hintText: '请输入姓名',
+    border: OutlineInputBorder(),
+    prefixIcon: Icon(Icons.person),
+  ),
+  keyboardType: TextInputType.text,
+  obscureText: false, // 是否为密码输入
+  onChanged: (value) {
+    print('Name: $value');
+  },
+  onSubmitted: (value) {
+    print('Submitted: $value');
+  },
+)
+
+// 按钮 - ElevatedButton（带阴影的按钮）
+ElevatedButton(
+  onPressed: () {
+    print('Button pressed');
+  },
+  style: ElevatedButton.styleFrom(
+    backgroundColor: Colors.blue,
+    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(8),
+    ),
+  ),
+  child: Text('Click Me', style: TextStyle(fontSize: 16)),
+)
+
+// 按钮 - TextButton（纯文本按钮）
+TextButton(
+  onPressed: () {
+    print('Text button pressed');
+  },
+  child: Text('Cancel'),
+)
+
+// 按钮 - OutlinedButton（描边按钮）
+OutlinedButton(
+  onPressed: () {
+    print('Outlined button pressed');
+  },
+  style: OutlinedButton.styleFrom(
+    side: BorderSide(color: Colors.blue),
+  ),
+  child: Text('Outline'),
+)
+
+// 复选框
+Checkbox(
+  value: _isChecked,
+  onChanged: (bool? value) {
+    setState(() {
+      _isChecked = value ?? false;
+    });
+  },
+)
+
+// 单选按钮
+Radio<String>(
+  value: 'option1',
+  groupValue: _selectedOption,
+  onChanged: (String? value) {
+    setState(() {
+      _selectedOption = value!;
+    });
+  },
+)
+
+// 开关
+Switch(
+  value: _isSwitched,
+  onChanged: (bool value) {
+    setState(() {
+      _isSwitched = value;
+    });
+  },
+)
+
+// 滑块
+Slider(
+  value: _sliderValue,
+  min: 0,
+  max: 100,
+  divisions: 10,
+  label: _sliderValue.round().toString(),
+  onChanged: (double value) {
+    setState(() {
+      _sliderValue = value;
+    });
+  },
+)</code></pre>
+                        </div>
+
+                        <h4>Material组件使用</h4>
+                        <p>Material组件是Flutter提供的一套遵循Material Design设计规范的UI组件。以下是一些常用的Material组件：</p>
+                        
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// AppBar - 应用栏
+AppBar(
+  title: Text('My App'),
+  leading: IconButton(
+    icon: Icon(Icons.menu),
+    onPressed: () {},
+  ),
+  actions: [
+    IconButton(
+      icon: Icon(Icons.search),
+      onPressed: () {},
+    ),
+  ],
+  backgroundColor: Colors.blue,
+)
+
+// Scaffold - 基本布局结构
+Scaffold(
+  appBar: AppBar(title: Text('Home')),
+  body: Center(child: Text('Hello World')),
+  floatingActionButton: FloatingActionButton(
+    onPressed: () {},
+    child: Icon(Icons.add),
+  ),
+  bottomNavigationBar: BottomNavigationBar(
+    items: [
+      BottomNavigationBarItem(
+        icon: Icon(Icons.home),
+        label: 'Home',
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.settings),
+        label: 'Settings',
+      ),
+    ],
+  ),
+)
+
+// Card - 卡片组件
+Card(
+  elevation: 4,
+  margin: EdgeInsets.all(10),
+  child: Column(
+    children: [
+      ListTile(
+        leading: Icon(Icons.person),
+        title: Text('John Doe'),
+        subtitle: Text('Flutter Developer'),
+      ),
+      Padding(
+        padding: EdgeInsets.all(16),
+        child: Text('Card content here'),
+      ),
+      ButtonBar(
+        children: [
+          TextButton(onPressed: () {}, child: Text('EDIT')),
+          TextButton(onPressed: () {}, child: Text('SHARE')),
+        ],
+      ),
+    ],
+  ),
+)
+
+// AlertDialog - 对话框
+AlertDialog(
+  title: Text('Confirmation'),
+  content: Text('Are you sure you want to delete this item?'),
+  actions: [
+    TextButton(
+      onPressed: () => Navigator.of(context).pop(),
+      child: Text('Cancel'),
+    ),
+    TextButton(
+      onPressed: () {
+        // Delete action
+        Navigator.of(context).pop();
+      },
+      child: Text('Delete'),
+    ),
+  ],
+)
+
+// SnackBar - 底部提示
+ScaffoldMessenger.of(context).showSnackBar(
+  SnackBar(
+    content: Text('Operation completed'),
+    action: SnackBarAction(
+      label: 'UNDO',
+      onPressed: () {},
+    ),
+    duration: Duration(seconds: 3),
+  ),
+)
+
+// TabBar - 标签栏
+DefaultTabController(
+  length: 3,
+  child: Scaffold(
+    appBar: AppBar(
+      bottom: TabBar(
+        tabs: [
+          Tab(text: 'Tab 1'),
+          Tab(text: 'Tab 2'),
+          Tab(text: 'Tab 3'),
+        ],
+      ),
+    ),
+    body: TabBarView(
+      children: [
+        Center(child: Text('Tab 1 Content')),
+        Center(child: Text('Tab 2 Content')),
+        Center(child: Text('Tab 3 Content')),
+      ],
+    ),
+  ),
+)
+                        </div>
+
+                        <h4>路由导航</h4>
+                        <p>Flutter提供了强大的路由导航系统，用于管理页面之间的跳转。</p>
+                        
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 基本导航 - 命名路由
+// 在MaterialApp中定义路由
+MaterialApp(
+  initialRoute: '/',
+  routes: {
+    '/': (context) => HomePage(),
+    '/second': (context) => SecondPage(),
+    '/detail/:id': (context) => DetailPage(),
+  },
+)
+
+// 导航到新页面
+Navigator.pushNamed(
+  context,
+  '/second',
+  arguments: {'name': 'Flutter'},
+);
+
+// 在目标页面接收参数
+class SecondPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    
+    return Scaffold(
+      appBar: AppBar(title: Text(args['name'])),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () => Navigator.pop(context), // 返回上一页
+          child: Text('Go Back'),
+        ),
+      ),
+    );
+  }
+}
+
+// 手动路由
+Navigator.push(
+  context,
+  MaterialPageRoute(builder: (context) => DetailPage()),
+);
+
+// 带返回值的导航
+final result = await Navigator.push(
+  context,
+  MaterialPageRoute(builder: (context) => SelectionPage()),
+);
+
+// 在SelectionPage中返回结果
+Navigator.pop(context, 'Selected Value');
+
+// 使用Navigator 2.0（Router API）
+// 更适合Web应用和更复杂的导航场景
+class MyRouterDelegate extends RouterDelegate<MyRoutePath> 
+    with ChangeNotifier, PopNavigatorRouterDelegateMixin<MyRoutePath> {
+  // 实现RouterDelegate接口...
+}
+                        </div>
+
+                        <h4>状态管理</h4>
+                        <p>状态管理是Flutter应用开发中的重要概念，用于管理和共享应用状态。</p>
+                        
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 1.  setState - 本地状态管理
+class CounterWidget extends StatefulWidget {
+  @override
+  _CounterWidgetState createState() => _CounterWidgetState();
+}
+
+class _CounterWidgetState extends State<CounterWidget> {
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text('Count: $_counter'),
+        ElevatedButton(
+          onPressed: _incrementCounter,
+          child: Text('Increment'),
+        ),
+      ],
+    );
+  }
+}
+
+// 2. InheritedWidget - 跨组件状态共享
+class AppState extends InheritedWidget {
+  final int counter;
+  final VoidCallback incrementCounter;
+
+  const AppState({
+    Key? key,
+    required this.counter,
+    required this.incrementCounter,
+    required Widget child,
+  }) : super(key: key, child: child);
+
+  static AppState of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<AppState>()!;
+  }
+
+  @override
+  bool updateShouldNotify(AppState old) {
+    return counter != old.counter;
+  }
+}
+
+// 3. Provider - 推荐的状态管理方案
+// 需要添加依赖: provider: ^6.0.0
+
+// 创建模型类
+class CounterModel extends ChangeNotifier {
+  int _count = 0;
+  int get count => _count;
+
+  void increment() {
+    _count++;
+    notifyListeners();
+  }
+}
+
+// 在应用顶层提供状态
+void main() {
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => CounterModel(),
+      child: MyApp(),
+    ),
+  );
+}
+
+// 在组件中使用状态
+class CounterScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text('Count: ${context.watch<CounterModel>().count}'),
+        ElevatedButton(
+          onPressed: () => context.read<CounterModel>().increment(),
+          child: Text('Increment'),
+        ),
+      ],
+    );
+  }
+}
+
+// 4. Riverpod - 新一代状态管理方案
+// 需要添加依赖: flutter_riverpod: ^2.0.0
+
+// 定义Provider
+final counterProvider = StateProvider((ref) => 0);
+
+// 在应用中使用
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ProviderScope(
+      child: MaterialApp(
+        home: CounterScreen(),
+      ),
+    );
+  }
+}
+
+// 在组件中使用
+class CounterScreen extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final counter = ref.watch(counterProvider);
+    
+    return Column(
+      children: [
+        Text('Count: $counter'),
+        ElevatedButton(
+          onPressed: () => ref.read(counterProvider.notifier).state++,
+          child: Text('Increment'),
+        ),
+      ],
+    );
+  }
+}
+                        </div>
+
+                        <h4>完整Flutter应用结构示例</h4>
+                        <p>以下是一个完整的Flutter应用示例，展示了组件、路由、状态管理等的结合使用：</p>
+                        
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// main.dart - 应用入口
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'screens/home_screen.dart';
+import 'screens/detail_screen.dart';
+import 'models/counter_model.dart';
+
+void main() {
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => CounterModel(),
+      child: MyApp(),
+    ),
+  );
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        primarySwatch: Colors.blue,
+      ),
+      themeMode: ThemeMode.system,
+      initialRoute: '/',
+      routes: {
+        '/': (context) => HomeScreen(),
+        '/detail': (context) => DetailScreen(),
+      },
+    );
+  }
+}
+
+// models/counter_model.dart - 数据模型
+import 'package:flutter/foundation.dart';
+
+class CounterModel extends ChangeNotifier {
+  int _count = 0;
+  int get count => _count;
+
+  void increment() {
+    _count++;
+    notifyListeners();
+  }
+
+  void decrement() {
+    if (_count > 0) {
+      _count--;
+      notifyListeners();
+    }
+  }
+}
+
+// screens/home_screen.dart - 主页
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../models/counter_model.dart';
+import 'detail_screen.dart';
+
+class HomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home Screen'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.settings),
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Settings button pressed')),
+              );
+            },
+          ),
+        ],
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('You have pushed the button this many times:'),
+            Text(
+              '${context.watch<CounterModel>().count}',
+              style: Theme.of(context).textTheme.headline4,
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/detail');
+              },
+              child: Text('Go to Detail Screen'),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: context.read<CounterModel>().increment,
+        tooltip: 'Increment',
+        child: Icon(Icons.add),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.business),
+            label: 'Business',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            label: 'School',
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// screens/detail_screen.dart - 详情页
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../models/counter_model.dart';
+
+class DetailScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Detail Screen'),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Card(
+              elevation: 4,
+              child: Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    Text('Counter Value', style: TextStyle(fontSize: 18)),
+                    Text(
+                      '${context.watch<CounterModel>().count}',
+                      style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: context.read<CounterModel>().increment,
+                  child: Text('Increment'),
+                ),
+                SizedBox(width: 10),
+                ElevatedButton(
+                  onPressed: context.read<CounterModel>().decrement,
+                  child: Text('Decrement'),
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Go Back'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+                        </div>
+                    </div>
+                </div>
+
+                <div id="networking" class="tutorial-section">
+                    <h3>11. 网络请求</h3>
+                    <div class="dart-tutorial-content">
+                        <h4>使用http包</h4>
+                        <p>Flutter中进行网络请求最常用的方式是使用http包。</p>
+                        
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 添加依赖: http: ^0.13.4
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+// GET请求
+Future<void> fetchData() async {
+  final url = Uri.parse('https://jsonplaceholder.typicode.com/posts/1');
+  try {
+    final response = await http.get(url);
+    
+    if (response.statusCode == 200) {
+      // 请求成功
+      final data = jsonDecode(response.body);
+      print('数据: $data');
+    } else {
+      // 请求失败
+      print('请求失败，状态码: ${response.statusCode}');
+    }
+  } catch (e) {
+    // 捕获错误
+    print('错误: $e');
+  }
+}
+
+// POST请求
+Future<void> postData() async {
+  final url = Uri.parse('https://jsonplaceholder.typicode.com/posts');
+  try {
+    final response = await http.post(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode({
+        'title': '测试标题',
+        'body': '测试内容',
+        'userId': 1,
+      }),
+    );
+    
+    if (response.statusCode == 201) {
+      final data = jsonDecode(response.body);
+      print('创建成功: $data');
+    } else {
+      print('创建失败，状态码: ${response.statusCode}');
+    }
+  } catch (e) {
+    print('错误: $e');
+  }
+}
+
+// PUT请求
+Future<void> updateData(int id) async {
+  final url = Uri.parse('https://jsonplaceholder.typicode.com/posts/$id');
+  try {
+    final response = await http.put(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode({
+        'title': '更新的标题',
+        'body': '更新的内容',
+        'userId': 1,
+      }),
+    );
+    
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      print('更新成功: $data');
+    } else {
+      print('更新失败，状态码: ${response.statusCode}');
+    }
+  } catch (e) {
+    print('错误: $e');
+  }
+}
+
+// DELETE请求
+Future<void> deleteData(int id) async {
+  final url = Uri.parse('https://jsonplaceholder.typicode.com/posts/$id');
+  try {
+    final response = await http.delete(url);
+    
+    if (response.statusCode == 200) {
+      print('删除成功');
+    } else {
+      print('删除失败，状态码: ${response.statusCode}');
+    }
+  } catch (e) {
+    print('错误: $e');
+  }
+}
+                        </div>
+
+                        <h4>使用dio包（推荐）</h4>
+                        <p>dio是一个功能更强大的Flutter网络请求库，支持拦截器、请求取消、FormData等高级特性。</p>
+                        
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 添加依赖: dio: ^4.0.6
+import 'package:dio/dio.dart';
+
+// 基础配置
+final dio = Dio(BaseOptions(
+  baseUrl: 'https://jsonplaceholder.typicode.com',
+  connectTimeout: 5000,
+  receiveTimeout: 3000,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+));
+
+// 添加拦截器
+dio.interceptors.add(InterceptorsWrapper(
+  onRequest: (options, handler) {
+    // 在请求发送前做一些处理
+    print('请求URL: ${options.uri}');
+    return handler.next(options);
+  },
+  onResponse: (response, handler) {
+    // 对响应数据进行处理
+    print('响应状态: ${response.statusCode}');
+    return handler.next(response);
+  },
+  onError: (DioError e, handler) {
+    // 处理错误
+    print('请求错误: ${e.message}');
+    return handler.next(e);
+  },
+));
+
+// GET请求
+Future<void> fetchDataWithDio() async {
+  try {
+    final response = await dio.get('/posts/1');
+    print('数据: ${response.data}');
+  } catch (e) {
+    print('错误: $e');
+  }
+}
+
+// POST请求
+Future<void> postDataWithDio() async {
+  try {
+    final response = await dio.post('/posts', data: {
+      'title': '测试标题',
+      'body': '测试内容',
+      'userId': 1,
+    });
+    print('创建成功: ${response.data}');
+  } catch (e) {
+    print('错误: $e');
+  }
+}
+
+// 带查询参数的请求
+Future<void> getPostsWithQuery() async {
+  try {
+    final response = await dio.get('/posts', queryParameters: {
+      'userId': 1,
+      '_limit': 5,
+    });
+    print('数据列表: ${response.data}');
+  } catch (e) {
+    print('错误: $e');
+  }
+}
+
+// 取消请求
+CancelToken cancelToken = CancelToken();
+
+Future<void> fetchWithCancel() async {
+  try {
+    final response = await dio.get('/posts', cancelToken: cancelToken);
+    print('数据: ${response.data}');
+  } catch (e) {
+    if (CancelToken.isCancel(e)) {
+      print('请求已取消');
+    } else {
+      print('错误: $e');
+    }
+  }
+}
+
+// 取消请求的方法
+void cancelRequest() {
+  cancelToken.cancel('请求已被用户取消');
+}
+
+// 上传文件
+Future<void> uploadFile() async {
+  try {
+    FormData formData = FormData.fromMap({
+      'name': 'Flutter',
+      'file': await MultipartFile.fromFile('path/to/file.txt', filename: 'file.txt'),
+    });
+    final response = await dio.post('/upload', data: formData);
+    print('上传成功: ${response.data}');
+  } catch (e) {
+    print('错误: $e');
+  }
+}
+
+// 下载文件
+Future<void> downloadFile() async {
+  try {
+    await dio.download(
+      'https://example.com/file.pdf',
+      'path/to/save/file.pdf',
+      onReceiveProgress: (received, total) {
+        if (total != -1) {
+          print('下载进度: ${(received / total * 100).toStringAsFixed(0)}%');
+        }
+      },
+    );
+    print('下载完成');
+  } catch (e) {
+    print('错误: $e');
+  }
+}
+                        </div>
+                    </div>
+                </div>
+
+                <div id="dio-networking" class="tutorial-section">
+                    <h3>11.1 Dio深度应用</h3>
+                    <div class="dart-tutorial-content">
+                        <h4>Dio高级特性</h4>
+                        <p>Dio作为Flutter中最流行的网络请求库，提供了丰富的高级特性。</p>
+                        
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 添加依赖: dio: ^4.0.6
+import 'package:dio/dio.dart';
+
+// 1. 全局Dio实例配置
+class ApiService {
+  static final Dio dio = Dio(BaseOptions(
+    baseUrl: 'https://api.example.com',
+    connectTimeout: Duration(seconds: 5),
+    receiveTimeout: Duration(seconds: 3),
+    sendTimeout: Duration(seconds: 3),
+    responseType: ResponseType.json,
+    contentType: 'application/json; charset=utf-8',
+  ));
+
+  // 初始化拦截器
+  static void initInterceptors() {
+    // 认证拦截器
+    dio.interceptors.add(InterceptorsWrapper(
+      onRequest: (options, handler) {
+        // 添加token到请求头
+        String? token = 'your-auth-token';
+        if (token != null) {
+          options.headers['Authorization'] = 'Bearer $token';
+        }
+        return handler.next(options);
+      },
+      onResponse: (response, handler) {
+        // 统一处理响应
+        if (response.statusCode == 200) {
+          handler.next(response);
+        } else {
+          handler.reject(DioError(
+            requestOptions: response.requestOptions,
+            response: response,
+            type: DioErrorType.response,
+            error: '请求失败',
+          ));
+        }
+      },
+      onError: (DioError e, handler) {
+        // 错误处理
+        if (e.response?.statusCode == 401) {
+          // 处理未授权错误
+          print('Token已过期，需要重新登录');
+          // 这里可以触发重新登录流程
+        }
+        return handler.next(e);
+      },
+    ));
+
+    // 日志拦截器
+    dio.interceptors.add(LogInterceptor(
+      request: true,
+      requestHeader: true,
+      requestBody: true,
+      responseHeader: true,
+      responseBody: true,
+      error: true,
+      logPrint: print,
+    ));
+  }
+
+  // 2. 通用GET请求方法
+  static Future<T> get<T>(
+    String path,
+    {Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken}) async {
+    try {
+      final response = await dio.get<T>(
+        path,
+        queryParameters: queryParameters,
+        options: options,
+        cancelToken: cancelToken,
+      );
+      return response.data as T;
+    } catch (e) {
+      throw Exception('GET请求失败: $e');
+    }
+  }
+
+  // 3. 通用POST请求方法
+  static Future<T> post<T>(
+    String path,
+    {dynamic data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken}) async {
+    try {
+      final response = await dio.post<T>(
+        path,
+        data: data,
+        queryParameters: queryParameters,
+        options: options,
+        cancelToken: cancelToken,
+      );
+      return response.data as T;
+    } catch (e) {
+      throw Exception('POST请求失败: $e');
+    }
+  }
+}
+
+// 4. 文件上传高级用法
+Future<String> uploadMultipleFiles(List<String> filePaths) async {
+  try {
+    List<MultipartFile> files = [];
+    for (var path in filePaths) {
+      files.add(await MultipartFile.fromFile(
+        path,
+        filename: path.split('/').last,
+      ));
+    }
+
+    FormData formData = FormData.fromMap({
+      'description': '多文件上传示例',
+      'files': files,
+      'timestamp': DateTime.now().millisecondsSinceEpoch,
+    });
+
+    final response = await ApiService.dio.post(
+      '/upload/multiple',
+      data: formData,
+      onSendProgress: (int sent, int total) {
+        double progress = sent / total;
+        print('上传进度: ${(progress * 100).toStringAsFixed(2)}%');
+        // 这里可以更新UI进度条
+      },
+    );
+
+    return response.data['message'] ?? '上传成功';
+  } catch (e) {
+    throw Exception('文件上传失败: $e');
+  }
+}
+
+// 5. 文件下载高级用法
+Future<void> downloadFileWithResume(
+    String url,
+    String savePath,
+    Function(double progress) onProgress) async {
+  try {
+    // 检查是否有部分下载的文件
+    File file = File(savePath);
+    int downloadedLength = 0;
+    if (await file.exists()) {
+      downloadedLength = await file.length();
+    }
+
+    // 设置请求头以支持断点续传
+    Options options = Options(
+      headers: {
+        'Range': 'bytes=$downloadedLength-',
+      },
+    );
+
+    // 下载文件
+    await ApiService.dio.download(
+      url,
+      savePath,
+      options: options,
+      onReceiveProgress: (int received, int? total) {
+        if (total != -1) {
+          // 计算实际进度（包括已下载部分）
+          double actualTotal = total + downloadedLength;
+          double actualReceived = received + downloadedLength;
+          double progress = actualReceived / actualTotal;
+          onProgress(progress);
+          print('下载进度: ${(progress * 100).toStringAsFixed(2)}%');
+        }
+      },
+    );
+  } catch (e) {
+    throw Exception('文件下载失败: $e');
+  }
+}
+
+// 6. 请求重试机制
+class RetryInterceptor extends Interceptor {
+  final int maxRetries;
+  final List<int> retryableStatusCodes;
+
+  RetryInterceptor({
+    this.maxRetries = 3,
+    this.retryableStatusCodes = const [408, 429, 500, 502, 503, 504],
+  });
+
+  @override
+  void onError(DioError err, ErrorInterceptorHandler handler) async {
+    if (err.type == DioErrorType.response &&
+        retryableStatusCodes.contains(err.response?.statusCode)) {
+      // 尝试重试
+      RequestOptions options = err.requestOptions;
+      if (options.extra.containsKey('retries')) {
+        int retries = options.extra['retries'];
+        if (retries < maxRetries) {
+          options.extra['retries'] = retries + 1;
+          await Future.delayed(Duration(milliseconds: 1000 * retries));
+          return handler.resolve(await dio.request(
+            options.path,
+            options: options,
+          ));
+        }
+      } else {
+        options.extra['retries'] = 1;
+        await Future.delayed(const Duration(milliseconds: 1000));
+        return handler.resolve(await dio.request(
+          options.path,
+          options: options,
+        ));
+      }
+    }
+    return handler.next(err);
+  }
+}
+
+// 7. 缓存拦截器实现
+class CacheInterceptor extends Interceptor {
+  final Duration cacheDuration;
+  final Map<String, Response> _cache = {};
+
+  CacheInterceptor({this.cacheDuration = const Duration(minutes: 5)});
+
+  @override
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    // 只缓存GET请求
+    if (options.method == 'GET') {
+      String cacheKey = options.uri.toString();
+      if (_cache.containsKey(cacheKey)) {
+        Response cachedResponse = _cache[cacheKey]!;
+        if (DateTime.now().difference(cachedResponse.headers.value('cached-at') != null
+            ? DateTime.parse(cachedResponse.headers.value('cached-at')!)
+            : DateTime.now()) <= cacheDuration) {
+          print('使用缓存响应');
+          return handler.resolve(cachedResponse);
+        } else {
+          _cache.remove(cacheKey);
+        }
+      }
+    }
+    handler.next(options);
+  }
+
+  @override
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
+    if (response.requestOptions.method == 'GET') {
+      String cacheKey = response.requestOptions.uri.toString();
+      // 保存响应到缓存
+      Response cachedResponse = Response(
+        data: response.data,
+        headers: response.headers,
+        requestOptions: response.requestOptions,
+        statusCode: response.statusCode,
+        statusMessage: response.statusMessage,
+      );
+      cachedResponse.headers.add('cached-at', DateTime.now().toIso8601String());
+      _cache[cacheKey] = cachedResponse;
+    }
+    handler.next(response);
+  }
+
+  // 清除缓存
+  void clearCache() {
+    _cache.clear();
+    print('缓存已清除');
+  }
+}
+
+// 使用示例
+void main() {
+  // 初始化API服务
+  ApiService.initInterceptors();
+  
+  // 添加重试拦截器
+  ApiService.dio.interceptors.add(RetryInterceptor());
+  
+  // 添加缓存拦截器
+  CacheInterceptor cacheInterceptor = CacheInterceptor();
+  ApiService.dio.interceptors.add(cacheInterceptor);
+  
+  // 使用API服务
+  fetchData();
+}
+
+// 示例：获取用户数据
+Future<void> fetchData() async {
+  try {
+    final userData = await ApiService.get<Map<String, dynamic>>('/user/1');
+    print('用户数据: $userData');
+  } catch (e) {
+    print('获取数据失败: $e');
+  }
+}
+</code></pre>
+                        </div>
+
+                        <h4>Dio实战技巧</h4>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 1. 统一的错误处理类
+class ApiException implements Exception {
+  final int? code;
+  final String message;
+  final dynamic data;
+
+  ApiException({
+    this.code,
+    required this.message,
+    this.data,
+  });
+
+  @override
+  String toString() {
+    return 'ApiException(code: $code, message: $message)';
+  }
+}
+
+// 2. 统一的响应模型
+class ApiResponse<T> {
+  final bool success;
+  final int code;
+  final String message;
+  final T? data;
+
+  ApiResponse({
+    required this.success,
+    required this.code,
+    required this.message,
+    this.data,
+  });
+
+  factory ApiResponse.fromJson(Map<String, dynamic> json, T Function(dynamic) fromJsonT) {
+    return ApiResponse(
+      success: json['success'] ?? false,
+      code: json['code'] ?? 0,
+      message: json['message'] ?? '',
+      data: json['data'] != null ? fromJsonT(json['data']) : null,
+    );
+  }
+}
+
+// 3. 响应解析中间件
+class ResponseParserInterceptor extends Interceptor {
+  @override
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
+    // 假设API返回格式为: {"success": true, "code": 200, "message": "", "data": {...}}
+    if (response.data is Map<String, dynamic>) {
+      Map<String, dynamic> data = response.data;
+      if (data.containsKey('success') && !data['success']) {
+        // 服务器返回错误
+        handler.reject(DioError(
+          requestOptions: response.requestOptions,
+          response: response,
+          type: DioErrorType.response,
+          error: ApiException(
+            code: data['code'],
+            message: data['message'] ?? '请求失败',
+          ),
+        ));
+      } else {
+        // 提取data字段
+        response.data = data['data'] ?? data;
+        handler.next(response);
+      }
+    } else {
+      handler.next(response);
+    }
+  }
+}
+
+// 4. 限流拦截器
+class RateLimitInterceptor extends Interceptor {
+  final int maxRequests;
+  final Duration timeWindow;
+  final List<DateTime> _requestTimestamps = [];
+
+  RateLimitInterceptor({
+    this.maxRequests = 10,
+    this.timeWindow = const Duration(seconds: 1),
+  });
+
+  @override
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    final now = DateTime.now();
+    
+    // 移除过期的时间戳
+    _requestTimestamps.removeWhere(
+      (timestamp) => now.difference(timestamp) > timeWindow,
+    );
+    
+    if (_requestTimestamps.length >= maxRequests) {
+      // 限流
+      handler.reject(DioError(
+        requestOptions: options,
+        type: DioErrorType.cancel,
+        error: Exception('请求过于频繁，请稍后再试'),
+      ));
+    } else {
+      // 记录请求时间
+      _requestTimestamps.add(now);
+      handler.next(options);
+    }
+  }
+}
+
+// 5. 动态BaseUrl切换
+class DynamicBaseUrlInterceptor extends Interceptor {
+  final String defaultBaseUrl;
+  final Map<String, String> customBaseUrls;
+
+  DynamicBaseUrlInterceptor({
+    required this.defaultBaseUrl,
+    this.customBaseUrls = const {},
+  });
+
+  @override
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    // 根据path前缀切换baseUrl
+    String path = options.path;
+    for (var entry in customBaseUrls.entries) {
+      if (path.startsWith(entry.key)) {
+        options.baseUrl = entry.value;
+        break;
+      }
+    }
+    handler.next(options);
+  }
+}
+
+// 6. 实际应用示例
+class UserRepository {
+  // 获取用户列表
+  Future<List<User>> getUsers({int page = 1, int limit = 20}) async {
+    try {
+      final response = await ApiService.get<List>('/users', queryParameters: {
+        'page': page,
+        'limit': limit,
+      });
+      return response.map((item) => User.fromJson(item as Map<String, dynamic>)).toList();
+    } on ApiException catch (e) {
+      print('API错误: $e');
+      rethrow;
+    } catch (e) {
+      print('未知错误: $e');
+      throw ApiException(message: '获取用户列表失败');
+    }
+  }
+
+  // 创建用户
+  Future<User> createUser(User user) async {
+    try {
+      final response = await ApiService.post<Map<String, dynamic>>('/users', data: user.toJson());
+      return User.fromJson(response);
+    } catch (e) {
+      print('创建用户失败: $e');
+      throw ApiException(message: '创建用户失败');
+    }
+  }
+}
+
+// 用户模型
+class User {
+  final int id;
+  final String name;
+  final String email;
+
+  User({
+    required this.id,
+    required this.name,
+    required this.email,
+  });
+
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      id: json['id'],
+      name: json['name'],
+      email: json['email'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'email': email,
+    };
+  }
+}
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="local-storage" class="tutorial-section">
+                    <h3>12. 本地存储</h3>
+                    <div class="dart-tutorial-content">
+                        <h4>SharedPreferences</h4>
+                        <p>用于存储简单的键值对数据，适合存储用户偏好设置等小数据。</p>
+                        
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 添加依赖: shared_preferences: ^2.0.13
+import 'package:shared_preferences/shared_preferences.dart';
+
+// 保存数据
+Future<void> saveData() async {
+  final prefs = await SharedPreferences.getInstance();
+  
+  // 保存不同类型的数据
+  await prefs.setString('username', 'FlutterUser');
+  await prefs.setInt('age', 25);
+  await prefs.setDouble('height', 1.75);
+  await prefs.setBool('isLoggedIn', true);
+  await prefs.setStringList('hobbies', ['编程', '阅读', '音乐']);
+  
+  print('数据保存成功');
+}
+
+// 读取数据
+Future<void> readData() async {
+  final prefs = await SharedPreferences.getInstance();
+  
+  // 读取数据（提供默认值）
+  final username = prefs.getString('username') ?? 'Guest';
+  final age = prefs.getInt('age') ?? 0;
+  final height = prefs.getDouble('height') ?? 0.0;
+  final isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+  final hobbies = prefs.getStringList('hobbies') ?? [];
+  
+  print('用户名: $username');
+  print('年龄: $age');
+  print('身高: $height');
+  print('是否登录: $isLoggedIn');
+  print('爱好: $hobbies');
+}
+
+// 检查键是否存在
+Future<void> checkKey() async {
+  final prefs = await SharedPreferences.getInstance();
+  final hasUsername = prefs.containsKey('username');
+  print('是否有用户名: $hasUsername');
+}
+
+// 删除数据
+Future<void> removeData() async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.remove('username');
+  print('用户名已删除');
+}
+
+// 清空所有数据
+Future<void> clearAll() async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.clear();
+  print('所有数据已清空');
+}
+}
+                        </div>
+
+                        <h4>SQLite数据库（使用sqflite）</h4>
+                        <p>用于存储结构化的复杂数据，适合存储应用的核心数据。</p>
+                        
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 添加依赖:
+// sqflite: ^2.0.2
+// path_provider: ^2.0.9
+import 'package:sqflite/sqflite.dart';
+import 'package:path/path.dart';
+
+class DatabaseHelper {
+  static final DatabaseHelper instance = DatabaseHelper._init();
+  static Database? _database;
+
+  DatabaseHelper._init();
+
+  // 获取数据库实例
+  Future<Database> get database async {
+    if (_database != null) return _database!;
+    _database = await _initDB('notes.db');
+    return _database!;
+  }
+
+  // 初始化数据库
+  Future<Database> _initDB(String filePath) async {
+    final dbPath = await getDatabasesPath();
+    final path = join(dbPath, filePath);
+
+    return await openDatabase(
+      path,
+      version: 1,
+      onCreate: _createDB,
+    );
+  }
+
+  // 创建表
+  Future<void> _createDB(Database db, int version) async {
+    const idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
+    const textType = 'TEXT NOT NULL';
+    const boolType = 'BOOLEAN NOT NULL';
+    const integerType = 'INTEGER NOT NULL';
+
+    await db.execute('''
+      CREATE TABLE $tableNotes (
+        ${NoteFields.id} $idType,
+        ${NoteFields.title} $textType,
+        ${NoteFields.description} $textType,
+        ${NoteFields.isImportant} $boolType,
+        ${NoteFields.number} $integerType,
+        ${NoteFields.time} $textType
+      )
+    ''');
+  }
+
+  // 插入数据
+  Future<Note> create(Note note) async {
+    final db = await instance.database;
+    final id = await db.insert(tableNotes, note.toMap());
+    return note.copy(id: id);
+  }
+
+  // 查询单个数据
+  Future<Note> readNote(int id) async {
+    final db = await instance.database;
+    final maps = await db.query(
+      tableNotes,
+      columns: NoteFields.values,
+      where: '${NoteFields.id} = ?',
+      whereArgs: [id],
+    );
+
+    if (maps.isNotEmpty) {
+      return Note.fromMap(maps.first);
+    } else {
+      throw Exception('ID $id 未找到');
+    }
+  }
+
+  // 查询所有数据
+  Future<List<Note>> readAllNotes() async {
+    final db = await instance.database;
+    const orderBy = '${NoteFields.time} DESC';
+    final result = await db.query(tableNotes, orderBy: orderBy);
+    return result.map((json) => Note.fromMap(json)).toList();
+  }
+
+  // 更新数据
+  Future<int> update(Note note) async {
+    final db = await instance.database;
+    return db.update(
+      tableNotes,
+      note.toMap(),
+      where: '${NoteFields.id} = ?',
+      whereArgs: [note.id],
+    );
+  }
+
+  // 删除数据
+  Future<int> delete(int id) async {
+    final db = await instance.database;
+    return db.delete(
+      tableNotes,
+      where: '${NoteFields.id} = ?',
+      whereArgs: [id],
+    );
+  }
+
+  // 关闭数据库
+  Future<void> close() async {
+    final db = await instance.database;
+    db.close();
+  }
+}
+
+// 表名和字段名
+const String tableNotes = 'notes';
+
+class NoteFields {
+  static final List<String> values = [
+    id, title, description, isImportant, number, time
+  ];
+
+  static const String id = '_id';
+  static const String title = 'title';
+  static const String description = 'description';
+  static const String isImportant = 'isImportant';
+  static const String number = 'number';
+  static const String time = 'time';
+}
+
+// 数据模型
+class Note {
+  final int? id;
+  final String title;
+  final String description;
+  final bool isImportant;
+  final int number;
+  final String time;
+
+  const Note({
+    this.id,
+    required this.title,
+    required this.description,
+    required this.isImportant,
+    required this.number,
+    required this.time,
+  });
+
+  // 复制方法
+  Note copy({
+    int? id,
+    String? title,
+    String? description,
+    bool? isImportant,
+    int? number,
+    String? time,
+  }) =>
+      Note(
+        id: id ?? this.id,
+        title: title ?? this.title,
+        description: description ?? this.description,
+        isImportant: isImportant ?? this.isImportant,
+        number: number ?? this.number,
+        time: time ?? this.time,
+      );
+
+  // 转换为Map
+  Map<String, Object?> toMap() => {
+        NoteFields.id: id,
+        NoteFields.title: title,
+        NoteFields.description: description,
+        NoteFields.isImportant: isImportant ? 1 : 0,
+        NoteFields.number: number,
+        NoteFields.time: time,
+      };
+
+  // 从Map转换
+  static Note fromMap(Map<String, Object?> map) => Note(
+        id: map[NoteFields.id] as int?,
+        title: map[NoteFields.title] as String,
+        description: map[NoteFields.description] as String,
+        isImportant: map[NoteFields.isImportant] == 1,
+        number: map[NoteFields.number] as int,
+        time: map[NoteFields.time] as String,
+      );
+}
+
+// 使用示例
+Future<void> databaseExample() async {
+  // 初始化数据库
+  final dbHelper = DatabaseHelper.instance;
+  
+  // 创建笔记
+  final newNote = Note(
+    title: 'Flutter笔记',
+    description: '学习Flutter数据库',
+    isImportant: true,
+    number: 1,
+    time: DateTime.now().toIso8601String(),
+  );
+  final createdNote = await dbHelper.create(newNote);
+  print('创建的笔记ID: ${createdNote.id}');
+  
+  // 查询所有笔记
+  final notes = await dbHelper.readAllNotes();
+  print('所有笔记数量: ${notes.length}');
+  
+  // 更新笔记
+  if (createdNote.id != null) {
+    final updatedNote = createdNote.copy(title: '更新的标题');
+    await dbHelper.update(updatedNote);
+    print('笔记已更新');
+  }
+  
+  // 删除笔记
+  if (createdNote.id != null) {
+    await dbHelper.delete(createdNote.id!);
+    print('笔记已删除');
+  }
+  
+  // 关闭数据库
+  await dbHelper.close();
+}
+}
+                        </div>
+                    </div>
+                </div>
+
+                <div id="sqlite-db" class="tutorial-section">
+                    <h3>13. SQLite数据库</h3>
+                    <div class="dart-tutorial-content">
+                        <h4>高级数据库操作</h4>
+                        <p>使用sqflite包实现复杂的数据库操作，包括事务、批量操作和高级查询。</p>
+                        
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 添加依赖:
+// sqflite: ^2.0.2
+// path_provider: ^2.0.9
+import 'package:sqflite/sqflite.dart';
+import 'package:path/path.dart';
+
+class AdvancedDatabaseHelper {
+  static final AdvancedDatabaseHelper instance = AdvancedDatabaseHelper._init();
+  static Database? _database;
+
+  AdvancedDatabaseHelper._init();
+
+  // 获取数据库实例
+  Future<Database> get database async {
+    if (_database != null) return _database!;
+    _database = await _initDB('advanced_notes.db');
+    return _database!;
+  }
+
+  // 初始化数据库（支持迁移）
+  Future<Database> _initDB(String filePath) async {
+    final dbPath = await getDatabasesPath();
+    final path = join(dbPath, filePath);
+
+    return await openDatabase(
+      path,
+      version: 2, // 升级版本号
+      onCreate: _createDB,
+      onUpgrade: _onUpgrade, // 添加升级逻辑
+      onDowngrade: onDatabaseDowngradeDelete, // 降级时删除并重建
+    );
+  }
+
+  // 创建表
+  Future<void> _createDB(Database db, int version) async {
+    // 创建笔记表
+    await db.execute('''
+      CREATE TABLE notes (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT NOT NULL,
+        content TEXT NOT NULL,
+        category_id INTEGER,
+        created_at TEXT NOT NULL,
+        updated_at TEXT NOT NULL,
+        FOREIGN KEY (category_id) REFERENCES categories (id) ON DELETE SET NULL
+      )
+    ''');
+
+    // 创建分类表
+    await db.execute('''
+      CREATE TABLE categories (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL UNIQUE,
+        color INTEGER NOT NULL
+      )
+    ''');
+
+    // 创建索引提升查询性能
+    await db.execute('CREATE INDEX idx_notes_category ON notes(category_id)');
+    await db.execute('CREATE INDEX idx_notes_created_at ON notes(created_at)');
+  }
+
+  // 数据库升级
+  Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
+    if (oldVersion < 2) {
+      // 添加新字段
+      await db.execute('ALTER TABLE notes ADD COLUMN is_pinned INTEGER DEFAULT 0');
+      // 创建新表或索引
+      await db.execute('CREATE INDEX idx_notes_pinned ON notes(is_pinned)');
+    }
+  }
+
+  // 事务操作
+  Future<void> transactionExample() async {
+    final db = await instance.database;
+    
+    await db.transaction((txn) async {
+      // 先插入分类
+      final categoryId = await txn.insert('categories', {
+        'name': '工作笔记',
+        'color': 0xFF007AFF,
+      });
+
+      // 再插入关联的笔记
+      await txn.insert('notes', {
+        'title': '项目计划',
+        'content': '完成Flutter应用开发',
+        'category_id': categoryId,
+        'created_at': DateTime.now().toIso8601String(),
+        'updated_at': DateTime.now().toIso8601String(),
+        'is_pinned': 1,
+      });
+    });
+  }
+
+  // 批量操作
+  Future<void> batchOperation() async {
+    final db = await instance.database;
+    final batch = db.batch();
+
+    // 添加多个操作到批处理
+    batch.insert('categories', {
+      'name': '个人笔记',
+      'color': 0xFF34C759,
+    });
+    
+    batch.insert('categories', {
+      'name': '学习笔记',
+      'color': 0xFFFF9500,
+    });
+
+    // 提交批处理
+    final results = await batch.commit();
+    print('批量操作结果: $results');
+  }
+
+  // 高级查询 - 联表查询
+  Future<List<Map<String, dynamic>>> getNotesWithCategories() async {
+    final db = await instance.database;
+    
+    return await db.rawQuery('''
+      SELECT n.*, c.name as category_name, c.color as category_color
+      FROM notes n
+      LEFT JOIN categories c ON n.category_id = c.id
+      ORDER BY n.is_pinned DESC, n.updated_at DESC
+    ''');
+  }
+
+  // 高级查询 - 分页查询
+  Future<List<Map<String, dynamic>>> getNotesWithPagination(
+      {required int page, required int pageSize}) async {
+    final db = await instance.database;
+    final offset = (page - 1) * pageSize;
+
+    return await db.query(
+      'notes',
+      limit: pageSize,
+      offset: offset,
+      orderBy: 'updated_at DESC',
+    );
+  }
+
+  // 高级查询 - 全文搜索（简单实现）
+  Future<List<Map<String, dynamic>>> searchNotes(String keyword) async {
+    final db = await instance.database;
+    
+    return await db.query(
+      'notes',
+      where: 'title LIKE ? OR content LIKE ?',
+      whereArgs: ['%$keyword%', '%$keyword%'],
+      orderBy: 'updated_at DESC',
+    );
+  }
+
+  // 清理旧数据
+  Future<void> cleanupOldData(int daysToKeep) async {
+    final db = await instance.database;
+    final cutoffDate = DateTime.now().subtract(Duration(days: daysToKeep));
+    
+    await db.delete(
+      'notes',
+      where: 'created_at < ? AND is_pinned = 0',
+      whereArgs: [cutoffDate.toIso8601String()],
+    );
+  }
+
+  // 关闭数据库
+  Future<void> close() async {
+    final db = await instance.database;
+    db.close();
+  }
+}
+
+// 使用示例
+Future<void> advancedDatabaseExample() async {
+  final dbHelper = AdvancedDatabaseHelper.instance;
+  
+  // 执行事务
+  await dbHelper.transactionExample();
+  
+  // 批量插入
+  await dbHelper.batchOperation();
+  
+  // 联表查询
+  final notesWithCategories = await dbHelper.getNotesWithCategories();
+  print('带分类的笔记: $notesWithCategories');
+  
+  // 分页查询
+  final paginatedNotes = await dbHelper.getNotesWithPagination(page: 1, pageSize: 10);
+  print('分页笔记: $paginatedNotes');
+  
+  // 搜索笔记
+  final searchResults = await dbHelper.searchNotes('Flutter');
+  print('搜索结果: $searchResults');
+  
+  // 清理30天前的未固定笔记
+  await dbHelper.cleanupOldData(30);
+  
+  // 关闭数据库
+  await dbHelper.close();
+}
+</code></pre>
+                        </div>
+
+                        <h4>数据库迁移最佳实践</h4>
+                        <p>数据库迁移是应用升级时确保数据安全和结构兼容的重要步骤。</p>
+                        
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 数据库版本管理类
+class DatabaseMigration {
+  // 版本历史记录
+  static const int currentVersion = 3;
+  
+  // 所有版本的创建脚本
+  static Map<int, List<String>> migrationScripts = {
+    1: [
+      // 版本1的表创建脚本
+      '''CREATE TABLE users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT NOT NULL UNIQUE,
+        email TEXT NOT NULL UNIQUE
+      )''',
+    ],
+    2: [
+      // 版本2的升级脚本
+      '''ALTER TABLE users ADD COLUMN created_at TEXT''',
+      '''CREATE TABLE posts (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER,
+        title TEXT NOT NULL,
+        body TEXT,
+        FOREIGN KEY (user_id) REFERENCES users (id)
+      )''',
+    ],
+    3: [
+      // 版本3的升级脚本
+      '''ALTER TABLE posts ADD COLUMN updated_at TEXT''',
+      '''CREATE INDEX idx_posts_user_id ON posts(user_id)''',
+    ],
+  };
+  
+  // 执行迁移
+  static Future<void> migrate(Database db, int oldVersion, int newVersion) async {
+    // 从旧版本逐步升级到新版本
+    for (int i = oldVersion + 1; i <= newVersion; i++) {
+      if (migrationScripts.containsKey(i)) {
+        // 开始事务执行该版本的所有脚本
+        await db.transaction((txn) async {
+          for (String script in migrationScripts[i]!) {
+            await txn.execute(script);
+            print('执行迁移脚本 v$i: $script');
+          }
+        });
+        print('数据库成功升级到版本 $i');
+      }
+    }
+  }
+}
+
+// 在数据库初始化时使用迁移
+Future<Database> initDatabaseWithMigration() async {
+  final dbPath = await getDatabasesPath();
+  final path = join(dbPath, 'app_database.db');
+  
+  return await openDatabase(
+    path,
+    version: DatabaseMigration.currentVersion,
+    onCreate: (db, version) async {
+      // 创建数据库时执行所有版本的脚本
+      for (int i = 1; i <= version; i++) {
+        if (DatabaseMigration.migrationScripts.containsKey(i)) {
+          for (String script in DatabaseMigration.migrationScripts[i]!) {
+            await db.execute(script);
+          }
+        }
+      }
+    },
+    onUpgrade: DatabaseMigration.migrate,
+  );
+}
+</code></pre>
+                        </div>
+
+                        <h4>性能优化技巧</h4>
+                        <ul>
+                            <li>使用索引优化查询性能</li>
+                            <li>避免在主线程执行复杂查询</li>
+                            <li>使用事务确保数据一致性</li>
+                            <li>定期清理不必要的数据</li>
+                            <li>批量操作减少数据库I/O</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="animations" class="tutorial-section">
+                    <h3>14. 动画效果</h3>
+                    <div class="dart-tutorial-content">
+                        <h4>基本动画（AnimatedWidget）</h4>
+                        <p>Flutter提供了强大的动画系统，可以创建流畅的UI动画效果。</p>
+                        
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">import 'package:flutter/material.dart';
+
+class AnimatedLogo extends AnimatedWidget {
+  const AnimatedLogo({Key? key, required Animation<double> animation}) 
+      : super(key: key, listenable: animation);
+
+  @override
+  Widget build(BuildContext context) {
+    final animation = listenable as Animation<double>;
+    return Center(
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 10),
+        height: animation.value,
+        width: animation.value,
+        child: FlutterLogo(),
+      ),
+    );
+  }
+}
+
+class LogoApp extends StatefulWidget {
+  const LogoApp({Key? key}) : super(key: key);
+
+  @override
+  _LogoAppState createState() => _LogoAppState();
+}
+
+class _LogoAppState extends State<LogoApp> with SingleTickerProviderStateMixin {
+  late Animation<double> animation;
+  late AnimationController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    );
+    
+    // 创建动画曲线
+    animation = CurvedAnimation(parent: controller, curve: Curves.easeInOut);
+    
+    // 添加状态监听器
+    animation.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        controller.reverse();
+      } else if (status == AnimationStatus.dismissed) {
+        controller.forward();
+      }
+    });
+    
+    // 启动动画
+    controller.forward();
+  }
+
+  @override
+  Widget build(BuildContext context) => AnimatedLogo(animation: animation);
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+}
+</code></pre>
+                        </div>
+
+                        <h4>动画构建器（AnimatedBuilder）</h4>
+                        <p>AnimatedBuilder 是一个更灵活的动画构建方式。</p>
+                        
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">class AnimatedBuilderExample extends StatefulWidget {
+  const AnimatedBuilderExample({Key? key}) : super(key: key);
+
+  @override
+  _AnimatedBuilderExampleState createState() => _AnimatedBuilderExampleState();
+}
+
+class _AnimatedBuilderExampleState extends State<AnimatedBuilderExample>
+    with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+  late Animation<double> animation;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    );
+    animation = Tween<double>(begin: 0, end: 300).animate(controller)
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          controller.reverse();
+        } else if (status == AnimationStatus.dismissed) {
+          controller.forward();
+        }
+      });
+    controller.forward();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: animation,
+      builder: (context, child) {
+        return Center(
+          child: Container(
+            height: animation.value,
+            width: animation.value,
+            child: child,
+          ),
+        );
+      },
+      child: FlutterLogo(), // 这个子widget不会在每次动画重绘时重建
+    );
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+}
+</code></pre>
+                        </div>
+
+                        <h4>页面切换动画（Hero动画）</h4>
+                        <p>Hero动画可以在页面之间平滑地过渡组件。</p>
+                        
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 第一个页面
+class FirstScreen extends StatelessWidget {
+  const FirstScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('First Screen')),
+      body: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SecondScreen()),
+          );
+        },
+        child: Hero(
+          tag: 'hero-image',
+          child: Image.network(
+            'https://picsum.photos/200/200',
+            width: 100,
+            height: 100,
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// 第二个页面
+class SecondScreen extends StatelessWidget {
+  const SecondScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Second Screen')),
+      body: GestureDetector(
+        onTap: () {
+          Navigator.pop(context);
+        },
+        child: Hero(
+          tag: 'hero-image', // 相同的标签
+          child: Image.network(
+            'https://picsum.photos/200/200', // 相同的图片
+            width: double.infinity,
+            height: 400,
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
+    );
+  }
+}
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="theming" class="tutorial-section">
+                    <h3>15. 主题样式</h3>
+                    <div class="dart-tutorial-content">
+                        <h4>应用主题设置</h4>
+                        <p>Flutter的ThemeData可以统一管理应用的颜色、字体和组件样式。</p>
+                        
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter 主题示例',
+      theme: ThemeData(
+        // 主题亮度
+        brightness: Brightness.light,
+        // 主色调
+        primaryColor: Colors.blue,
+        primarySwatch: Colors.blue,
+        // 次要色
+        secondaryHeaderColor: Colors.orange,
+        // 背景色
+        scaffoldBackgroundColor: Colors.grey[50],
+        // 卡片颜色
+        cardColor: Colors.white,
+        // 按钮主题
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            primary: Colors.blue,
+            textStyle: TextStyle(fontSize: 16),
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+        ),
+        // 文本主题
+        textTheme: TextTheme(
+          headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+          headline6: TextStyle(fontSize: 24.0, fontStyle: FontStyle.italic),
+          bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+        ),
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        primaryColor: Colors.blue[700],
+        primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Colors.grey[900],
+        cardColor: Colors.grey[800],
+      ),
+      themeMode: ThemeMode.system, // 使用系统设置的亮色/暗色模式
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // 访问主题数据
+    final theme = Theme.of(context);
+    
+    return Scaffold(
+      appBar: AppBar(title: Text('主题示例')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              '使用主题样式的文本',
+              style: theme.textTheme.headline6,
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {},
+              child: Text('主题按钮'),
+            ),
+            SizedBox(height: 20),
+            Card(
+              child: Container(
+                padding: EdgeInsets.all(16),
+                child: Text('卡片内容'),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="internationalization" class="tutorial-section">
+                    <h3>16. 国际化</h3>
+                    <div class="dart-tutorial-content">
+                        <h4>添加国际化支持</h4>
+                        <p>Flutter提供了强大的国际化支持，可以轻松实现多语言应用。</p>
+                        
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// pubspec.yaml添加依赖
+// dependencies:
+//   flutter_localizations: 
+//     sdk: flutter
+//   intl: ^0.17.0
+
+import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:intl/intl.dart';
+
+// 定义本地化委托
+class MyLocalizations {
+  MyLocalizations(this.locale);
+
+  final Locale locale;
+
+  static MyLocalizations of(BuildContext context) {
+    return Localizations.of<MyLocalizations>(context, MyLocalizations)!;
+  }
+
+  static const LocalizationsDelegate<MyLocalizations> delegate =
+      _MyLocalizationsDelegate();
+
+  static Map<String, Map<String, String>> _localizedValues = {
+    'en': {
+      'title': 'Hello World',
+      'greeting': 'Welcome to Flutter!',
+      'button': 'Click Me',
+    },
+    'zh': {
+      'title': '你好世界',
+      'greeting': '欢迎使用Flutter！',
+      'button': '点击我',
+    },
+    'ja': {
+      'title': 'こんにちは世界',
+      'greeting': 'Flutterへようこそ！',
+      'button': 'クリック',
+    },
+  };
+
+  String get title {
+    return _localizedValues[locale.languageCode]!['title']!;
+  }
+
+  String get greeting {
+    return _localizedValues[locale.languageCode]!['greeting']!;
+  }
+
+  String get button {
+    return _localizedValues[locale.languageCode]!['button']!;
+  }
+}
+
+class _MyLocalizationsDelegate extends LocalizationsDelegate<MyLocalizations> {
+  const _MyLocalizationsDelegate();
+
+  @override
+  bool isSupported(Locale locale) {
+    return ['en', 'zh', 'ja'].contains(locale.languageCode);
+  }
+
+  @override
+  Future<MyLocalizations> load(Locale locale) {
+    return SynchronousFuture<MyLocalizations>(MyLocalizations(locale));
+  }
+
+  @override
+  bool shouldReload(_MyLocalizationsDelegate old) => false;
+}
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: '国际化示例',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      // 添加本地化支持
+      localizationsDelegates: [
+        MyLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('en', 'US'),
+        const Locale('zh', 'CN'),
+        const Locale('ja', 'JP'),
+      ],
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(MyLocalizations.of(context).title),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(MyLocalizations.of(context).greeting),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {},
+              child: Text(MyLocalizations.of(context).button),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="form-validation" class="tutorial-section">
+                    <h3>17. 表单验证</h3>
+                    <div class="dart-tutorial-content">
+                        <h4>使用Form和FormField</h4>
+                        <p>Flutter提供了强大的表单验证机制，可以轻松实现表单验证功能。</p>
+                        
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">import 'package:flutter/material.dart';
+
+class FormValidationExample extends StatefulWidget {
+  const FormValidationExample({Key? key}) : super(key: key);
+
+  @override
+  _FormValidationExampleState createState() => _FormValidationExampleState();
+}
+
+class _FormValidationExampleState extends State<FormValidationExample> {
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  bool _obscurePassword = true;
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  String? _validateEmail(String? value) {
+    if (value == null || value.isEmpty) {
+      return '请输入邮箱';
+    }
+    
+    // 简单的邮箱验证正则表达式
+    final emailRegex = RegExp(r'^[^\s@]+@[^\s@]+\.[^\s@]+$');
+    if (!emailRegex.hasMatch(value)) {
+      return '请输入有效的邮箱地址';
+    }
+    
+    return null;
+  }
+
+  String? _validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return '请输入密码';
+    }
+    
+    if (value.length < 6) {
+      return '密码长度至少为6个字符';
+    }
+    
+    return null;
+  }
+
+  void _submitForm() {
+    if (_formKey.currentState!.validate()) {
+      // 表单验证通过，可以处理提交逻辑
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('表单提交成功！')),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('表单验证示例')),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TextFormField(
+                controller: _emailController,
+                decoration: InputDecoration(
+                  labelText: '邮箱',
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.email),
+                ),
+                keyboardType: TextInputType.emailAddress,
+                validator: _validateEmail,
+              ),
+              SizedBox(height: 16),
+              TextFormField(
+                controller: _passwordController,
+                decoration: InputDecoration(
+                  labelText: '密码',
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.lock),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscurePassword ? Icons.visibility : Icons.visibility_off,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _obscurePassword = !_obscurePassword;
+                      });
+                    },
+                  ),
+                ),
+                obscureText: _obscurePassword,
+                validator: _validatePassword,
+              ),
+              SizedBox(height: 24),
+              ElevatedButton(
+                onPressed: _submitForm,
+                child: Text('提交'),
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(double.infinity, 48),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="charts" class="tutorial-section">
+                    <h3>17. 图表和数据可视化</h3>
+                    <div class="dart-tutorial-content">
+                        <h4>使用flutter_charts</h4>
+                        <p>Flutter提供了多种图表库，这里展示使用flutter_charts库创建图表。</p>
+                        
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// pubspec.yaml添加依赖
+// dependencies:
+//   charts_flutter: ^0.12.0
+
+import 'package:flutter/material.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
+
+class ChartExample extends StatelessWidget {
+  final List<charts.Series<SalesData, String>> _seriesData;
+
+  ChartExample({Key? key}) : 
+        _seriesData = _createSampleData(),
+        super(key: key);
+
+  static List<charts.Series<SalesData, String>> _createSampleData() {
+    final data = [
+      SalesData('一月', 100),
+      SalesData('二月', 200),
+      SalesData('三月', 150),
+      SalesData('四月', 300),
+      SalesData('五月', 250),
+      SalesData('六月', 400),
+    ];
+
+    return [
+      charts.Series<SalesData, String>(
+        id: '销售数据',
+        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        domainFn: (SalesData sales, _) => sales.month,
+        measureFn: (SalesData sales, _) => sales.sales,
+        data: data,
+      ),
+    ];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('图表示例')),
+      body: Container(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          children: [
+            Text('月度销售数据'),
+            SizedBox(height: 20),
+            Expanded(
+              child: charts.BarChart(
+                _seriesData,
+                animate: true,
+                barGroupingType: charts.BarGroupingType.grouped,
+                behaviors: [
+                  charts.SeriesLegend(),
+                  charts.ChartTitle('月份', behaviorPosition: charts.BehaviorPosition.bottom),
+                  charts.ChartTitle('销售额', behaviorPosition: charts.BehaviorPosition.start),
+                ],
+              ),
+            ),
+            SizedBox(height: 40),
+            Text('折线图展示'),
+            SizedBox(height: 20),
+            Expanded(
+              child: charts.LineChart(
+                _seriesData,
+                animate: true,
+                behaviors: [
+                  charts.SeriesLegend(),
+                  charts.ChartTitle('月份', behaviorPosition: charts.BehaviorPosition.bottom),
+                  charts.ChartTitle('销售额', behaviorPosition: charts.BehaviorPosition.start),
+                ],
+                defaultRenderer: charts.LineRendererConfig(
+                  includeArea: true,
+                  includePoints: true,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SalesData {
+  final String month;
+  final int sales;
+
+  SalesData(this.month, this.sales);
+}
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="file-operations" class="tutorial-section">
+                    <h3>18. 文件上传和下载</h3>
+                    <div class="dart-tutorial-content">
+                        <h4>使用dio进行文件操作</h4>
+                        <p>使用dio库可以方便地实现文件上传和下载功能。</p>
+                        
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">import 'dart:io';
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:image_picker/image_picker.dart';
+
+class FileOperationsExample extends StatefulWidget {
+  const FileOperationsExample({Key? key}) : super(key: key);
+
+  @override
+  _FileOperationsExampleState createState() => _FileOperationsExampleState();
+}
+
+class _FileOperationsExampleState extends State<FileOperationsExample> {
+  final Dio _dio = Dio();
+  double _progress = 0.0;
+  String? _downloadPath;
+  File? _selectedFile;
+  String _status = '';
+
+  // 文件上传
+  Future<void> _uploadFile() async {
+    if (_selectedFile == null) {
+      setState(() {
+        _status = '请先选择要上传的文件';
+      });
+      return;
+    }
+
+    try {
+      setState(() {
+        _status = '开始上传...';
+      });
+
+      FormData formData = FormData.fromMap({
+        'file': await MultipartFile.fromFile(
+          _selectedFile!.path,
+          filename: _selectedFile!.path.split('/').last,
+        ),
+      });
+
+      Response response = await _dio.post(
+        'https://your-upload-api.com/upload',
+        data: formData,
+        onSendProgress: (int sent, int total) {
+          if (total > 0) {
+            setState(() {
+              _progress = (sent / total * 100);
+              _status = '上传中: ${_progress.toStringAsFixed(0)}%';
+            });
+          }
+        },
+      );
+
+      setState(() {
+        _status = '上传成功！';
+        _progress = 0.0;
+      });
+    } catch (e) {
+      setState(() {
+        _status = '上传失败: $e';
+        _progress = 0.0;
+      });
+    }
+  }
+
+  // 文件下载
+  Future<void> _downloadFile() async {
+    try {
+      setState(() {
+        _status = '开始下载...';
+      });
+
+      // 获取下载目录
+      Directory appDocDir = await getApplicationDocumentsDirectory();
+      String savePath = '${appDocDir.path}/example.pdf';
+
+      await _dio.download(
+        'https://your-file-url.com/example.pdf',
+        savePath,
+        onReceiveProgress: (int received, int total) {
+          if (total > 0) {
+            setState(() {
+              _progress = (received / total * 100);
+              _status = '下载中: ${_progress.toStringAsFixed(0)}%';
+            });
+          }
+        },
+      );
+
+      setState(() {
+        _status = '下载成功！';
+        _downloadPath = savePath;
+        _progress = 0.0;
+      });
+    } catch (e) {
+      setState(() {
+        _status = '下载失败: $e';
+        _progress = 0.0;
+      });
+    }
+  }
+
+  // 选择图片文件
+  Future<void> _pickImage() async {
+    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _selectedFile = File(pickedFile.path);
+        _status = '已选择文件: ${pickedFile.path.split('/').last}';
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('文件操作示例')),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            ElevatedButton(
+              onPressed: _pickImage,
+              child: Text('选择图片文件'),
+            ),
+            SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: _uploadFile,
+              child: Text('上传文件'),
+            ),
+            SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: _downloadFile,
+              child: Text('下载文件'),
+            ),
+            SizedBox(height: 20),
+            LinearProgressIndicator(value: _progress / 100),
+            SizedBox(height: 10),
+            Text(_status),
+            if (_downloadPath != null) ...[
+              SizedBox(height: 10),
+              Text('下载路径: $_downloadPath'),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="form-validation" class="tutorial-section">
+                    <h3>17. 表单验证</h3>
+                    <div class="dart-tutorial-content">
+                        <h4>Flutter表单验证最佳实践</h4>
+                        <p>表单验证是确保用户输入数据有效性的重要步骤。</p>
+                        
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">import 'package:flutter/material.dart';
+
+class FormValidationExample extends StatefulWidget {
+  const FormValidationExample({Key? key}) : super(key: key);
+
+  @override
+  _FormValidationExampleState createState() => _FormValidationExampleState();
+}
+
+class _FormValidationExampleState extends State<FormValidationExample> {
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _nameController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _nameController.dispose();
+    super.dispose();
+  }
+
+  String? _validateEmail(String? value) {
+    if (value == null || value.isEmpty) {
+      return '请输入邮箱地址';
+    }
+    
+    // 简单的邮箱格式验证
+    final emailRegex = RegExp(r'^[^\s@]+@[^\s@]+\.[^\s@]+$');
+    if (!emailRegex.hasMatch(value)) {
+      return '请输入有效的邮箱地址';
+    }
+    return null;
+  }
+
+  String? _validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return '请输入密码';
+    }
+    
+    if (value.length < 6) {
+      return '密码长度至少为6个字符';
+    }
+    
+    // 可以添加更多密码强度验证
+    return null;
+  }
+
+  String? _validateName(String? value) {
+    if (value == null || value.isEmpty) {
+      return '请输入姓名';
+    }
+    return null;
+  }
+
+  void _submitForm() {
+    if (_formKey.currentState!.validate()) {
+      // 表单验证通过，可以进行提交操作
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('表单提交成功！')),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('表单验证示例')),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              TextFormField(
+                controller: _nameController,
+                decoration: const InputDecoration(
+                  labelText: '姓名',
+                  border: OutlineInputBorder(),
+                ),
+                validator: _validateName,
+              ),
+              const SizedBox(height: 16),
+              TextFormField(
+                controller: _emailController,
+                decoration: const InputDecoration(
+                  labelText: '邮箱',
+                  border: OutlineInputBorder(),
+                ),
+                keyboardType: TextInputType.emailAddress,
+                validator: _validateEmail,
+              ),
+              const SizedBox(height: 16),
+              TextFormField(
+                controller: _passwordController,
+                decoration: const InputDecoration(
+                  labelText: '密码',
+                  border: OutlineInputBorder(),
+                ),
+                obscureText: true,
+                validator: _validatePassword,
+              ),
+              const SizedBox(height: 24),
+              ElevatedButton(
+                onPressed: _submitForm,
+                child: const Text('提交表单'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="charts-visualization" class="tutorial-section">
+                    <h3>18. 图表和数据可视化</h3>
+                    <div class="dart-tutorial-content">
+                        <h4>使用charts_flutter包创建图表</h4>
+                        <p>数据可视化是展示数据趋势和关系的有效方式。</p>
+                        
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// pubspec.yaml添加依赖
+// dependencies:
+//   charts_flutter: ^0.12.0
+
+import 'package:flutter/material.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
+
+class ChartExample extends StatelessWidget {
+  const ChartExample({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // 柱状图数据
+    final barData = [
+      SalesData('一月', 200),
+      SalesData('二月', 150),
+      SalesData('三月', 300),
+      SalesData('四月', 250),
+      SalesData('五月', 400),
+      SalesData('六月', 350),
+    ];
+
+    // 饼图数据
+    final pieData = [
+      PieData('类别A', 30, charts.ColorUtil.fromDartColor(Colors.blue)),
+      PieData('类别B', 20, charts.ColorUtil.fromDartColor(Colors.green)),
+      PieData('类别C', 25, charts.ColorUtil.fromDartColor(Colors.red)),
+      PieData('类别D', 15, charts.ColorUtil.fromDartColor(Colors.yellow)),
+      PieData('类别E', 10, charts.ColorUtil.fromDartColor(Colors.purple)),
+    ];
+
+    // 折线图数据
+    final lineData = [
+      TrendData(0, 5),
+      TrendData(1, 25),
+      TrendData(2, 100),
+      TrendData(3, 75),
+      TrendData(4, 225),
+      TrendData(5, 150),
+      TrendData(6, 300),
+    ];
+
+    return Scaffold(
+      appBar: AppBar(title: const Text('图表示例')),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const Text('柱状图示例', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 10),
+            SizedBox(
+              height: 250,
+              child: charts.BarChart(
+                [
+                  charts.Series<SalesData, String>(
+                    id: '销售额',
+                    data: barData,
+                    domainFn: (SalesData sales, _) => sales.month,
+                    measureFn: (SalesData sales, _) => sales.amount,
+                    colorFn: (_, __) => charts.ColorUtil.fromDartColor(Colors.blue),
+                  ),
+                ],
+                animate: true,
+                barRendererDecorator: charts.BarLabelDecorator<String>(),
+                domainAxis: const charts.OrdinalAxisSpec(),
+              ),
+            ),
+            const SizedBox(height: 30),
+            const Text('饼图示例', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 10),
+            SizedBox(
+              height: 250,
+              child: charts.PieChart(
+                [
+                  charts.Series<PieData, String>(
+                    id: '数据分布',
+                    data: pieData,
+                    domainFn: (PieData data, _) => data.category,
+                    measureFn: (PieData data, _) => data.value,
+                    colorFn: (PieData data, _) => data.color,
+                    labelFn: (PieData data, _) => '${data.category}: ${data.value}%',
+                  ),
+                ],
+                animate: true,
+                animationDuration: const Duration(milliseconds: 800),
+                defaultRenderer: charts.ArcRendererConfig(
+                  arcWidth: 60,
+                  arcRendererDecorators: [
+                    charts.ArcLabelDecorator(),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 30),
+            const Text('折线图示例', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 10),
+            SizedBox(
+              height: 250,
+              child: charts.LineChart(
+                [
+                  charts.Series<TrendData, int>(
+                    id: '趋势线',
+                    data: lineData,
+                    domainFn: (TrendData data, _) => data.index,
+                    measureFn: (TrendData data, _) => data.value,
+                    colorFn: (_, __) => charts.ColorUtil.fromDartColor(Colors.red),
+                    strokeWidthPxFn: (_, __) => 2.0,
+                  ),
+                ],
+                animate: true,
+                animationDuration: const Duration(milliseconds: 1000),
+                behaviors: [
+                  charts.ChartTitle('时间', behaviorPosition: charts.BehaviorPosition.bottom),
+                  charts.ChartTitle('值', behaviorPosition: charts.BehaviorPosition.left),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SalesData {
+  final String month;
+  final int amount;
+
+  SalesData(this.month, this.amount);
+}
+
+class PieData {
+  final String category;
+  final int value;
+  final charts.Color color;
+
+  PieData(this.category, this.value, this.color);
+}
+
+class TrendData {
+  final int index;
+  final int value;
+
+  TrendData(this.index, this.value);
+}
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="file-upload-download" class="tutorial-section">
+                    <h3>19. 文件上传和下载</h3>
+                    <div class="dart-tutorial-content">
+                        <h4>使用dio进行文件上传和下载</h4>
+                        <p>文件传输是许多应用的常见需求。</p>
+                        
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// pubspec.yaml添加依赖
+// dependencies:
+//   dio: ^4.0.6
+//   image_picker: ^0.8.5+3
+//   path_provider: ^2.0.11
+
+import 'dart:io';
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+
+class FileTransferExample extends StatefulWidget {
+  const FileTransferExample({Key? key}) : super(key: key);
+
+  @override
+  _FileTransferExampleState createState() => _FileTransferExampleState();
+}
+
+class _FileTransferExampleState extends State<FileTransferExample> {
+  File? _selectedFile;
+  String _status = '准备就绪';
+  double _progress = 0.0;
+  String? _downloadPath;
+  final dio = Dio();
+
+  @override
+  void initState() {
+    super.initState();
+    // 配置dio
+    dio.options.baseUrl = 'https://example.com/api';
+    dio.options.connectTimeout = 5000;
+    dio.options.receiveTimeout = 30000;
+  }
+
+  // 上传文件
+  Future<void> _uploadFile() async {
+    if (_selectedFile == null) {
+      setState(() {
+        _status = '请先选择文件';
+      });
+      return;
+    }
+
+    setState(() {
+      _status = '上传中...';
+      _progress = 0.0;
+    });
+
+    try {
+      // 实际项目中替换为真实的上传接口
+      final response = await dio.post(
+        '/upload',
+        data: FormData.fromMap({
+          'file': await MultipartFile.fromFile(
+            _selectedFile!.path,
+            filename: _selectedFile!.path.split('/').last,
+          ),
+          'description': 'Flutter上传的文件',
+        }),
+        onSendProgress: (int sent, int total) {
+          if (total != 0) {
+            setState(() {
+              _progress = (sent / total * 100);
+              _status = '上传中: ${_progress.toStringAsFixed(0)}%';
+            });
+          }
+        },
+      );
+
+      if (response.statusCode == 200) {
+        setState(() {
+          _status = '上传成功！';
+          _progress = 0.0;
+        });
+      } else {
+        setState(() {
+          _status = '上传失败: ${response.statusCode}';
+          _progress = 0.0;
+        });
+      }
+    } catch (e) {
+      setState(() {
+        _status = '上传失败: $e';
+        _progress = 0.0;
+      });
+    }
+  }
+
+  // 下载文件
+  Future<void> _downloadFile() async {
+    setState(() {
+      _status = '下载中...';
+      _progress = 0.0;
+    });
+
+    try {
+      // 获取应用文档目录
+      final directory = await getApplicationDocumentsDirectory();
+      final savePath = '${directory.path}/downloaded_file.pdf';
+
+      // 实际项目中替换为真实的下载接口
+      await dio.download(
+        'https://example.com/sample.pdf',
+        savePath,
+        onReceiveProgress: (int received, int total) {
+          if (total != 0) {
+            setState(() {
+              _progress = (received / total * 100);
+              _status = '下载中: ${_progress.toStringAsFixed(0)}%';
+            });
+          }
+        },
+      );
+
+      setState(() {
+        _status = '下载成功！';
+        _downloadPath = savePath;
+        _progress = 0.0;
+      });
+    } catch (e) {
+      setState(() {
+        _status = '下载失败: $e';
+        _progress = 0.0;
+      });
+    }
+  }
+
+  // 选择图片文件
+  Future<void> _pickImage() async {
+    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _selectedFile = File(pickedFile.path);
+        _status = '已选择文件: ${pickedFile.path.split('/').last}';
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('文件操作示例')),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            ElevatedButton(
+              onPressed: _pickImage,
+              child: Text('选择图片文件'),
+            ),
+            SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: _uploadFile,
+              child: Text('上传文件'),
+            ),
+            SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: _downloadFile,
+              child: Text('下载文件'),
+            ),
+            SizedBox(height: 20),
+            LinearProgressIndicator(value: _progress / 100),
+            SizedBox(height: 10),
+            Text(_status),
+            if (_downloadPath != null) ...[
+              SizedBox(height: 10),
+              Text('下载路径: $_downloadPath'),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="notifications" class="tutorial-section">
+                    <h3>19. 通知系统</h3>
+                    <div class="dart-tutorial-content">
+                        <h4>使用flutter_local_notifications</h4>
+                        <p>实现本地通知功能，可以在应用内或应用后台显示通知。</p>
+                        
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// pubspec.yaml添加依赖
+// dependencies:
+//   flutter_local_notifications: ^9.7.0
+
+import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest.dart' as tz;
+
+class NotificationsExample extends StatefulWidget {
+  const NotificationsExample({Key? key}) : super(key: key);
+
+  @override
+  _NotificationsExampleState createState() => _NotificationsExampleState();
+}
+
+class _NotificationsExampleState extends State<NotificationsExample> {
+  late FlutterLocalNotificationsPlugin _notificationsPlugin;
+  int _notificationId = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeNotifications();
+  }
+
+  Future<void> _initializeNotifications() async {
+    // 初始化时区数据
+    tz.initializeTimeZones();
+    tz.setLocalLocation(tz.getLocation('Asia/Shanghai'));
+
+    _notificationsPlugin = FlutterLocalNotificationsPlugin();
+
+    // 初始化设置（Android和iOS）
+    const AndroidInitializationSettings androidSettings =
+        AndroidInitializationSettings('ic_launcher');
+    const IOSInitializationSettings iosSettings = IOSInitializationSettings(
+      requestAlertPermission: true,
+      requestBadgePermission: true,
+      requestSoundPermission: true,
+    );
+    const InitializationSettings initializationSettings =
+        InitializationSettings(android: androidSettings, iOS: iosSettings);
+
+    await _notificationsPlugin.initialize(
+      initializationSettings,
+      onSelectNotification: (String? payload) async {
+        if (payload != null) {
+          print('通知点击: $payload');
+          // 可以根据payload执行不同的操作，如导航到特定页面
+        }
+      },
+    );
+  }
+
+  // 显示即时通知
+  Future<void> _showInstantNotification() async {
+    _notificationId++;
+    const AndroidNotificationDetails androidDetails = AndroidNotificationDetails(
+      'channel_id',
+      'channel_name',
+      channelDescription: 'channel_description',
+      importance: Importance.max,
+      priority: Priority.high,
+      ticker: 'ticker',
+    );
+    const IOSNotificationDetails iosDetails = IOSNotificationDetails();
+    const NotificationDetails platformDetails =
+        NotificationDetails(android: androidDetails, iOS: iosDetails);
+
+    await _notificationsPlugin.show(
+      _notificationId,
+      '即时通知标题',
+      '这是一条即时通知的内容',
+      platformDetails,
+      payload: 'instant_notification',
+    );
+  }
+
+  // 显示定时通知（5秒后）
+  Future<void> _showScheduledNotification() async {
+    _notificationId++;
+    const AndroidNotificationDetails androidDetails = AndroidNotificationDetails(
+      'channel_id',
+      'channel_name',
+      channelDescription: 'channel_description',
+      importance: Importance.max,
+      priority: Priority.high,
+    );
+    const IOSNotificationDetails iosDetails = IOSNotificationDetails();
+    const NotificationDetails platformDetails =
+        NotificationDetails(android: androidDetails, iOS: iosDetails);
+
+    // 5秒后显示通知
+    final scheduledTime = tz.TZDateTime.now(tz.local).add(Duration(seconds: 5));
+
+    await _notificationsPlugin.zonedSchedule(
+      _notificationId,
+      '定时通知标题',
+      '这是一条5秒后显示的通知',
+      scheduledTime,
+      platformDetails,
+      uiLocalNotificationDateInterpretation: 
+          UILocalNotificationDateInterpretation.absoluteTime,
+      payload: 'scheduled_notification',
+    );
+  }
+
+  // 显示重复通知（每分钟）
+  Future<void> _showRepeatingNotification() async {
+    _notificationId++;
+    const AndroidNotificationDetails androidDetails = AndroidNotificationDetails(
+      'channel_id',
+      'channel_name',
+      channelDescription: 'channel_description',
+      importance: Importance.max,
+      priority: Priority.high,
+    );
+    const IOSNotificationDetails iosDetails = IOSNotificationDetails();
+    const NotificationDetails platformDetails =
+        NotificationDetails(android: androidDetails, iOS: iosDetails);
+
+    await _notificationsPlugin.periodicallyShow(
+      _notificationId,
+      '重复通知标题',
+      '这是一条每分钟重复的通知',
+      RepeatInterval.everyMinute,
+      platformDetails,
+      payload: 'repeating_notification',
+    );
+  }
+
+  // 取消所有通知
+  Future<void> _cancelAllNotifications() async {
+    await _notificationsPlugin.cancelAll();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('通知系统示例')),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            ElevatedButton(
+              onPressed: _showInstantNotification,
+              child: Text('显示即时通知'),
+            ),
+            SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: _showScheduledNotification,
+              child: Text('显示定时通知（5秒后）'),
+            ),
+            SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: _showRepeatingNotification,
+              child: Text('显示重复通知（每分钟）'),
+            ),
+            SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: _cancelAllNotifications,
+              child: Text('取消所有通知'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="websocket" class="tutorial-section">
+                    <h3>20. WebSocket实时通信</h3>
+                    <div class="dart-tutorial-content">
+                        <h4>使用WebSocket进行实时数据通信</h4>
+                        <p>WebSocket可以实现客户端和服务器之间的双向实时通信。</p>
+                        
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">import 'dart:convert';
+import 'dart:io';
+import 'package:flutter/material.dart';
+
+class WebSocketExample extends StatefulWidget {
+  const WebSocketExample({Key? key}) : super(key: key);
+
+  @override
+  _WebSocketExampleState createState() => _WebSocketExampleState();
+}
+
+class _WebSocketExampleState extends State<WebSocketExample> {
+  WebSocket? _webSocket;
+  bool _connected = false;
+  List<String> _messages = [];
+  final TextEditingController _messageController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
+
+  // WebSocket服务器地址（示例地址）
+  final String _wsUrl = 'wss://echo.websocket.org';
+
+  @override
+  void dispose() {
+    _messageController.dispose();
+    _scrollController.dispose();
+    _closeConnection();
+    super.dispose();
+  }
+
+  // 建立WebSocket连接
+  Future<void> _connect() async {
+    try {
+      setState(() {
+        _messages.add('正在连接到服务器...');
+      });
+      
+      _webSocket = await WebSocket.connect(_wsUrl);
+      
+      setState(() {
+        _connected = true;
+        _messages.add('连接成功！');
+      });
+
+      // 监听服务器消息
+      _webSocket!.listen(
+        (data) {
+          setState(() {
+            _messages.add('服务器: $data');
+            _scrollToBottom();
+          });
+        },
+        onDone: () {
+          setState(() {
+            _connected = false;
+            _messages.add('连接已关闭');
+          });
+        },
+        onError: (error) {
+          setState(() {
+            _connected = false;
+            _messages.add('连接错误: $error');
+          });
+        },
+      );
+    } catch (e) {
+      setState(() {
+        _messages.add('连接失败: $e');
+      });
+    }
+  }
+
+  // 关闭WebSocket连接
+  void _closeConnection() {
+    if (_webSocket != null) {
+      _webSocket!.close();
+      _webSocket = null;
+      setState(() {
+        _connected = false;
+      });
+    }
+  }
+
+  // 发送消息
+  void _sendMessage() {
+    if (_webSocket != null && _connected && _messageController.text.isNotEmpty) {
+      final message = _messageController.text;
+      _webSocket!.add(message);
+      
+      setState(() {
+        _messages.add('我: $message');
+        _messageController.clear();
+        _scrollToBottom();
+      });
+    }
+  }
+
+  // 发送JSON消息
+  void _sendJsonMessage() {
+    if (_webSocket != null && _connected) {
+      final jsonMessage = jsonEncode({
+        'type': 'message',
+        'content': '这是一条JSON消息',
+        'timestamp': DateTime.now().millisecondsSinceEpoch,
+      });
+      
+      _webSocket!.add(jsonMessage);
+      
+      setState(() {
+        _messages.add('我: 发送了JSON消息');
+        _scrollToBottom();
+      });
+    }
+  }
+
+  // 滚动到底部
+  void _scrollToBottom() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_scrollController.hasClients) {
+        _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('WebSocket示例'),
+        actions: [
+          Switch(
+            value: _connected,
+            onChanged: (value) {
+              if (value) {
+                _connect();
+              } else {
+                _closeConnection();
+              }
+            },
+          ),
+        ],
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              controller: _scrollController,
+              itemCount: _messages.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  child: Text(_messages[index]),
+                );
+              },
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(16),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _messageController,
+                    decoration: InputDecoration(
+                      labelText: '输入消息',
+                      border: OutlineInputBorder(),
+                    ),
+                    enabled: _connected,
+                  ),
+                ),
+                SizedBox(width: 10),
+                ElevatedButton(
+                  onPressed: _sendMessage,
+                  child: Text('发送'),
+                  enabled: _connected,
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: ElevatedButton(
+              onPressed: _sendJsonMessage,
+              child: Text('发送JSON消息'),
+              enabled: _connected,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="performance" class="tutorial-section">
+                    <h3>21. 性能优化</h3>
+                    <div class="dart-tutorial-content">
+                        <h4>Flutter应用性能优化技巧</h4>
+                        <p>以下是一些常见的Flutter性能优化方法。</p>
+                        
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 1. 使用const构造器避免不必要的重建
+class OptimizedWidget extends StatelessWidget {
+  // 使用const构造器
+  const OptimizedWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: const [
+        // 不可变的子部件使用const
+        Text('这是一个优化的组件'),
+        SizedBox(height: 20),
+      ],
+    );
+  }
+}
+
+// 2. 使用const构造器的常量定义
+class Constants {
+  static const String appName = 'MyApp';
+  static const int maxItems = 100;
+  static const EdgeInsets defaultPadding = EdgeInsets.all(16.0);
+}
+
+// 3. 使用const SizedBox代替Container
+Widget optimizedSpacing() {
+  // 推荐
+  return const SizedBox(height: 20);
+  
+  // 不推荐
+  // return Container(height: 20);
+}
+
+// 4. 列表性能优化 - 使用ListView.builder
+class OptimizedList extends StatelessWidget {
+  final List<String> items;
+
+  const OptimizedList({Key? key, required this.items}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      // 设置itemCount以帮助ListView优化
+      itemCount: items.length,
+      
+      // 提供itemExtent来提高性能
+      itemExtent: 60.0,
+      
+      // 懒加载builder
+      itemBuilder: (context, index) {
+        return ListTile(
+          title: Text(items[index]),
+        );
+      },
+    );
+  }
+}
+
+// 5. 避免重建 - 使用const和const构造函数
+class ExpensiveWidget extends StatelessWidget {
+  final String data;
+
+  // const构造器
+  const ExpensiveWidget({Key? key, required this.data}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // 假设这是一个昂贵的构建
+    return Container(
+      child: Text(data),
+    );
+  }
+}
+
+// 6. 使用RepaintBoundary避免不必要的重绘
+class RepaintExample extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        // 会频繁更新的部分
+        AnimatedWidget(),
+        
+        // 不会频繁更新的部分，用RepaintBoundary包裹
+        RepaintBoundary(
+          child: ExpensiveWidget(data: '静态数据'),
+        ),
+      ],
+    );
+  }
+}
+
+// 7. 使用const和const构造函数的按钮
+class OptimizedButtons extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: const [
+        // const构造的按钮
+        ElevatedButton(
+          onPressed: null,
+          child: Text('禁用按钮'),
+        ),
+        SizedBox(width: 10),
+        // 不可变的图标
+        Icon(Icons.star),
+      ],
+    );
+  }
+}
+
+// 8. 避免在build方法中进行耗时操作
+class BadExample extends StatefulWidget {
+  @override
+  _BadExampleState createState() => _BadExampleState();
+}
+
+class _BadExampleState extends State<BadExample> {
+  @override
+  Widget build(BuildContext context) {
+    // 错误：在build方法中执行耗时操作
+    // final result = _performHeavyCalculation();
+    
+    return Container();
+  }
+  
+  // 应该在initState或其他适当的地方执行
+  @override
+  void initState() {
+    super.initState();
+    // _performHeavyCalculation();
+  }
+}
+
+// 9. 使用const和const构造函数的颜色和样式
+class OptimizedStyles {
+  static const TextStyle titleStyle = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+    color: Colors.blue,
+  );
+  
+  static const BoxDecoration boxDecoration = BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.all(Radius.circular(8)),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.grey,
+        offset: Offset(0, 2),
+        blurRadius: 4,
+      ),
+    ],
+  );
+}
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="testing" class="tutorial-section">
+                    <h3>22. Flutter测试</h3>
+                    <div class="dart-tutorial-content">
+                        <h4>单元测试、集成测试和Widget测试</h4>
+                        <p>Flutter提供了完整的测试框架，支持多种测试类型。</p>
+                        
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 1. 单元测试示例 (test/counter_test.dart)
+import 'package:flutter_test/flutter_test.dart';
+import 'package:myapp/counter.dart';
+
+void main() {
+  group('Counter', () {
+    test('初始值应该是0', () {
+      final counter = Counter();
+      expect(counter.value, 0);
+    });
+
+    test('增加后值应该是1', () {
+      final counter = Counter();
+      counter.increment();
+      expect(counter.value, 1);
+    });
+
+    test('减少后值应该是-1', () {
+      final counter = Counter();
+      counter.decrement();
+      expect(counter.value, -1);
+    });
+  });
+}
+
+// 计数器类 (lib/counter.dart)
+class Counter {
+  int value = 0;
+
+  void increment() => value++;
+  void decrement() => value--;
+}
+
+// 2. Widget测试示例 (test/widget_test.dart)
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:myapp/main.dart';
+
+void main() {
+  testWidgets('测试计数器增加功能', (WidgetTester tester) async {
+    // 构建应用并触发初始帧
+    await tester.pumpWidget(MyApp());
+
+    // 验证初始值为0
+    expect(find.text('0'), findsOneWidget);
+    expect(find.text('1'), findsNothing);
+
+    // 点击增加按钮
+    await tester.tap(find.byIcon(Icons.add));
+    await tester.pump(); // 触发帧更新
+
+    // 验证值是否更新为1
+    expect(find.text('0'), findsNothing);
+    expect(find.text('1'), findsOneWidget);
+  });
+
+  testWidgets('测试文本存在性', (WidgetTester tester) async {
+    await tester.pumpWidget(MyApp());
+
+    // 验证文本存在
+    expect(find.text('Flutter Demo Home Page'), findsOneWidget);
+    
+    // 验证特定组件存在
+    expect(find.byType(FloatingActionButton), findsOneWidget);
+  });
+}
+
+// 3. 集成测试示例 (integration_test/app_test.dart)
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:integration_test/integration_test.dart';
+import 'package:myapp/main.dart' as app;
+
+void main() {
+  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+
+  testWidgets('完整的应用流程测试', (WidgetTester tester) async {
+    // 启动应用
+    app.main();
+    await tester.pumpAndSettle();
+
+    // 验证初始状态
+    expect(find.text('0'), findsOneWidget);
+
+    // 执行用户操作
+    await tester.tap(find.byIcon(Icons.add));
+    await tester.pumpAndSettle();
+
+    // 验证结果
+    expect(find.text('1'), findsOneWidget);
+
+    // 可以测试导航
+    await tester.tap(find.byType(FloatingActionButton));
+    await tester.pumpAndSettle();
+
+    // 可以测试输入
+    await tester.enterText(find.byType(TextField), 'test input');
+    await tester.pumpAndSettle();
+
+    // 验证输入结果
+    expect(find.text('test input'), findsOneWidget);
+  });
+}
+
+// 4. Mock测试示例
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
+import 'package:myapp/repository.dart';
+import 'package:myapp/service.dart';
+
+// Mock类
+class MockRepository extends Mock implements Repository {}
+
+void main() {
+  late Service service;
+  late MockRepository mockRepository;
+
+  setUp(() {
+    mockRepository = MockRepository();
+    service = Service(repository: mockRepository);
+  });
+
+  test('测试服务方法调用仓库', () async {
+    // 配置mock行为
+    when(mockRepository.getData())
+        .thenAnswer((_) async => {'success': true});
+
+    // 调用服务方法
+    final result = await service.fetchData();
+
+    // 验证结果
+    expect(result['success'], true);
+    
+    // 验证mock被正确调用
+    verify(mockRepository.getData()).called(1);
+  });
+}
+
+// 服务和仓库类
+class Repository {
+  Future<Map<String, dynamic>> getData() async {
+    // 实际实现
+    return {};
+  }
+}
+
+class Service {
+  final Repository repository;
+
+  Service({required this.repository});
+
+  Future<Map<String, dynamic>> fetchData() async {
+    return await repository.getData();
+  }
+}
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="code-style" class="tutorial-section">
+                    <h3>10. Dart代码规范</h3>
+                    <div class="dart-tutorial-content">
+                        <ul>
+                            <li><strong>类名</strong>：使用大驼峰命名法，如 <code>MyClass</code></li>
+                            <li><strong>常量</strong>：使用全大写字母和下划线，如 <code>MAX_WIDTH</code></li>
+                            <li><strong>私有成员</strong>：以下划线开头，如 <code>_privateField</code></li>
+                        </ul>
+
+                        <h4>格式化规范</h4>
+                        <ul>
+                            <li>每行不超过80个字符</li>
+                            <li>使用2个空格进行缩进</li>
+                            <li>在操作符前后添加空格</li>
+                            <li>大括号的使用：
+                                <div class="code-block">
+                                    <pre><code>// 推荐
+if (condition) {
+  // code
+} else {
+  // code
+}
+
+// 对于单行语句可以使用
+if (condition) return;
+</code></pre>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <h4>最佳实践</h4>
+                        <ul>
+                            <li>使用类型推断（var）但避免过度使用</li>
+                            <li>优先使用final而不是var，除非变量需要重新赋值</li>
+                            <li>合理使用空安全特性，避免null相关错误</li>
+                            <li>使用async/await进行异步操作，避免回调地狱</li>
+                            <li>为公共API添加文档注释</li>
+                        </ul>
+
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">/// 计算两个数的和
+/// 
+/// @param a 第一个数
+/// @param b 第二个数
+/// @return 两个数的和
+int add(int a, int b) {
+  return a + b;
+}
+
+class Calculator {
+  final double pi = 3.14159;
+  
+  double calculateCircleArea(double radius) {
+    return pi * radius * radius;
+  }
+  
+  void _validateInput(double value) {
+    if (value < 0) {
+      throw ArgumentError('Value cannot be negative');
+    }
+  }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="code-reference" class="tutorial-section">
+                    <h3>代码大全 - Dart常用代码参考</h3>
+                    <div class="dart-tutorial-content">
+                        <p>本章节汇总了Dart语言中最常用的代码片段及其功能说明，方便开发者快速查阅和使用。</p>
+                        
+                        <h4>1. 变量声明与初始化</h4>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 类型推断变量（可重新赋值）
+var name = 'Flutter';
+
+// 显式类型声明
+String language = 'Dart';
+int version = 2;
+double price = 19.99;
+bool isActive = true;
+
+// 不可变变量
+final pi = 3.14; // 运行时确定的常量
+const maxAge = 120; // 编译时常量
+
+// 可为空类型
+String? nullableValue = null;
+int? count;
+
+// 延迟初始化
+late String lazyValue;
+void initialize() {
+  lazyValue = 'Initialized later';
+}</code></pre>
+                        </div>
+                        
+                        <h4>2. 集合类型</h4>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 列表（数组）
+var numbers = [1, 2, 3, 4, 5];
+List&lt;String&gt; fruits = ['Apple', 'Banana', 'Orange'];
+
+// 固定长度列表
+var fixedList = List.filled(5, 0); // [0, 0, 0, 0, 0]
+
+// 映射（字典）
+var person = {
+  'name': 'John',
+  'age': 30,
+  'city': 'New York'
+};
+Map&lt;int, String&gt; numberNames = {1: 'One', 2: 'Two', 3: 'Three'};
+
+// 集合（不重复元素）
+var uniqueNumbers = {1, 2, 3, 4, 5};
+Set&lt;String&gt; colors = {'Red', 'Green', 'Blue'};</code></pre>
+                        </div>
+                        
+                        <h4>3. 函数定义</h4>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 基本函数
+String greet(String name) {
+  return 'Hello, $name!';
+}
+
+// 箭头函数（单行函数）
+int add(int a, int b) => a + b;
+
+// 可选参数
+void printInfo(String name, {int? age, String? city}) {
+  print('Name: $name');
+  if (age != null) print('Age: $age');
+  if (city != null) print('City: $city');
+}
+
+// 默认参数值
+String createGreeting(String name, String title, {String prefix = 'Dear'}) {
+  return '$prefix $title $name';
+}
+
+// 命名构造函数参数
+class Person {
+  String name;
+  int age;
+  
+  Person({required this.name, required this.age});
+}</code></pre>
+                        </div>
+                        
+                        <h4>4. 控制流</h4>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// if-else
+int score = 85;
+if (score >= 90) {
+  print('优秀');
+} else if (score >= 80) {
+  print('良好');
+} else if (score >= 60) {
+  print('及格');
+} else {
+  print('不及格');
+}
+
+// switch-case
+String grade = 'A';
+switch (grade) {
+  case 'A':
+    print('优秀');
+    break;
+  case 'B':
+    print('良好');
+    break;
+  default:
+    print('其他');
+}
+
+// for循环
+for (int i = 0; i < 5; i++) {
+  print(i);
+}
+
+// for-in循环
+var items = ['A', 'B', 'C'];
+for (var item in items) {
+  print(item);
+}
+
+// while循环
+var count = 0;
+while (count < 3) {
+  print(count);
+  count++;
+}
+
+// do-while循环
+do {
+  print(count);
+  count++;
+} while (count < 5);
+
+// 集合遍历（forEach）
+items.forEach((item) => print(item));
+
+// 条件表达式
+String result = score >= 60 ? '通过' : '失败';
+
+// 空值处理
+String? nullableText;
+String text = nullableText ?? '默认值'; // 如果为null则使用默认值
+nullableText ??= '初始化默认值'; // 如果为null则赋值</code></pre>
+                        </div>
+                        
+                        <h4>5. 类与面向对象</h4>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 基本类
+class Person {
+  String name;
+  int age;
+  
+  // 构造函数
+  Person(this.name, this.age);
+  
+  // 命名构造函数
+  Person.fromMap(Map<String, dynamic> map) {
+    name = map['name'];
+    age = map['age'];
+  }
+  
+  // 方法
+  void greet() {
+    print('Hello, my name is $name!');
+  }
+  
+  // 获取器（getter）
+  bool get isAdult => age >= 18;
+  
+  // 设置器（setter）
+  set setAge(int newAge) {
+    if (newAge >= 0) {
+      age = newAge;
+    }
+  }
+}
+
+// 继承
+class Student extends Person {
+  String studentId;
+  
+  Student(String name, int age, this.studentId) : super(name, age);
+  
+  @override
+  void greet() {
+    print('Hello, I\'m $name, student ID: $studentId');
+  }
+}
+
+// 接口
+abstract class Shape {
+  double get area;
+  void draw();
+}
+
+class Circle implements Shape {
+  double radius;
+  
+  Circle(this.radius);
+  
+  @override
+  double get area => 3.14 * radius * radius;
+  
+  @override
+  void draw() {
+    print('Drawing a circle with radius $radius');
+  }
+}
+
+// Mixin
+mixin Logger {
+  void log(String message) {
+    print('[LOG] $message');
+  }
+}
+
+class LoggedPerson extends Person with Logger {
+  LoggedPerson(String name, int age) : super(name, age);
+  
+  void introduce() {
+    log('Introducing $name');
+    greet();
+  }
+}</code></pre>
+                        </div>
+                        
+                        <h4>6. 异步编程</h4>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// Future基础
+Future&lt;String&gt; fetchData() async {
+  // 模拟网络请求延迟
+  await Future.delayed(Duration(seconds: 2));
+  return 'Data fetched successfully';
+}
+
+// 使用Future
+void processData() {
+  fetchData()
+    .then((data) => print('Received: $data'))
+    .catchError((error) => print('Error: $error'))
+    .whenComplete(() => print('Operation completed'));
+}
+
+// async/await语法
+Future<void> processDataAsync() async {
+  try {
+    final data = await fetchData();
+    print('Received: $data');
+  } catch (error) {
+    print('Error: $error');
+  } finally {
+    print('Operation completed');
+  }
+}
+
+// Stream基础
+Stream<int> countStream(int to) async* {
+  for (int i = 1; i <= to; i++) {
+    await Future.delayed(Duration(seconds: 1));
+    yield i; // 输出流数据
+  }
+}
+
+// 订阅Stream
+void listenToStream() {
+  final stream = countStream(5);
+  final subscription = stream.listen(
+    (data) => print('Received: $data'),
+    onError: (error) => print('Error: $error'),
+    onDone: () => print('Stream completed'),
+  );
+  
+  // 可以取消订阅
+  // subscription.cancel();
+}
+
+// async*生成器
+Stream<String> generateItems() async* {
+  for (var item in ['A', 'B', 'C']) {
+    await Future.delayed(Duration(seconds: 1));
+    yield item;
+  }
+}
+
+// StreamTransformer
+final transformer = StreamTransformer<int, String>.fromHandlers(
+  handleData: (value, sink) {
+    sink.add('Processed: $value');
+  },
+  handleError: (error, stackTrace, sink) {
+    sink.addError('Failed: $error');
+  },
+  handleDone: (sink) {
+    sink.close();
+  },
+);</code></pre>
+                        </div>
+                        
+                        <h4>7. 异常处理</h4>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 基本try-catch
+try {
+  var result = 10 ~/ 0; // 会抛出异常
+} catch (e) {
+  print('捕获到异常: $e');
+}
+
+// 捕获特定类型的异常
+try {
+  var result = 10 ~/ 0;
+} on IntegerDivisionByZeroException {
+  print('除数不能为零');
+} catch (e) {
+  print('其他异常: $e');
+} finally {
+  print('无论是否异常都会执行');
+}
+
+// 抛出异常
+double divide(double a, double b) {
+  if (b == 0) {
+    throw ArgumentError('除数不能为零');
+  }
+  return a / b;
+}
+
+// 自定义异常
+class ValidationError implements Exception {
+  final String message;
+  
+  ValidationError(this.message);
+  
+  @override
+  String toString() => 'ValidationError: $message';
+}
+
+void validateAge(int age) {
+  if (age < 0) {
+    throw ValidationError('年龄不能为负数');
+  }
+}</code></pre>
+                        </div>
+                        
+                        <h4>8. 泛型</h4>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 泛型函数
+T getFirstElement<T>(List<T> list) {
+  if (list.isEmpty) {
+    throw StateError('列表为空');
+  }
+  return list[0];
+}
+
+// 泛型类
+class Box<T> {
+  T? content;
+  
+  void put(T item) {
+    content = item;
+  }
+  
+  T? get() => content;
+}
+
+// 限制泛型类型
+class NumberBox<T extends num> {
+  T value;
+  
+  NumberBox(this.value);
+  
+  T add(T other) => (value + other) as T;
+}
+
+// 泛型接口
+abstract class Repository<T> {
+  Future<T> getById(int id);
+  Future<List<T>> getAll();
+  Future<void> save(T entity);
+  Future<void> delete(int id);
+}
+
+// 使用泛型
+void useGenerics() {
+  // 泛型函数使用
+  var firstNumber = getFirstElement<int>([1, 2, 3]);
+  
+  // 泛型类使用
+  var stringBox = Box<String>();
+  stringBox.put('Hello');
+  
+  // 限制泛型使用
+  var intBox = NumberBox<int>(10);
+  var sum = intBox.add(5); // 15
+}</code></pre>
+                        </div>
+                        
+                        <h4>9. 扩展（Extensions）</h4>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 字符串扩展
+extension StringExtensions on String {
+  bool isEmail() {
+    final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+    return emailRegex.hasMatch(this);
+  }
+  
+  String capitalize() {
+    if (isEmpty) return this;
+    return this[0].toUpperCase() + substring(1).toLowerCase();
+  }
+}
+
+// 数字扩展
+extension NumberExtensions on num {
+  bool isEven() => this % 2 == 0;
+  bool isOdd() => this % 2 != 0;
+  
+  String formatCurrency() {
+    return '¥${toStringAsFixed(2)}';
+  }
+}
+
+// 列表扩展
+extension ListExtensions<T> on List<T> {
+  T? firstOrNull() => isEmpty ? null : first;
+  
+  List<T> takeWhileInclusive(bool Function(T) test) {
+    final result = <T>[];
+    for (final item in this) {
+      result.add(item);
+      if (!test(item)) break;
+    }
+    return result;
+  }
+}
+
+// 使用扩展
+void useExtensions() {
+  var email = 'test@example.com';
+  print(email.isEmail()); // true
+  
+  var name = 'flutter';
+  print(name.capitalize()); // Flutter
+  
+  var price = 19.99;
+  print(price.formatCurrency()); // ¥19.99
+  
+  var numbers = [1, 2, 3, 4, 5];
+  var first = numbers.firstOrNull(); // 1
+}</code></pre>
+                        </div>
+                        
+                        <h4>10. 元组（使用tuple包）</h4>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 需要添加依赖: tuple: ^2.0.0
+// import 'package:tuple/tuple.dart';
+
+void useTuples() {
+  // 创建元组
+  var pair = Tuple2<String, int>('Flutter', 2023);
+  var triple = Tuple3('Dart', 2, true);
+  
+  // 访问元素
+  print(pair.item1); // Flutter
+  print(pair.item2); // 2023
+  
+  // 修改元组（创建新实例）
+  var newPair = pair.withItem2(2024);
+  
+  // 使用元组返回多个值
+  Tuple2<double, double> calculateStats(List<double> values) {
+    if (values.isEmpty) return Tuple2(0, 0);
+    
+    final sum = values.reduce((a, b) => a + b);
+    final average = sum / values.length;
+    
+    return Tuple2(sum, average);
+  }
+  
+  // 解构元组
+  final stats = calculateStats([1.0, 2.0, 3.0]);
+  final (sum, average) = stats; // Dart 3.0+
+}</code></pre>
+                        </div>
+                        
+                        <h4>11. Dart 3.0+ 新特性</h4>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 记录类型（Records）
+(String, int) getUserInfo() {
+  return ('Alice', 25);
+}
+
+// 使用记录类型
+void useRecords() {
+  final info = getUserInfo();
+  print(info.$1); // Alice
+  print(info.$2); // 25
+  
+  // 命名记录
+  ({String name, int age}) getNamedUserInfo() {
+    return (name: 'Bob', age: 30);
+  }
+  
+  final namedInfo = getNamedUserInfo();
+  print(namedInfo.name); // Bob
+  print(namedInfo.age); // 30
+}
+
+// 模式匹配
+void usePatternMatching(Object? obj) {
+  switch (obj) {
+    case String s:
+      print('这是字符串: $s');
+    case int i && > 0:
+      print('这是正整数: $i');
+    case List<int>(length: 3):
+      print('这是长度为3的整数列表');
+    case (var a, var b):
+      print('这是元组: ($a, $b)');
+    default:
+      print('其他类型');
+  }
+}
+
+// 卫语句
+int? divide(int a, int b) {
+  return b == 0 ? null : a ~/ b;
+}
+
+// switch表达式
+String getWeatherDescription(String condition) {
+  return switch (condition) {
+    'sunny' => '阳光明媚',
+    'rainy' => '下雨',
+    'cloudy' => '多云',
+    _ => '未知天气',
+  };
+}
+
+// 空安全增强
+void nullSafetyFeatures(String? value) {
+  // 空值断言操作符
+  print(value!); // 如果value为null会抛出异常
+  
+  // 类型提升
+  if (value != null) {
+    print(value.length); // 这里value被提升为非空类型
+  }
+  
+  // 空值检查操作符
+  print(value?.length); // 如果value为null则返回null
+  
+  // 空值合并赋值
+  String? result;
+  result ??= '默认值'; // 如果result为null则赋值
+}</code></pre>
+                        </div>
+                        
+                        <h4>12. 常用工具函数</h4>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// 时间处理
+void timeOperations() {
+  // 获取当前时间
+  var now = DateTime.now();
+  print(now); // 2023-04-15 10:30:45.123456
+  
+  // 创建特定时间
+  var specificDate = DateTime(2023, 4, 15, 10, 30);
+  
+  // 时间加减
+  var tomorrow = now.add(Duration(days: 1));
+  var yesterday = now.subtract(Duration(days: 1));
+  
+  // 时间比较
+  if (tomorrow.isAfter(now)) {
+    print('明天在当前时间之后');
+  }
+  
+  // 格式化时间
+  String formatDateTime(DateTime dateTime) {
+    return '${dateTime.year}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')} ${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}';
+  }
+}
+
+// 随机数生成
+import 'dart:math';
+
+void generateRandom() {
+  var random = Random();
+  
+  // 生成随机整数
+  var randomInt = random.nextInt(100); // 0-99
+  
+  // 生成随机浮点数
+  var randomDouble = random.nextDouble(); // 0.0-1.0
+  
+  // 生成随机布尔值
+  var randomBool = random.nextBool();
+  
+  // 生成指定范围的随机数
+  int randomInRange(int min, int max) {
+    return min + random.nextInt(max - min + 1);
+  }
+}
+
+// 字符串处理
+void stringOperations() {
+  var text = 'Hello, Flutter!';
+  
+  // 字符串拼接
+  var combined = text + ' Welcome!';
+  var interpolated = '$text Welcome!';
+  
+  // 字符串拆分
+  var parts = text.split(', '); // ['Hello', 'Flutter!']
+  
+  // 字符串替换
+  var replaced = text.replaceAll('Flutter', 'Dart');
+  
+  // 字符串查找
+  bool contains = text.contains('Flutter');
+  int index = text.indexOf('Flutter');
+  
+  // 字符串裁剪
+  var trimmed = '  Flutter  '.trim(); // 'Flutter'
+  
+  // 大小写转换
+  var upper = text.toUpperCase();
+  var lower = text.toLowerCase();
+  
+  // 多行字符串
+  var multiLine = '''
+    This is a
+    multi-line string
+  ''';
+}
+
+// 列表操作
+void listOperations() {
+  var numbers = [1, 2, 3, 4, 5];
+  
+  // 添加元素
+  numbers.add(6);
+  numbers.addAll([7, 8]);
+  
+  // 删除元素
+  numbers.remove(3);
+  numbers.removeAt(0);
+  
+  // 查找元素
+  bool exists = numbers.contains(5);
+  int index = numbers.indexOf(4);
+  
+  // 列表变换
+  var doubled = numbers.map((n) => n * 2).toList();
+  var evenNumbers = numbers.where((n) => n.isEven).toList();
+  
+  // 列表排序
+  numbers.sort();
+  numbers.sort((a, b) => b.compareTo(a)); // 降序
+  
+  // 列表聚合
+  var sum = numbers.reduce((a, b) => a + b);
+  var sumWithInitial = numbers.fold(10, (a, b) => a + b); // 初始值10
+}</code></pre>
+                        </div>
+                        
+                        <h4>13. Flutter 常用代码片段</h4>
+                        <div class="code-block">
+                            <button class="copy-button" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            <pre><code class="dart">// StatefulWidget 基础结构
+class CounterWidget extends StatefulWidget {
+  final int initialCount;
+  
+  const CounterWidget({Key? key, this.initialCount = 0}) : super(key: key);
+  
+  @override
+  _CounterWidgetState createState() => _CounterWidgetState();
+}
+
+class _CounterWidgetState extends State<CounterWidget> {
+  int _count = 0;
+  
+  @override
+  void initState() {
+    super.initState();
+    _count = widget.initialCount;
+  }
+  
+  void _increment() {
+    setState(() {
+      _count++;
+    });
+  }
+  
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text('Count: $_count'),
+        ElevatedButton(
+          onPressed: _increment,
+          child: const Text('Increment'),
+        ),
+      ],
+    );
+  }
+}
+
+// 导航到新页面
+void navigateToNextScreen(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => const NextScreen(),
+    ),
+  );
+}
+
+// 返回上一页
+void goBack(BuildContext context) {
+  Navigator.pop(context);
+}
+
+// 带参数导航
+void navigateWithParams(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => DetailScreen(itemId: '123'),
+    ),
+  );
+}
+
+// 显示对话框
+void showAlertDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: const Text('提示'),
+        content: const Text('确定要执行此操作吗？'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('取消'),
+          ),
+          TextButton(
+            onPressed: () {
+              // 执行操作
+              Navigator.pop(context);
+            },
+            child: const Text('确定'),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+// 显示SnackBar
+void showSnackBar(BuildContext context, String message) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(message),
+      duration: const Duration(seconds: 3),
+    ),
+  );
+}
+
+// 主题数据
+ThemeData buildTheme() {
+  return ThemeData(
+    primarySwatch: Colors.blue,
+    brightness: Brightness.light,
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Colors.blue,
+      foregroundColor: Colors.white,
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.blue,
+        textStyle: const TextStyle(fontSize: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+      ),
+    ),
+  );
+}
+
+// 共享状态管理（简单示例）
+class CounterModel extends ChangeNotifier {
+  int _count = 0;
+  
+  int get count => _count;
+  
+  void increment() {
+    _count++;
+    notifyListeners();
+  }
+}
+
+// 使用Provider
+// void main() {
+//   runApp(
+//     ChangeNotifierProvider(
+//       create: (context) => CounterModel(),
+//       child: const MyApp(),
+//     ),
+//   );
+// }
+
+// 在Widget中使用
+// class CounterDisplay extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     final counter = Provider.of<CounterModel>(context);
+//     return Text('${counter.count}');
+//   }
+// }
+
+// HTTP请求（使用http包）
+// import 'package:http/http.dart' as http;
+
+Future<void> fetchData() async {
+  try {
+    final response = await http.get(
+      Uri.parse('https://jsonplaceholder.typicode.com/posts/1'),
+    );
+    
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      print('Data: $data');
+    } else {
+      print('请求失败: ${response.statusCode}');
+    }
+  } catch (e) {
+    print('错误: $e');
+  }
+}
+
+// 本地存储（使用shared_preferences）
+// import 'package:shared_preferences/shared_preferences.dart';
+
+Future<void> saveData() async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setString('username', 'flutter_user');
+  await prefs.setInt('userId', 123);
+  await prefs.setBool('isLoggedIn', true);
+}
+
+Future<void> loadData() async {
+  final prefs = await SharedPreferences.getInstance();
+  final username = prefs.getString('username');
+  final userId = prefs.getInt('userId');
+  final isLoggedIn = prefs.getBool('isLoggedIn');
+  
+  print('Username: $username, UserId: $userId, LoggedIn: $isLoggedIn');
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <a href="index.html" class="nav-btn">返回首页</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="flutter-footer">
+        <div class="container">
+            <p>&copy; 2025 Flutter Material 组件文档. 基于 Flutter 官方文档构建。Power by sjx
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // 代码高亮
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightBlock(block);
+            });
+            
+            // 初始化导航组功能
+            initNavigation();
+            
+            // 检查URL中是否有锚点，如果有则显示对应部分
+            checkHashAndShowSection();
+            
+            // 监听hashchange事件，当URL中的锚点变化时更新显示
+            window.addEventListener('hashchange', checkHashAndShowSection);
+        });
+        
+        // 复制代码功能
+        function copyCode(button) {
+            const codeBlock = button.nextElementSibling;
+            const text = codeBlock.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> 已复制';
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                }, 2000);
+            }).catch(err => {
+                console.error('复制失败: ', err);
+            });
+        }
+        
+        // 初始化导航组的展开/折叠功能
+        function initNavigation() {
+            // 默认折叠所有导航组
+            document.querySelectorAll('.nav-group').forEach(group => {
+                group.classList.add('collapsed');
+            });
+            
+            // 为导航组标题添加点击事件
+            document.querySelectorAll('.nav-group-title').forEach(title => {
+                title.addEventListener('click', function() {
+                    const navGroup = this.closest('.nav-group');
+                    navGroup.classList.toggle('collapsed');
+                });
+            });
+            
+            // 为导航链接添加点击事件，解决乱跳问题
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault(); // 阻止默认行为
+                    
+                    const targetHash = this.getAttribute('href');
+                    
+                    // 使用pushState更新URL而不刷新页面
+                    window.history.pushState(null, null, targetHash);
+                    
+                    // 手动触发hashchange事件
+                    window.dispatchEvent(new Event('hashchange'));
+                    
+                    // 移除所有导航链接的active状态
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                    // 为当前点击的链接添加active状态
+                    this.classList.add('active');
+                    
+                    // 平滑滚动到目标位置
+                    setTimeout(() => {
+                        const targetElement = document.querySelector(targetHash);
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 100,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }, 10);
+                });
+            });
+        }
+        
+        // 检查URL锚点并显示对应部分，隐藏其他部分
+        function checkHashAndShowSection() {
+            const hash = window.location.hash;
+            const allSections = document.querySelectorAll('.tutorial-section');
+            
+            console.log('当前hash:', hash);
+            
+            // 移除所有导航链接的active状态
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            
+            // 隐藏所有部分
+            allSections.forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // 如果有hash且能找到对应的部分，则显示它
+            if (hash && hash !== '#') {
+                // 先尝试直接通过id查找
+                let targetSection = document.getElementById(hash.substring(1));
+                
+                // 如果直接查找失败，尝试通过querySelector查找
+                if (!targetSection) {
+                    targetSection = document.querySelector(hash);
+                }
+                
+                // 检查是否找到目标部分且它是tutorial-section
+                if (targetSection && targetSection.classList.contains('tutorial-section')) {
+                    console.log('找到目标部分:', hash);
+                    targetSection.style.display = 'block';
+                    
+                    // 为对应的导航链接添加active状态
+                    const activeLink = document.querySelector(`.nav-link[href="${hash}"]`);
+                    if (activeLink) {
+                        activeLink.classList.add('active');
+                        // 展开包含该链接的导航组
+                        const navGroup = activeLink.closest('.nav-group');
+                        if (navGroup) {
+                            navGroup.classList.remove('collapsed');
+                        }
+                    }
+                    
+                    // 滚动到目标部分并确保从顶部显示
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    return; // 找到并显示了对应部分，直接返回
+                } else {
+                    console.log('未找到有效的目标部分:', hash);
+                }
+            }
+            
+            // 如果没有hash或找不到对应的部分，则显示介绍部分
+            console.log('显示介绍部分');
+            const introSection = document.getElementById('introduction');
+            if (introSection) {
+                introSection.style.display = 'block';
+                // 为介绍部分的导航链接添加active状态
+                const introLink = document.querySelector('.nav-link[href="#introduction"]');
+                if (introLink) {
+                    introLink.classList.add('active');
+                    // 确保介绍部分的导航组是展开的
+                    const navGroup = introLink.closest('.nav-group');
+                    if (navGroup) {
+                        navGroup.classList.remove('collapsed');
+                    }
+                }
+                // 滚动到介绍部分
+                introSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    </script>
+</body>
+</html>

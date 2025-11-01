@@ -1,20 +1,22 @@
 document.addEventListener('DOMContentLoaded', function() {
     // 搜索功能
-    const searchInput = document.getElementById('component-search');
+    const searchInput = document.getElementById('component-search') || document.getElementById('tutorial-search');
     const componentLinks = document.querySelectorAll('.component-nav a');
     
-    searchInput.addEventListener('input', function() {
-        const searchTerm = this.value.toLowerCase().trim();
-        
-        componentLinks.forEach(function(link) {
-            const text = link.textContent.toLowerCase();
-            if (text.includes(searchTerm)) {
-                link.style.display = 'block';
-            } else {
-                link.style.display = 'none';
-            }
+    if (searchInput && componentLinks.length > 0) {
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            
+            componentLinks.forEach(function(link) {
+                const text = link.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    link.style.display = 'block';
+                } else {
+                    link.style.display = 'none';
+                }
+            });
         });
-    });
+    }
     
     // 导航高亮和滚动监听
     const sections = document.querySelectorAll('section');

@@ -15,15 +15,18 @@
 <body>
     <header class="flutter-header">
         <div class="container">
-            <div class="logo">
-                <i class="fab fa-flutter"></i>
-                <h1>Flutter Material docs</h1>
-            </div>
+            <a href="index.html" class="logo-link">
+                <div class="logo">
+                    <i class="fab fa-flutter"></i>
+                    <h1>Flutter Material docs</h1>
+                </div>
+            </a>
             <nav class="main-nav">
                 <ul>
                     <li><a href="#overview">概述</a></li>
                     <li><a href="#components">组件列表</a></li>
                     <li><a href="#getting-started">快速开始</a></li>
+                    <li><a href="dart-tutorial.html">Dart教程</a></li>
                     <li><a href="#examples">示例</a></li>
                 </ul>
             </nav>
@@ -43,64 +46,110 @@
                     <i class="fas fa-search"></i>
                 </div>
                 <nav class="component-nav">
-                    <h3>核心组件</h3>
-                    <h3>动作 (Actions)</h3>
-                    <ul id="component-list">
-                        <li><a href="#floatingactionbutton">FloatingActionButton (浮动操作按钮)</a></li>
-                        <li><a href="#extendedfloatingactionbutton">Extended FloatingActionButton (扩展浮动操作按钮)</a></li>
-                        <li><a href="#iconbutton">IconButton (图标按钮)</a></li>
-                        <li><a href="#segmentedbutton">SegmentedButton (分段按钮)</a></li>
-                        <li><a href="#button">Button (按钮)</a></li>
-                    </ul>
+                    <div class="nav-group">
+                        <h3 class="nav-group-title">
+                            <span class="toggle-icon">▼</span>
+                            快速导航
+                        </h3>
+                        <ul class="nav-items">
+                            <li><a href="dart-tutorial.html">Dart语言教程</a></li>
+                            <li><a href="#overview">概述</a></li>
+                            <li><a href="#getting-started">快速开始</a></li>
+                        </ul>
+                    </div>
                     
-                    <h3>通信 (Communication)</h3>
-                    <ul>
-                        <li><a href="#badge">Badge (徽章)</a></li>
-                        <li><a href="#linearprogressindicator">LinearProgressIndicator (线性进度指示器)</a></li>
-                        <li><a href="#snackbar">SnackBar (快餐栏)</a></li>
-                    </ul>
+                    <div class="nav-group">
+                        <h3 class="nav-group-title">
+                            <span class="toggle-icon">▼</span>
+                            动作组件 (Actions)
+                        </h3>
+                        <ul class="nav-items">
+                            <li><a href="#floatingactionbutton">FloatingActionButton (浮动操作按钮)</a></li>
+                            <li><a href="#extendedfloatingactionbutton">Extended FloatingActionButton (扩展浮动操作按钮)</a></li>
+                            <li><a href="#iconbutton">IconButton (图标按钮)</a></li>
+                            <li><a href="#segmentedbutton">SegmentedButton (分段按钮)</a></li>
+                            <li><a href="#button">Button (按钮)</a></li>
+                        </ul>
+                    </div>
                     
-                    <h3>容器 (Containment)</h3>
-                    <ul>
-                        <li><a href="#alertDialog">AlertDialog (警告对话框)</a></li>
-                        <li><a href="#bottomsheet">Bottom sheet (底部工作表)</a></li>
-                        <li><a href="#card">Card (卡片)</a></li>
-                        <li><a href="#divider">Divider (分隔线)</a></li>
-                        <li><a href="#listtile">ListTile (列表项)</a></li>
-                    </ul>
+                    <div class="nav-group">
+                        <h3 class="nav-group-title">
+                            <span class="toggle-icon">▼</span>
+                            通信组件 (Communication)
+                        </h3>
+                        <ul class="nav-items">
+                            <li><a href="#badge">Badge (徽章)</a></li>
+                            <li><a href="#linearprogressindicator">LinearProgressIndicator (线性进度指示器)</a></li>
+                            <li><a href="#snackbar">SnackBar (快餐栏)</a></li>
+                        </ul>
+                    </div>
                     
-                    <h3>导航 (Navigation)</h3>
-                    <ul>
-                        <li><a href="#appbar">AppBar (应用栏)</a></li>
-                        <li><a href="#bottomappbar">Bottom app bar (底部应用栏)</a></li>
-                        <li><a href="#navigationbar">NavigationBar (导航栏)</a></li>
-                        <li><a href="#navigationdrawer">NavigationDrawer (导航抽屉)</a></li>
-                        <li><a href="#navigationrail">Navigation rail (导航轨道)</a></li>
-                        <li><a href="#tabbar">TabBar (标签栏)</a></li>
-                        <li><a href="#bottomnavigationbar">BottomNavigationBar (底部导航栏)</a></li>
-                    </ul>
+                    <div class="nav-group">
+                        <h3 class="nav-group-title">
+                            <span class="toggle-icon">▼</span>
+                            容器组件 (Containment)
+                        </h3>
+                        <ul class="nav-items">
+                            <li><a href="#alertDialog">AlertDialog (警告对话框)</a></li>
+                            <li><a href="#bottomsheet">Bottom sheet (底部工作表)</a></li>
+                            <li><a href="#card">Card (卡片)</a></li>
+                            <li><a href="#divider">Divider (分隔线)</a></li>
+                            <li><a href="#listtile">ListTile (列表项)</a></li>
+                        </ul>
+                    </div>
                     
-                    <h3>选择 (Selection)</h3>
-                    <ul>
-                        <li><a href="#checkbox">Checkbox (复选框)</a></li>
-                        <li><a href="#chip">Chip (芯片)</a></li>
-                        <li><a href="#datepicker">DatePicker (日期选择器)</a></li>
-                        <li><a href="#menu">Menu (菜单)</a></li>
-                        <li><a href="#radio">Radio (单选按钮)</a></li>
-                        <li><a href="#slider">Slider (滑块)</a></li>
-                        <li><a href="#switch">Switch (开关)</a></li>
-                        <li><a href="#timepicker">TimePicker (时间选择器)</a></li>
-                    </ul>
+                    <div class="nav-group">
+                        <h3 class="nav-group-title">
+                            <span class="toggle-icon">▼</span>
+                            导航组件 (Navigation)
+                        </h3>
+                        <ul class="nav-items">
+                            <li><a href="#appbar">AppBar (应用栏)</a></li>
+                            <li><a href="#bottomappbar">Bottom app bar (底部应用栏)</a></li>
+                            <li><a href="#navigationbar">NavigationBar (导航栏)</a></li>
+                            <li><a href="#navigationdrawer">NavigationDrawer (导航抽屉)</a></li>
+                            <li><a href="#navigationrail">Navigation rail (导航轨道)</a></li>
+                            <li><a href="#tabbar">TabBar (标签栏)</a></li>
+                            <li><a href="#bottomnavigationbar">BottomNavigationBar (底部导航栏)</a></li>
+                        </ul>
+                    </div>
                     
-                    <h3>文本输入 (Text inputs)</h3>
-                    <ul>
-                        <li><a href="#textfield">TextField (文本字段)</a></li>
-                    </ul>
+                    <div class="nav-group">
+                        <h3 class="nav-group-title">
+                            <span class="toggle-icon">▼</span>
+                            选择组件 (Selection)
+                        </h3>
+                        <ul class="nav-items">
+                            <li><a href="#checkbox">Checkbox (复选框)</a></li>
+                            <li><a href="#chip">Chip (芯片)</a></li>
+                            <li><a href="#datepicker">DatePicker (日期选择器)</a></li>
+                            <li><a href="#menu">Menu (菜单)</a></li>
+                            <li><a href="#radio">Radio (单选按钮)</a></li>
+                            <li><a href="#slider">Slider (滑块)</a></li>
+                            <li><a href="#switch">Switch (开关)</a></li>
+                            <li><a href="#timepicker">TimePicker (时间选择器)</a></li>
+                        </ul>
+                    </div>
                     
-                    <h3>其他组件 (Other Widgets)</h3>
-                    <ul>
-                        <li><a href="#list">ListView (列表视图)</a></li>
-                    </ul>
+                    <div class="nav-group">
+                        <h3 class="nav-group-title">
+                            <span class="toggle-icon">▼</span>
+                            文本输入 (Text inputs)
+                        </h3>
+                        <ul class="nav-items">
+                            <li><a href="#textfield">TextField (文本字段)</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="nav-group">
+                        <h3 class="nav-group-title">
+                            <span class="toggle-icon">▼</span>
+                            其他组件 (Other Widgets)
+                        </h3>
+                        <ul class="nav-items">
+                            <li><a href="#list">ListView (列表视图)</a></li>
+                        </ul>
+                    </div>
                 </nav>
             </aside>
 
@@ -2797,5 +2846,212 @@ ElevatedButton(
             </p>
         </div>
     </footer>
+    
+    <style>
+        /* 导航组样式 */
+        .nav-group {
+            margin-bottom: 1rem;
+        }
+        
+        .nav-group-title {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+            margin: 0.5rem 0;
+            color: #333;
+            user-select: none;
+        }
+        
+        .nav-group-title:hover {
+            color: #6200ee;
+        }
+        
+        .toggle-icon {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .nav-group-title.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+        
+        .nav-items {
+            list-style: none;
+            padding-left: 1.5rem;
+            margin: 0.5rem 0;
+            transition: max-height 0.3s ease, opacity 0.3s ease;
+            max-height: 500px;
+            overflow: hidden;
+            opacity: 1;
+        }
+        
+        .nav-group-title.collapsed + .nav-items {
+            max-height: 0;
+            opacity: 0;
+            margin: 0;
+        }
+        
+        .nav-items li {
+            margin: 0.3rem 0;
+        }
+        
+        .nav-items a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            display: block;
+            padding: 0.2rem 0;
+        }
+        
+        .nav-items a:hover {
+            color: #6200ee;
+            padding-left: 0.5rem;
+        }
+        
+        .nav-items a.active {
+            color: #6200ee;
+            font-weight: bold;
+            padding-left: 0.5rem;
+            border-left: 3px solid #6200ee;
+        }
+        
+        /* 代码块样式 */
+        .code-block {
+            position: relative;
+            margin: 1rem 0;
+        }
+        
+        .copy-button {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 4px;
+            padding: 0.25rem 0.5rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .code-block:hover .copy-button {
+            opacity: 1;
+        }
+        
+        .copy-button:hover {
+            background: rgba(255, 255, 255, 1);
+        }
+        
+        /* 组件部分样式 */
+        .component-detail {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        /* 标题栏链接样式 */
+        .logo-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .logo-link:hover .logo h1 {
+            color: #6200ee;
+        }
+    </style>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化导航组
+            initNavigation();
+            
+            // 检查哈希并显示对应内容
+            checkHashAndShowSection();
+            
+            // 监听哈希变化
+            window.addEventListener('hashchange', checkHashAndShowSection);
+            
+            // 代码高亮初始化
+            hljs.highlightAll();
+        });
+        
+        // 初始化导航功能
+        function initNavigation() {
+            // 导航组折叠/展开功能
+            const navGroupTitles = document.querySelectorAll('.nav-group-title');
+            
+            // 默认折叠所有导航组
+            navGroupTitles.forEach(title => {
+                title.classList.add('collapsed');
+                
+                title.addEventListener('click', function() {
+                    this.classList.toggle('collapsed');
+                });
+            });
+            
+            // 导航链接active状态管理
+            const navLinks = document.querySelectorAll('.nav-items a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // 移除所有active状态
+                    navLinks.forEach(a => a.classList.remove('active'));
+                    // 添加当前链接的active状态
+                    this.classList.add('active');
+                });
+            });
+        }
+        
+        // 检查哈希并显示对应内容
+        function checkHashAndShowSection() {
+            const hash = window.location.hash;
+            if (hash) {
+                // 查找对应的锚点元素
+                const targetElement = document.querySelector(hash);
+                if (targetElement) {
+                    // 设置对应导航链接的active状态
+                    const navLinks = document.querySelectorAll('.nav-items a[href="' + hash + '"]');
+                    navLinks.forEach(link => {
+                        const allLinks = document.querySelectorAll('.nav-items a');
+                        allLinks.forEach(a => a.classList.remove('active'));
+                        link.classList.add('active');
+                        
+                        // 确保父组是展开的
+                        const parentGroup = link.closest('.nav-group');
+                        if (parentGroup) {
+                            const groupTitle = parentGroup.querySelector('.nav-group-title');
+                            if (groupTitle) {
+                                groupTitle.classList.remove('collapsed');
+                            }
+                        }
+                    });
+                    
+                    // 平滑滚动到目标元素
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        }
+        
+        // 复制代码功能
+        function copyCode(button) {
+            const codeBlock = button.nextElementSibling;
+            const code = codeBlock.textContent;
+            
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                }, 2000);
+            }).catch(err => {
+                console.error('复制失败:', err);
+            });
+        }
+    </script>
 </body>
 </html>
